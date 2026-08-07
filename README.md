@@ -86,6 +86,25 @@ kan sige hvilken version fejlen optrådte i.
 
 ---
 
+## Standardværdier
+
+Øverst i scriptet:
+
+```js
+const DEFAULT_CO     = "Metz";
+const DEFAULT_ACCENT = "#1a1a1a";
+const METZ_LOGO      = "data:image/png;base64,...";
+```
+
+`METZ_LOGO` vises i toppen af kundeoversigten. Skal logoet skiftes: **beskær al
+hvid luft omkring logoet først.** Et logo med luft omkring bliver optisk lille,
+uanset hvor stor kassen er — luften skalerer med. Gem som PNG med transparent
+baggrund, konvertér til base64 og indsæt hele strengen.
+
+Bruges både ved opstart og ved **Ny kunde**. Ret dem ét sted.
+
+---
+
 ## Husets placeringskort
 
 Hvor logoet sidder på en Lucia-pen er ens for alle kunder. Derfor sættes det op
@@ -117,7 +136,8 @@ navn, farve og alle fire logoer, men beholder husets placeringskort.
 
 Arbejdsgangen pr. prospect:
 
-1. Skriv kundenavn, vælg accentfarve.
+1. Skriv kundenavn, vælg accentfarve. Værktøjet starter på **Metz** med sort
+   accent — det er skabelonen, ikke en kunde.
 2. Upload logoer. Logo 1 mørk og lys som minimum — den lyse bruges automatisk på
    mørke varer, ellers forsvinder logoet. Logo 2 er til et sekundært mærke.
 3. Vælg kategori, vælg farver der matcher kundens brand.
@@ -125,9 +145,26 @@ Arbejdsgangen pr. prospect:
    egen placering.
 5. **Med i shop → Nej** på alt der ikke passer. Skær ned til 15-25 varer — et
    kurateret udvalg sælger bedre end 171 varer.
-6. **Eksportér**. Filen downloades.
+6. Vælg output:
+   - **Kundeoversigt** — de valgte varer med logo på, farvevarianter og priser,
+     grupperet efter kategori. Metz-logo i toppen, kundens navn i overskriften.
+     Flyder over flere sider ved print. ~25 KB ved 18 varer, ~60 KB ved 60.
+   - **Eksportér shop** — den fulde webshop-mock-up med kategorier og
+     produktsider. Bruges til demo på skærm, ikke til at maile.
 
-### Del eksporten med kunden
+### Del med kunden
+
+**Nemmest: PDF.** Åbn kundeoversigten, tryk `Cmd/Ctrl + P` og vælg *Gem som PDF*.
+Siden har et printark bygget ind: A4, tre varer i bredden, og den brækker aldrig
+et produkt over to sider. PDF'en kan hænges ved i en mail, printes til et møde og
+åbnes af enhver. Ingen opsætning, intet link.
+
+**Vil du hellere sende et link:** filen skal hostes. Opret en mappe `shops/` i
+repoet, læg filen som `shops/bain.html`, push, og kunden kan åbne
+`.../shops/bain.html`. Det kræver skriveadgang til repoet for den enkelte sælger.
+
+Hostede filer ligger frit tilgængelige for den, der har linket. Sidefilen har
+`noindex`, så den ikke ender i Google, men det er ikke adgangskontrol.
 
 Enten som vedhæftet fil, eller — bedre — lagt op så kunden får et link.
 Opret en mappe `shops/` i repoet, læg filen som `shops/bain.html`, push, og
@@ -153,5 +190,6 @@ bedre fotos, ikke med kode.
 **Beklædningssiden blev afkortet under hentningen.** Der mangler et mindre antal
 varer i bunden, bl.a. nogle Tee Jays-poloer og Untagged movement-t-shirts.
 
-**Eksporten fylder ~850 KB** med alle varer med. Kuratér ned, så bliver den
-markant mindre — og pitchet skarpere.
+**Kuratér før du deler.** Med alle 171 varer fylder shop-eksporten ~850 KB.
+Skåret ned til 15-25 varer bliver kundeoversigten omkring 25 KB — og pitchet
+skarpere.
