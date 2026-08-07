@@ -261,8 +261,8 @@ body:not(.edit) #exit{display:block;}
 
 <div id="bench">
   <div class="mark"><b>Metz Studio</b><i id="ver">Builder</i></div>
-  <div class="fld"><label for="co">Kunde</label><input type="text" id="co" value="Bain" autocomplete="off"></div>
-  <div class="fld"><label for="ac">Accent</label><input type="color" id="ac" value="#6a2419"></div>
+  <div class="fld"><label for="co">Kunde</label><input type="text" id="co" value="Metz" autocomplete="off"></div>
+  <div class="fld"><label for="ac">Accent</label><input type="color" id="ac" value="#1a1a1a"></div>
   <div class="fld">
     <label>Logo 1</label>
     <label class="plate-btn" id="pbAD"><span class="dot"></span>Mørk<input type="file" id="fAD" accept=".svg,image/svg+xml,image/png"></label>
@@ -360,7 +360,7 @@ body:not(.edit) #exit{display:block;}
     <div class="spacer"></div><span class="acct">Opret konto / Log ind</span>
   </div></div>
   <div class="head"><div class="wrap">
-    <a class="logo" href="#"><span class="plate empty" id="hdrPlate">Bain</span></a>
+    <a class="logo" href="#"><span class="plate empty" id="hdrPlate">Metz</span></a>
     <div class="spacer"></div>
     <div class="tools">
       <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path></svg>
@@ -372,7 +372,7 @@ body:not(.edit) #exit{display:block;}
   <main><div class="wrap" id="stage"></div></main>
   <footer>
     <div class="wrap">
-      <div><h4 id="footTitle">Om Bain</h4>
+      <div><h4 id="footTitle">Om Metz</h4>
         <p>Webshoppen udbydes i samarbejde med Metz A/S. Metz står for IT-hosting, drift og lagerstyring af mere end 200 kundespecifikke webshops.</p></div>
       <div><h4>Kundeservice</h4><ul>
         <li><a href="#">Opret konto / Log ind</a></li><li><a href="#">Kontakt os</a></li>
@@ -391,7 +391,11 @@ body:not(.edit) #exit{display:block;}
 "use strict";
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const VERSION = "1.0";
+const VERSION = "1.1";
+
+/* Standard ved opstart og ved "Ny kunde" */
+const DEFAULT_CO = "Metz";
+const DEFAULT_ACCENT = "#1a1a1a";
 
 /* ══════════════════════════════════════════════════════════════════
    HUSETS PLACERINGSKORT
@@ -5357,7 +5361,7 @@ function mkItem(mi,from){
 }
 
 var state={
-  company:"Bain", accent:"#6a2419",
+  company:DEFAULT_CO, accent:DEFAULT_ACCENT,
   plates:{a:{dark:null,light:null},b:{dark:null,light:null}},
   ar:{a:{dark:3,light:3},b:{dark:3,light:3}},
   items:[], cat:"merchandise", pdp:-1, sel:-1
@@ -5718,16 +5722,16 @@ function flash(id,t){const b=el(id),o=b.textContent;b.textContent=t;setTimeout((
 
 el("bNew").addEventListener("click",()=>{
   if(!confirm("Ryd kunde? Logoer, navn og farve nulstilles. Husets placeringskort beholdes."))return;
-  state.company="Kunde"; state.accent="#1d3d58";
+  state.company=DEFAULT_CO; state.accent=DEFAULT_ACCENT;
   state.plates={a:{dark:null,light:null},b:{dark:null,light:null}};
   state.ar={a:{dark:3,light:3},b:{dark:3,light:3}};
   ["a","b"].forEach(s=>["dark","light"].forEach(w=>
     document.documentElement.style.removeProperty("--logo-"+s+"-"+w)));
   ["pbAD","pbAL","pbBD","pbBL"].forEach(id=>el(id).classList.remove("set"));
   ["fAD","fAL","fBD","fBL"].forEach(id=>el(id).value="");
-  el("co").value=""; el("ac").value=state.accent;
+  el("co").value=DEFAULT_CO; el("ac").value=state.accent;
   document.documentElement.style.setProperty("--accent",state.accent);
-  el("footTitle").textContent="Om Kunde";
+  el("footTitle").textContent="Om "+DEFAULT_CO;
   state.items=baseItems(); state.cat="merchandise"; el("cat").value="merchandise";
   state.pdp=-1; select(-1); render(); header();
 });
