@@ -228,28 +228,55 @@ def fetch(session, url, tries=3):
             time.sleep(2 * (n + 1))
 
 
-def product_image(tile, session, detail_url, cache):
-    """
-    Fejlen der lå bag de manglende produkter: gitteret lægger et badge-billede
-    foran produktbilledet på varer markeret som nyhed, og den gamle scraper tog
-    bare det første <img>. Her tages i stedet det første billede der faktisk
-    ligger på img.metz.dk — og hvis der ikke er noget, hentes produktsiden.
-    """
-    for img in tile.find_all("img"):
-        src = img.get("src") or img.get("data-src") or ""
-        if IMG_HOST in src:
-            return re.sub(r"width=\d+,height=\d+", "width=600,height=600", src)
+# Grafik der ligger på img.metz.dk uden at være et produktbillede.
+# "badge-new-da.png" er Nyhed-banneret og lå foran produktet på 85 varer.
+NON_PRODUCT_IMAGES = ("badge", "sprite", "placeholder", "icon", "logo")
 
-    if detail_url in cache:
-        return cache[detail_url]
 
-    soup = BeautifulSoup(fetch(session, detail_url), "html.parser")
-    for img in soup.find_all("img"):
+def _candidates(soup_or_tile):
+    """Alle billeder fra img.metz.dk som ikke er badges eller anden pynt."""
+    out = []
+    for img in soup_or_tile.find_all("img"):
         src = img.get("src") or img.get("data-src") or ""
-        if IMG_HOST in src:
-            src = re.sub(r"width=\d+,height=\d+", "width=600,height=600", src)
-            cache[detail_url] = src
-            return src
+        if IMG_HOST not in src:
+            continue
+        filename = src.rsplit("/", 1)[-1].lower()
+        if any(w in filename for w in NON_PRODUCT_IMAGES):
+            continue
+        out.append((filename, re.sub(r"width=\d+,height=\d+",
+                                     "width=600,height=600", src)))
+    return out
+
+
+def product_image(tile, session, detail_url, cache, key):
+    """
+    Vælger produktbilledet ud fra filnavnet frem for ud fra rækkefølgen.
+
+    To fælder ligger her. Nyhed-varer får et badge lagt foran produktbilledet,
+    og badget ligger på samme domæne som produkterne — så "tag det første
+    billede fra img.metz.dk" gav banneret på 85 varer. Filnavnet er derimod
+    entydigt: produktet new-3440010na har billedet new-3440010na_1.jpg.
+    """
+    for source in (tile, None):
+        if source is None:
+            if detail_url in cache:
+                return cache[detail_url]
+            source = BeautifulSoup(fetch(session, detail_url), "html.parser")
+
+        found = _candidates(source)
+        # Filnavn der starter med varenummeret er utvetydigt det rigtige.
+        for filename, src in found:
+            if key and filename.startswith(key.lower()):
+                if source is not tile:
+                    cache[detail_url] = src
+                return src
+        # Ellers: første rigtige produktbillede i feltet.
+        if found and source is tile:
+            return found[0][1]
+        if found:
+            cache[detail_url] = found[0][1]
+            return found[0][1]
+
     cache[detail_url] = None
     return None
 
@@ -303,7 +330,7 @@ def scrape(session, known_brands):
             stock = next((t for t in texts if t.startswith(("Forventet", "På lager", "Ikke på lager"))), "")
 
             detail = href if href.startswith("http") else "https://shop.metz.dk" + href
-            img = product_image(tile, session, detail, detail_cache)
+            img = product_image(tile, session, detail, detail_cache, key)
 
             model, colour = split_name(name)
             rec = {
@@ -388,6 +415,19 @@ def main():
         for r in no_image:
             print(f"   {r['_key']:22} {r['name']}")
         print("   Tjek dem i shoppen før du kører videre.\n")
+
+    # Sikkerhedsnet. To produkter må aldrig dele billede — sker det, har vi
+    # grebet noget generisk (et badge, en pladsholder) i stedet for varen.
+    # Det var præcis sådan Nyhed-banneret nåede ud på 85 produkter.
+    from collections import Counter
+    shared = {u: n for u, n in Counter(r["img"] for r in found).items() if n > 1}
+    if shared:
+        print(f"\n!! {len(shared)} billed-URL bruges af flere produkter — de springes over:")
+        for url, n in sorted(shared.items(), key=lambda x: -x[1]):
+            print(f"   {n:4}x  {url}")
+        print("   Ser det ud som en badge eller pladsholder, så tilføj et ord")
+        print("   fra filnavnet til NON_PRODUCT_IMAGES øverst i scriptet.\n")
+        found = [r for r in found if r["img"] not in shared]
 
     known = {img_key(s["img"]) for s in existing}
     known |= {s["name"].lower() for s in existing}
