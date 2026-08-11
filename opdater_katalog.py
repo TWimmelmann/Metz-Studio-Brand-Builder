@@ -185,8 +185,10 @@ def clean_brand(candidate, name, known):
     if low.startswith(("yderside", "foer", "materiale")):
         return ""
     # Pris, lagerstatus og lignende gitter-tekst er ikke et brand.
-    if low.startswith(("dkk", "fra dkk", "eur", "pris", "forventet", "på lager",
-                       "ikke på lager", "udsolgt", "nyhed")):
+    if low in ("fra", "dkk", "eur", "pris", "nyhed", "ny", "stk"):
+        return ""
+    if low.startswith(("dkk", "fra dkk", "fra eur", "eur", "pris", "forventet",
+                       "på lager", "ikke på lager", "udsolgt", "nyhed")):
         return ""
     # Materialebetegnelser der ligner et brand: "Tritan™ Renew plastik".
     # Matches som helt ord, ellers ryger rigtige brands som "High Sierra RECYCLEX".
@@ -420,14 +422,26 @@ def main():
     # grebet noget generisk (et badge, en pladsholder) i stedet for varen.
     # Det var præcis sådan Nyhed-banneret nåede ud på 85 produkter.
     from collections import Counter
-    shared = {u: n for u, n in Counter(r["img"] for r in found).items() if n > 1}
-    if shared:
-        print(f"\n!! {len(shared)} billed-URL bruges af flere produkter — de springes over:")
-        for url, n in sorted(shared.items(), key=lambda x: -x[1]):
-            print(f"   {n:4}x  {url}")
-        print("   Ser det ud som en badge eller pladsholder, så tilføj et ord")
-        print("   fra filnavnet til NON_PRODUCT_IMAGES øverst i scriptet.\n")
-        found = [r for r in found if r["img"] not in shared]
+    counts = Counter(r["img"] for r in found)
+    # Et badge rammer snesevis af varer. To varer der deler ét foto er derimod
+    # normalt — samme taske i to størrelser. Kun det første er en fejl.
+    badges = {u for u, n in counts.items() if n >= 4}
+    overlap = {u: n for u, n in counts.items() if 2 <= n < 4}
+
+    if badges:
+        print(f"\n!! {len(badges)} billed-URL bruges af mange produkter — de springes over:")
+        for url in sorted(badges, key=lambda u: -counts[u]):
+            print(f"   {counts[url]:4}x  {url}")
+        print("   Det ligner en badge eller pladsholder. Tilføj et ord fra")
+        print("   filnavnet til NON_PRODUCT_IMAGES øverst i scriptet.\n")
+        found = [r for r in found if r["img"] not in badges]
+
+    if overlap:
+        print(f"\n   {len(overlap)} billeder deles af to-tre varer. Tages med:")
+        for url, n in overlap.items():
+            names = [r["name"] for r in found if r["img"] == url]
+            print(f"   {n}x  {', '.join(names)}")
+        print()
 
     known = {img_key(s["img"]) for s in existing}
     known |= {s["name"].lower() for s in existing}
@@ -436,7 +450,7 @@ def main():
     for r in found:
         if img_key(r["img"]) in known or r["name"].lower() in known:
             continue
-        fingerprint = (r["name"].lower(), r["img"])
+        fingerprint = r["name"].lower()
         if fingerprint in batch_seen:      # samme vare fundet i to kategorier
             continue
         batch_seen.add(fingerprint)
