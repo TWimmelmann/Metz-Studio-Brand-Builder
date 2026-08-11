@@ -154,6 +154,48 @@ def split_name(name):
     return name, "—"
 
 
+# Ord der afslører at teksten beskriver et materiale frem for et brand.
+MATERIAL_WORDS = {
+    "plastik", "polyester", "bomuld", "uld", "læder", "stål", "silikone",
+    "genanvendt", "recycled", "nylon", "elastan", "viskose", "akryl", "merino",
+    "polyamid", "polyamide", "spandex", "rpet", "organic", "cotton", "økologisk",
+}
+
+
+def clean_brand(candidate, name, known):
+    """
+    Brand vises over produktnavnet i mockuppen, så feltet skal være rent.
+    Gitteret placerer ikke altid brandet samme sted, og uden filter havner
+    materialebeskrivelser ("Yderside i genanvendt polyester") og hele
+    produktnavne ("Stanley Everyday 236 ml termokop - Black") i feltet.
+    """
+    if not candidate:
+        return ""
+    c = " ".join(candidate.split()).strip(" -,.")
+    low = c.lower()
+
+    if low in known:                     # kendt brand -> brug husets stavemåde
+        return known[low]
+    if "%" in c or len(c) > 28:           # materialebeskrivelse
+        return ""
+    if re.search(r"\d\s*(ml|l|cm|mm|g|kg|stk|\")", low):
+        return ""
+    if low and (low in name.lower() or name.lower().startswith(low)):
+        return ""                         # gentagelse af produktnavnet
+    if low.startswith(("yderside", "foer", "materiale")):
+        return ""
+    # Pris, lagerstatus og lignende gitter-tekst er ikke et brand.
+    if low.startswith(("dkk", "fra dkk", "eur", "pris", "forventet", "på lager",
+                       "ikke på lager", "udsolgt", "nyhed")):
+        return ""
+    # Materialebetegnelser der ligner et brand: "Tritan™ Renew plastik".
+    # Matches som helt ord, ellers ryger rigtige brands som "High Sierra RECYCLEX".
+    words = set(re.findall(r"[a-zæøå]+", low))
+    if words & MATERIAL_WORDS:
+        return ""
+    return c
+
+
 def _pattern(word):
     esc = re.escape(word)
     if word in WHOLE_WORD_ONLY:
@@ -212,7 +254,7 @@ def product_image(tile, session, detail_url, cache):
     return None
 
 
-def scrape(session):
+def scrape(session, known_brands):
     found, no_image = [], []
     detail_cache = {}
     seen = set()
@@ -249,7 +291,13 @@ def scrape(session):
             seen.add(key)
 
             texts = [t.strip() for t in tile.stripped_strings]
-            brand = next((t for t in texts if t and t != name and t not in ("Product badge",)), "")
+            brand = ""
+            for t in texts:
+                if not t or t == name or t == "Product badge":
+                    continue
+                brand = clean_brand(t, name, known_brands)
+                if brand:
+                    break
             mat = next((t for t in texts if "%" in t), "")
             price = next((t for t in texts if t.startswith(("Fra DKK", "DKK", "Pris"))), "")
             stock = next((t for t in texts if t.startswith(("Forventet", "På lager", "Ikke på lager"))), "")
@@ -319,10 +367,18 @@ def main():
     existing, start, end = load_skus(html)
     print(f"index.html indeholder {len(existing)} SKU'er\n")
 
+    # Husets stavemåder. Retter bl.a. "TEE JAYS" til "Tee Jays", så samme
+    # leverandør ikke optræder som to brands i mockuppen.
+    known_brands = {}
+    for sku in existing:
+        b = (sku.get("brand") or "").strip()
+        if b:
+            known_brands.setdefault(b.lower(), b)
+
     print("Henter shoppen:")
     session = requests.Session()
     session.headers["User-Agent"] = "metz-brand-builder-katalogopdatering"
-    found, no_image = scrape(session)
+    found, no_image = scrape(session, known_brands)
     print(f"\nShoppen gav {len(found) + len(no_image)} produkter")
 
     # HØJLYDT FEJL. Den gamle scraper sprang de her over uden at sige noget,
@@ -336,8 +392,15 @@ def main():
     known = {img_key(s["img"]) for s in existing}
     known |= {s["name"].lower() for s in existing}
 
-    new = [r for r in found
-           if img_key(r["img"]) not in known and r["name"].lower() not in known]
+    new, batch_seen = [], set()
+    for r in found:
+        if img_key(r["img"]) in known or r["name"].lower() in known:
+            continue
+        fingerprint = (r["name"].lower(), r["img"])
+        if fingerprint in batch_seen:      # samme vare fundet i to kategorier
+            continue
+        batch_seen.add(fingerprint)
+        new.append(r)
 
     print(f"Allerede i kataloget: {len(found) - len(new)}")
     print(f"NYE der tilføjes:     {len(new)}\n")
