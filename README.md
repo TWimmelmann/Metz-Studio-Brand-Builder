@@ -14,6 +14,7 @@ eller hoste.
 |---|---|
 | `index.html` | Hele værktøjet. Katalog, kode og styling i én fil. |
 | `catalogue.json` | Katalogdata som selvstændig fil. Bruges **ikke** af værktøjet — se nedenfor. |
+| `opdater_katalog.py` | Henter demoshoppens sortiment og skriver nye varer ind begge steder. |
 | `README.md` | Denne fil. |
 
 ### Hvorfor alt ligger i én fil
@@ -28,6 +29,29 @@ bruges offline hos en kunde uden wifi, ligger kataloget i stedet inde i
 og som datagrundlag hvis værktøjet på et tidspunkt bygges om til en rigtig app.
 **Retter du i `catalogue.json` sker der ingenting.** Katalogændringer skal ind i
 `SKUS`-arrayet i `index.html`.
+
+### Opdatering af kataloget
+
+```
+pip3 install requests beautifulsoup4
+python3 opdater_katalog.py --dry-run    # vis hvad der ville ske
+python3 opdater_katalog.py              # skriv begge filer
+```
+
+Scriptet skriver både `SKUS` i `index.html` og `catalogue.json`, så de to aldrig
+kommer ud af trit.
+
+**Farvekortet ligger to steder og skal holdes ens:** `PALETTE` i
+`opdater_katalog.py` og `SWATCH` i `index.html`. Tabellen gør to ting. Den giver
+farveprikken på produktkortet sin farve, og den afgør ud fra farvens lysstyrke
+om logoet skal trykkes i den mørke eller den lyse plade. Mangler en farve i
+tabellen, står prikken grå og logoet gætter — så tilføj nye farvenavne begge
+steder. Scriptet skriver dem ud til sidst i kørslen, så du ved hvilke der mangler.
+
+En vare er identificeret ved **kategori + model + farve**. Det er den nøgle
+scriptet dedupliker på, og den nøgle værktøjet grupperer farvevarianter efter.
+Ændrer shoppen et produktfoto eller en stavemåde, kommer varen derfor ikke ind
+som en ny, løs vare ved siden af sig selv.
 
 ---
 
@@ -68,8 +92,9 @@ I scriptet, i rækkefølge:
 | Blok | Ansvar |
 |---|---|
 | `VERSION`, `PRESET` | versionsnummer og husets placeringskort |
-| `SKUS` | katalogdata, 326 varer |
+| `SKUS` | katalogdata, 469 varer |
 | `CATS`, `SWATCH`, `SIZES` | kategorier, farvekoder, størrelsesrækker |
+| `swatchOf`, `skuIsDark` | slår farven op og afgør om logoet skal være lyst |
 | `MODELS` | grupperer varenumre til modeller |
 | `FAMILY` | standardplacering pr. varetype |
 | `mkItem`, `baseItems` | opretter varerne på hylden |
