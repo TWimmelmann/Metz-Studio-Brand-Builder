@@ -19,6 +19,7 @@ import json
 import re
 import sys
 import time
+import unicodedata
 from pathlib import Path
 
 import requests
@@ -97,23 +98,129 @@ WHOLE_WORD_ONLY = {"tee", "net", "bag", "cap", "mus", "pen", "hat", "sko", "usb"
 CAT_FAMILY_OVERRIDE = {"laekkerier": "food", "anledningsgaver": "gift"}
 
 
-DARK_COLOURS = {
-    "black", "navy", "dark navy", "midnight blue", "dark grey", "dark grey melange",
-    "grey", "charcoal grey", "red", "prune red", "blaze", "taupe", "dark green",
-    "thyme green", "leaf green", "green", "pine green", "moss", "mocha brown",
-    "brown", "ink", "raw", "sort", "marine",
+# Husets farvekort. Den samme tabel ligger i SWATCH i index.html — retter du
+# den ene, så ret den anden.
+#
+# Tabellen gør to ting på én gang. Den giver farveprikken på produktkortet en
+# rigtig farve, og den afgør om logoet skal trykkes i den mørke eller den lyse
+# plade. Det sidste blev før styret af en håndholdt liste over "mørke farver",
+# og hver gang leverandøren fandt på et nyt farvenavn — Prune Red, Ink, Thyme
+# Green — faldt varen igennem og fik et mørkt logo på et mørkt produkt.
+# Nu regnes lysstyrken ud af farven selv, så en ny farve rammer rigtigt med det
+# samme. Er farven ukendt, står prikken grå og logoet vælger den mørke plade.
+PALETTE = {
+    "White": "#ffffff", "Off white": "#f4f1ea", "Neutral": "#e8dcc8", "Natur": "#d9c9a8",
+    "Creme": "#f0e6d2", "Cream": "#f3ead8", "Cream Beige": "#f0e6d2", "Beige": "#e3d5bd",
+    "Ecru": "#efe7d6", "Birch": "#ded7c7", "Hay": "#d8c68c", "Raw": "#d3c7b3",
+    "Sand": "#ddd0b8", "Light oak": "#c9a97a", "Cement": "#b5b1a8",
+    "Powder grey": "#c4c5c2", "Silver": "#c8ccd0", "Transparent": "#e6edf0",
+    "Steel": "#9aa3aa", "Grey": "#8a8f94", "Grey melange": "#9b9fa4",
+    "Dark grey": "#5a5f64", "Dark grey melange": "#5f646a", "Charcoal grey": "#43484d",
+    "Black": "#1a1a1a", "Ink": "#22262d", "Navy": "#1e2a44", "Dark navy": "#18223a",
+    "Midnight blue": "#1b2540", "French blue": "#3d6ea8", "Blue Oxford": "#86a3c5",
+    "Light blue": "#a9c4dd", "Green": "#2f5d3f", "Dark green": "#24402f",
+    "Pine green": "#1f4738", "Thyme green": "#59684a", "Leaf green": "#4a7c3f",
+    "Moss": "#4c5a39", "Red": "#b3261e", "Prune red": "#6e2233", "Mørkerød": "#6a1b1b",
+    "Orange": "#e07b39", "Blaze": "#d4551f", "Taupe": "#8b7d6b", "Brun": "#5d4534",
+    "Mocha brown": "#5b4636", "—": "#cfcfcf",
 }
+
+# Shoppen skriver samme farve på flere måder: "Light Blue", "Light blue".
+# Uden ensretning bliver det to prikker på samme vare.
+_CANON = {name.lower(): name for name in PALETTE}
+_CANON.update({"sort": "Black", "marine": "Navy", "hvid": "White", "brown": "Mocha brown"})
+
+# Ord shoppen af og til lægger i farvefeltet uden at være en farve.
+NOT_A_COLOUR = {"rpet", "high sierra", "polyester", "nylon", "one size"}
+
+DARK_THRESHOLD = 0.32   # under denne lysstyrke skal logoet trykkes i den lyse plade
+
+
+def canon_colour(colour):
+    c = " ".join((colour or "").split()).strip(" -,.")
+    if c.lower() in NOT_A_COLOUR:
+        return "—"
+    return _CANON.get(c.lower(), c or "—")
+
+
+def luminance(hexcode):
+    h = hexcode.lstrip("#")
+    r, g, b = (int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    f = lambda v: v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+
+def colour_is_dark(colour):
+    hexcode = PALETTE.get(canon_colour(colour))
+    if not hexcode or canon_colour(colour) == "—":
+        return False
+    return luminance(hexcode) < DARK_THRESHOLD
 
 # Ord shoppen blander ind i farvefeltet: "Polo knit, Mens Pine Green".
 GENDER_WORDS = ("mens", "men", "womens", "women", "ladies", "unisex", "herre", "dame")
 
 
 def slugify(text):
+    """
+    Modelnøglen. To varer med samme nøgle er samme model i forskellige farver,
+    så nøglen skal være stabil — falder et bogstav ud, splitter modellen i to.
+
+    Danske bogstaver skrives ud (æ -> ae), og accenter fra låneord foldes ned
+    til grundbogstavet. Uden det sidste blev "Wengé" til "weng" og
+    "ètagére" til "tag-re", fordi de accenterede tegn blev kasseret som
+    ulovlige og efterlod huller i nøglen.
+    """
     s = text.lower()
-    for a, b in (("æ", "ae"), ("ø", "oe"), ("å", "aa")):
+    for a, b in (("æ", "ae"), ("ø", "oe"), ("å", "aa"), ("ß", "ss")):
         s = s.replace(a, b)
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
     s = re.sub(r"[^a-z0-9]+", "-", s)
     return s.strip("-")
+
+
+def looks_like_colour(tail):
+    """
+    Er halen af produktnavnet en farve, eller er den en del af modelnavnet?
+
+    Kun farver vi kender fra paletten godtages. Det er med vilje strengt.
+    Slap man kravet op til "et par bogstavord", blev
+    "Sportstaske/weekendtaske, Wheel-n-Go" til farven "Wheel-n-Go" og
+    "Gaveæske - 5 stk. chokoladestænger" til farven "chokoladestænger" — og
+    en opdigtet farve splitter en model op i løse produktkort.
+
+    Kender vi ikke halen, står varen som én farveløs vare. Det er den
+    harmløse fejl. maybe_colour_report() nedenfor fanger de tilfælde hvor det
+    alligevel så ud som en farveserie, så paletten kan holdes ajour.
+    """
+    t = " ".join((tail or "").split()).strip(" -,.")
+    if not t or t.lower() in NOT_A_COLOUR:
+        return False
+    return canon_colour(t) in PALETTE
+
+
+def maybe_colour_report(found):
+    """
+    Varer der ikke fik nogen farve, men som ligner en farveserie.
+
+    Signalet er søskende: står to varer med samme modelnavn og hver sin hale
+    ("Mini abe, rød" og "Mini abe, mørkbejdset eg"), er halen med stor
+    sandsynlighed en farve vi mangler i paletten.
+    """
+    families = {}
+    for r in found:
+        if r["colour"] != "—":
+            continue
+        for sep in (", ", " - "):
+            if sep not in r["name"]:
+                continue
+            head, _, tail = r["name"].rpartition(sep)
+            words = tail.split()
+            if 1 <= len(words) <= 2 and all(
+                    re.fullmatch(r"[A-Za-zÆØÅæøå]+", w) for w in words):
+                families.setdefault((r["cat"], head.lower()), set()).add(tail)
+            break
+    return {head: tails for (cat, head), tails in families.items() if len(tails) > 1}
 
 
 def split_name(name):
@@ -122,8 +229,14 @@ def split_name(name):
     'Polo knit, Mens Pine Green'                  -> ('Polo knit Mens', 'Pine Green')
     'ADV Explore Pile Fleece Vest Green - Unisex' -> ('ADV Explore Pile Fleece Vest Unisex', 'Green')
     'Urban Hooded Sweatshirt. Unisex Black'       -> ('Urban Hooded Sweatshirt Unisex', 'Black')
+    'Avira Alya tumbler 300ML -Black'             -> ('Avira Alya tumbler 300ML', 'Black')
     """
     name = " ".join(name.replace("\xa0", " ").split())
+    # Shoppen skriver af og til bindestregen klods op ad farven: "300ML -Black".
+    # Uden mellemrummet ser separatorløkken nedenfor ingen separator, farven
+    # bliver "—" og modellen bliver hele navnet — så lagde hver enkelt farve sig
+    # som sit eget produktkort i stedet for at indgå i farvepaletten.
+    name = re.sub(r"\s-(?=[^\s-])", " - ", name)
 
     for sep in (", ", " - ", ". "):
         if sep not in name:
@@ -142,7 +255,7 @@ def split_name(name):
             if len(hw) > 2:
                 return " ".join(hw[:-1]).strip() + " " + words[0], hw[-1]
             continue
-        if words:
+        if words and looks_like_colour(" ".join(words)):
             return head.strip(), " ".join(words).strip()
 
     # Sidste udvej: "... Unisex Black" uden nogen separator.
@@ -335,6 +448,7 @@ def scrape(session, known_brands):
             img = product_image(tile, session, detail, detail_cache, key)
 
             model, colour = split_name(name)
+            colour = canon_colour(colour)
             rec = {
                 "img": img,
                 "name": name,
@@ -345,7 +459,7 @@ def scrape(session, known_brands):
                 "price": price,
                 "stock": stock,
                 "fam": cat_fam or family_of(name, cat),
-                "dark": colour.lower() in DARK_COLOURS,
+                "dark": colour_is_dark(colour),
                 "mkey": slugify(model),
                 "art": None,
                 "cat": cat,
@@ -410,6 +524,24 @@ def main():
     found, no_image = scrape(session, known_brands)
     print(f"\nShoppen gav {len(found) + len(no_image)} produkter")
 
+    # Farver uden hex står grå på produktkortet, og logoet må gætte pladen.
+    # Bedre at få dem at vide her end at opdage det i en kundepræsentation.
+    unknown = sorted({r["colour"] for r in found
+                      if r["colour"] != "—" and r["colour"] not in PALETTE})
+    if unknown:
+        print(f"\n!! {len(unknown)} farver mangler i PALETTE — de står grå og")
+        print("   logoet vælger den mørke plade som standard:")
+        for c in unknown:
+            print(f"   {c}")
+        print("   Tilføj dem til PALETTE her i scriptet OG til SWATCH i index.html.\n")
+
+    maybe = maybe_colour_report(found)
+    if maybe:
+        print(f"\n   {len(maybe)} varer står uden farve, men ligner en farveserie:")
+        for head, tails in sorted(maybe.items()):
+            print(f"     {head}: {', '.join(sorted(tails))}")
+        print("     Er det farver, så tilføj dem til PALETTE og kør igen.\n")
+
     # HØJLYDT FEJL. Den gamle scraper sprang de her over uden at sige noget,
     # og det er præcis derfor hættetrøjerne forsvandt.
     if no_image:
@@ -443,18 +575,41 @@ def main():
             print(f"   {n}x  {', '.join(names)}")
         print()
 
+    # Kender vi varen i forvejen?
+    #
+    # Billede og navn er ikke nok. Shoppen skifter foto på en vare, og den
+    # skriver samme vare på flere måder ("… 300ML - Black" over for
+    # "… 300ML -Black"). Da begge dele svigtede samtidig, kom "Avira Alya
+    # tumbler 300ML" ind fem gange mere som fem løse kort ved siden af den
+    # rigtige vare. Vare-identiteten er kategori + model + farve — den holder,
+    # også når fotoet eller stavemåden ændrer sig.
+    def identity(sku):
+        return (sku.get("cat"), sku.get("mkey"), canon_colour(sku.get("colour")).lower())
+
+    known_ids = {identity(s) for s in existing}
     known = {img_key(s["img"]) for s in existing}
     known |= {s["name"].lower() for s in existing}
 
     new, batch_seen = [], set()
+    dupes = []
     for r in found:
+        if identity(r) in known_ids:
+            dupes.append(r)
+            continue
         if img_key(r["img"]) in known or r["name"].lower() in known:
             continue
-        fingerprint = r["name"].lower()
-        if fingerprint in batch_seen:      # samme vare fundet i to kategorier
+        if identity(r) in batch_seen:      # samme vare fundet i to kategorier
             continue
-        batch_seen.add(fingerprint)
+        batch_seen.add(identity(r))
         new.append(r)
+
+    if dupes:
+        print(f"   {len(dupes)} varer findes allerede under samme model og farve"
+              f" — de springes over (nyt foto eller ny stavemåde):")
+        for r in dupes[:12]:
+            print(f"     {r['name']}")
+        if len(dupes) > 12:
+            print(f"     … og {len(dupes) - 12} mere")
 
     print(f"Allerede i kataloget: {len(found) - len(new)}")
     print(f"NYE der tilføjes:     {len(new)}\n")
