@@ -237,6 +237,10 @@ def split_name(name):
     # bliver "—" og modellen bliver hele navnet — så lagde hver enkelt farve sig
     # som sit eget produktkort i stedet for at indgå i farvepaletten.
     name = re.sub(r"\s-(?=[^\s-])", " - ", name)
+    # ... og den spejlvendte: "Magnetic powerbank- Black". Uden den her ser
+    # separatorløkken heller ingen separator, og de tre powerbanks lagde sig
+    # som hver sit farveløse produktkort i stedet for som én model i to farver.
+    name = re.sub(r"(?<=[^\s-])-(?=\s)", " -", name)
 
     for sep in (", ", " - ", ". "):
         if sep not in name:
