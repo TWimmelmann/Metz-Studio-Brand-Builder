@@ -253,6 +253,22 @@ afkortning af beklædningssiden er væk — alle 344 beklædningsvarer er med.
 varenumre som i Merchandise. Det giver med vilje dubletter på tværs af de to
 kategorier — sådan er demoen bygget.
 
+**Prisvarianter får hvert sit kort.** Shoppen sælger den samme vare flere
+gange under samme navn — `PFC-12071090` og `PFC-12071090F2` hedder begge
+"Mulepose - Black", bare til 38,00 og 45,00, og `XDC-P438.021PR`/`...EN` er
+samme flaske med tryk henholdsvis gravering. De blev til dubletprikker på
+farvevælgeren, indtil `split_variants()` i `byg_katalog_fra_demo.py` fik dem
+delt. Reglen læres af varenumrene selv frem for at være en fast liste over
+"F2", "EN" og "PR", så den også fanger den næste hale leverandøren finder på.
+To varer med samme farve i samme model kan pr. definition ikke være
+farvevarianter af hinanden — det er signalet. 15 modeller blev delt, og
+gitteret gik fra 248 til 265 kort.
+
+Derfor står varenummeret nu **helt**, med leverandørpræfiks
+(`XDC-P438.020EN`), i `art`. Det er også det, produktsiden viser under
+**Varenr.**, ligesom demoen, og det står i inspektørens sidehoved — ellers
+kan en sælger ikke se hvilken af to ens Mulepose-kort han står på.
+
 **Gitteret viser én model pr. kort, ikke én farve pr. kort.** Demoen viser hver
 farve som sit eget kort; værktøjet samler farverne på ét kort med farveprikker,
 fordi det er den enhed sælgeren placerer et logo på og duplikerer. Det er den

@@ -436,7 +436,7 @@ body:not(.edit) #exit{display:block;}
 "use strict";
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const VERSION = "1.5";
+const VERSION = "1.6";
 
 /* Standard ved opstart og ved "Ny kunde" */
 const DEFAULT_CO = "Metz";
@@ -468,7 +468,7 @@ const SKUS = [
   "dark": true,
   "mkey": "jotter-recycled-kuglepen",
   "art": [
-   "10782322"
+   "PFC-10782322"
   ],
   "cat": "merchandise"
  },
@@ -485,7 +485,7 @@ const SKUS = [
   "dark": true,
   "mkey": "jotter-recycled-kuglepen",
   "art": [
-   "10782390"
+   "PFC-10782390"
   ],
   "cat": "merchandise"
  },
@@ -502,7 +502,7 @@ const SKUS = [
   "dark": true,
   "mkey": "jotter-recycled-kuglepen",
   "art": [
-   "10782355"
+   "PFC-10782355"
   ],
   "cat": "merchandise"
  },
@@ -519,7 +519,7 @@ const SKUS = [
   "dark": true,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.171"
+   "XDC-P611.171"
   ],
   "cat": "merchandise"
  },
@@ -536,7 +536,7 @@ const SKUS = [
   "dark": true,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.177"
+   "XDC-P611.177"
   ],
   "cat": "merchandise"
  },
@@ -553,7 +553,7 @@ const SKUS = [
   "dark": true,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.175"
+   "XDC-P611.175"
   ],
   "cat": "merchandise"
  },
@@ -570,7 +570,7 @@ const SKUS = [
   "dark": false,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.172"
+   "XDC-P611.172"
   ],
   "cat": "merchandise"
  },
@@ -587,7 +587,7 @@ const SKUS = [
   "dark": false,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.173"
+   "XDC-P611.173"
   ],
   "cat": "merchandise"
  },
@@ -604,7 +604,7 @@ const SKUS = [
   "dark": true,
   "mkey": "lucia-kuglepen",
   "art": [
-   "10792790"
+   "PFC-10792790"
   ],
   "cat": "merchandise"
  },
@@ -621,7 +621,7 @@ const SKUS = [
   "dark": true,
   "mkey": "lucia-kuglepen",
   "art": [
-   "10792764"
+   "PFC-10792764"
   ],
   "cat": "merchandise"
  },
@@ -638,7 +638,7 @@ const SKUS = [
   "dark": true,
   "mkey": "lucia-kuglepen",
   "art": [
-   "10792782"
+   "PFC-10792782"
   ],
   "cat": "merchandise"
  },
@@ -655,7 +655,7 @@ const SKUS = [
   "dark": true,
   "mkey": "lucia-kuglepen",
   "art": [
-   "10792751"
+   "PFC-10792751"
   ],
   "cat": "merchandise"
  },
@@ -672,7 +672,7 @@ const SKUS = [
   "dark": true,
   "mkey": "lucia-kuglepen",
   "art": [
-   "10792721"
+   "PFC-10792721"
   ],
   "cat": "merchandise"
  },
@@ -689,7 +689,7 @@ const SKUS = [
   "dark": false,
   "mkey": "lucia-kuglepen",
   "art": [
-   "10792701"
+   "PFC-10792701"
   ],
   "cat": "merchandise"
  },
@@ -706,7 +706,7 @@ const SKUS = [
   "dark": true,
   "mkey": "x6-pen",
   "art": [
-   "P610.681"
+   "XDC-P610.681"
   ],
   "cat": "merchandise"
  },
@@ -723,7 +723,7 @@ const SKUS = [
   "dark": true,
   "mkey": "x6-pen",
   "art": [
-   "P610.685"
+   "XDC-P610.685"
   ],
   "cat": "merchandise"
  },
@@ -740,7 +740,7 @@ const SKUS = [
   "dark": false,
   "mkey": "x6-pen",
   "art": [
-   "P610.683"
+   "XDC-P610.683"
   ],
   "cat": "merchandise"
  },
@@ -757,7 +757,7 @@ const SKUS = [
   "dark": true,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690400"
+   "PFC-10690400"
   ],
   "cat": "merchandise"
  },
@@ -774,7 +774,7 @@ const SKUS = [
   "dark": true,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690462"
+   "PFC-10690462"
   ],
   "cat": "merchandise"
  },
@@ -791,7 +791,7 @@ const SKUS = [
   "dark": true,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690410"
+   "PFC-10690410"
   ],
   "cat": "merchandise"
  },
@@ -808,7 +808,7 @@ const SKUS = [
   "dark": true,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690405"
+   "PFC-10690405"
   ],
   "cat": "merchandise"
  },
@@ -825,7 +825,7 @@ const SKUS = [
   "dark": true,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690402"
+   "PFC-10690402"
   ],
   "cat": "merchandise"
  },
@@ -840,9 +840,9 @@ const SKUS = [
   "stock": "På lager: 105.033 stk",
   "fam": "notebook",
   "dark": true,
-  "mkey": "a5-hardcover-notesbog",
+  "mkey": "a5-hardcover-notesbog-p",
   "art": [
-   "10690402P"
+   "PFC-10690402P"
   ],
   "cat": "merchandise"
  },
@@ -859,7 +859,7 @@ const SKUS = [
   "dark": false,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690492"
+   "PFC-10690492"
   ],
   "cat": "merchandise"
  },
@@ -876,7 +876,7 @@ const SKUS = [
   "dark": false,
   "mkey": "a5-hardcover-notesbog",
   "art": [
-   "10690403"
+   "PFC-10690403"
   ],
   "cat": "merchandise"
  },
@@ -893,7 +893,7 @@ const SKUS = [
   "dark": true,
   "mkey": "softcover-a5-notebook",
   "art": [
-   "P774.221"
+   "XDC-P774.221"
   ],
   "cat": "merchandise"
  },
@@ -910,7 +910,7 @@ const SKUS = [
   "dark": true,
   "mkey": "softcover-a5-notebook",
   "art": [
-   "P774.225"
+   "XDC-P774.225"
   ],
   "cat": "merchandise"
  },
@@ -927,7 +927,7 @@ const SKUS = [
   "dark": true,
   "mkey": "quencher-h2-0-1200-ml-krus",
   "art": [
-   "10083490"
+   "PFC-10083490"
   ],
   "cat": "merchandise"
  },
@@ -944,7 +944,7 @@ const SKUS = [
   "dark": false,
   "mkey": "quencher-h2-0-1200-ml-krus",
   "art": [
-   "10083410"
+   "PFC-10083410"
   ],
   "cat": "merchandise"
  },
@@ -961,7 +961,7 @@ const SKUS = [
   "dark": true,
   "mkey": "transit-fliptop-350-ml-rejsekrus",
   "art": [
-   "10094390"
+   "PFC-10094390"
   ],
   "cat": "merchandise"
  },
@@ -978,7 +978,7 @@ const SKUS = [
   "dark": false,
   "mkey": "transit-fliptop-350-ml-rejsekrus",
   "art": [
-   "10094310"
+   "PFC-10094310"
   ],
   "cat": "merchandise"
  },
@@ -993,9 +993,9 @@ const SKUS = [
   "stock": "På lager: 4.070 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-pr",
   "art": [
-   "P438.021PR"
+   "XDC-P438.021PR"
   ],
   "cat": "merchandise"
  },
@@ -1010,9 +1010,9 @@ const SKUS = [
   "stock": "På lager: 4.070 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-en",
   "art": [
-   "P438.021EN"
+   "XDC-P438.021EN"
   ],
   "cat": "merchandise"
  },
@@ -1027,9 +1027,9 @@ const SKUS = [
   "stock": "På lager: 2.608 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-pr",
   "art": [
-   "P438.028PR"
+   "XDC-P438.028PR"
   ],
   "cat": "merchandise"
  },
@@ -1044,9 +1044,9 @@ const SKUS = [
   "stock": "På lager: 2.608 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-en",
   "art": [
-   "P438.028EN"
+   "XDC-P438.028EN"
   ],
   "cat": "merchandise"
  },
@@ -1061,9 +1061,9 @@ const SKUS = [
   "stock": "På lager: 4.059 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-pr",
   "art": [
-   "P438.020PR"
+   "XDC-P438.020PR"
   ],
   "cat": "merchandise"
  },
@@ -1078,9 +1078,9 @@ const SKUS = [
   "stock": "På lager: 4.059 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-en",
   "art": [
-   "P438.020EN"
+   "XDC-P438.020EN"
   ],
   "cat": "merchandise"
  },
@@ -1095,9 +1095,9 @@ const SKUS = [
   "stock": "På lager: 28 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-pr",
   "art": [
-   "P438.022PR"
+   "XDC-P438.022PR"
   ],
   "cat": "merchandise"
  },
@@ -1112,9 +1112,9 @@ const SKUS = [
   "stock": "På lager: 28 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-en",
   "art": [
-   "P438.022EN"
+   "XDC-P438.022EN"
   ],
   "cat": "merchandise"
  },
@@ -1129,9 +1129,9 @@ const SKUS = [
   "stock": "På lager: 589 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-pr",
   "art": [
-   "P438.023PR"
+   "XDC-P438.023PR"
   ],
   "cat": "merchandise"
  },
@@ -1146,9 +1146,9 @@ const SKUS = [
   "stock": "På lager: 589 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-alya-tumbler-300ml",
+  "mkey": "avira-alya-tumbler-300ml-en",
   "art": [
-   "P438.023EN"
+   "XDC-P438.023EN"
   ],
   "cat": "merchandise"
  },
@@ -1163,9 +1163,9 @@ const SKUS = [
   "stock": "På lager: 3.676 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.001PR"
+   "XDC-P438.001PR"
   ],
   "cat": "merchandise"
  },
@@ -1180,9 +1180,9 @@ const SKUS = [
   "stock": "På lager: 3.676 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.001EN"
+   "XDC-P438.001EN"
   ],
   "cat": "merchandise"
  },
@@ -1197,9 +1197,9 @@ const SKUS = [
   "stock": "På lager: 64 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.008PR"
+   "XDC-P438.008PR"
   ],
   "cat": "merchandise"
  },
@@ -1214,9 +1214,9 @@ const SKUS = [
   "stock": "På lager: 64 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.008EN"
+   "XDC-P438.008EN"
   ],
   "cat": "merchandise"
  },
@@ -1231,9 +1231,9 @@ const SKUS = [
   "stock": "På lager: 6.034 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.000PR"
+   "XDC-P438.000PR"
   ],
   "cat": "merchandise"
  },
@@ -1248,9 +1248,9 @@ const SKUS = [
   "stock": "På lager: 6.034 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.000EN"
+   "XDC-P438.000EN"
   ],
   "cat": "merchandise"
  },
@@ -1265,9 +1265,9 @@ const SKUS = [
   "stock": "På lager: 813 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.002PR"
+   "XDC-P438.002PR"
   ],
   "cat": "merchandise"
  },
@@ -1282,9 +1282,9 @@ const SKUS = [
   "stock": "På lager: 813 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.002EN"
+   "XDC-P438.002EN"
   ],
   "cat": "merchandise"
  },
@@ -1299,9 +1299,9 @@ const SKUS = [
   "stock": "På lager: 3.182 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.003PR"
+   "XDC-P438.003PR"
   ],
   "cat": "merchandise"
  },
@@ -1316,9 +1316,9 @@ const SKUS = [
   "stock": "På lager: 3.182 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.003EN"
+   "XDC-P438.003EN"
   ],
   "cat": "merchandise"
  },
@@ -1335,7 +1335,7 @@ const SKUS = [
   "dark": false,
   "mkey": "camelbak-thrive-flip-750-ml",
   "art": [
-   "10088601"
+   "PFC-10088601"
   ],
   "cat": "merchandise"
  },
@@ -1350,9 +1350,9 @@ const SKUS = [
   "stock": "På lager: 17 stk",
   "fam": "gift",
   "dark": false,
-  "mkey": "camelbak-thrive-flip-750-ml",
+  "mkey": "camelbak-thrive-flip-750-ml-f2",
   "art": [
-   "10088601F2"
+   "PFC-10088601F2"
   ],
   "cat": "merchandise"
  },
@@ -1369,7 +1369,7 @@ const SKUS = [
   "dark": true,
   "mkey": "soft-drikkeflaske",
   "art": [
-   "22030090"
+   "PFC-22030090"
   ],
   "cat": "merchandise"
  },
@@ -1384,9 +1384,9 @@ const SKUS = [
   "stock": "Forventet på lager: 3. sep. 2026",
   "fam": "bottle",
   "dark": true,
-  "mkey": "soft-drikkeflaske",
+  "mkey": "soft-drikkeflaske-f2",
   "art": [
-   "22030090F2"
+   "PFC-22030090F2"
   ],
   "cat": "merchandise"
  },
@@ -1403,7 +1403,7 @@ const SKUS = [
   "dark": true,
   "mkey": "soft-drikkeflaske",
   "art": [
-   "22030052"
+   "PFC-22030052"
   ],
   "cat": "merchandise"
  },
@@ -1418,9 +1418,9 @@ const SKUS = [
   "stock": "På lager: 625 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "soft-drikkeflaske",
+  "mkey": "soft-drikkeflaske-f2",
   "art": [
-   "22030052F2"
+   "PFC-22030052F2"
   ],
   "cat": "merchandise"
  },
@@ -1437,7 +1437,7 @@ const SKUS = [
   "dark": false,
   "mkey": "soft-drikkeflaske",
   "art": [
-   "22030001"
+   "PFC-22030001"
   ],
   "cat": "merchandise"
  },
@@ -1452,9 +1452,9 @@ const SKUS = [
   "stock": "På lager: 1.666 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "soft-drikkeflaske",
+  "mkey": "soft-drikkeflaske-f2",
   "art": [
-   "22030001F2"
+   "PFC-22030001F2"
   ],
   "cat": "merchandise"
  },
@@ -1471,7 +1471,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.041"
+   "XDC-P433.041"
   ],
   "cat": "merchandise"
  },
@@ -1488,7 +1488,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.047"
+   "XDC-P433.047"
   ],
   "cat": "merchandise"
  },
@@ -1505,7 +1505,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.0425"
+   "XDC-P433.0425"
   ],
   "cat": "merchandise"
  },
@@ -1522,7 +1522,7 @@ const SKUS = [
   "dark": false,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.043"
+   "XDC-P433.043"
   ],
   "cat": "merchandise"
  },
@@ -1539,7 +1539,7 @@ const SKUS = [
   "dark": true,
   "mkey": "vakuum-isoleret-flaske",
   "art": [
-   "10067190"
+   "PFC-10067190"
   ],
   "cat": "merchandise"
  },
@@ -1556,7 +1556,7 @@ const SKUS = [
   "dark": false,
   "mkey": "vakuum-isoleret-flaske",
   "art": [
-   "10067181"
+   "PFC-10067181"
   ],
   "cat": "merchandise"
  },
@@ -1573,7 +1573,7 @@ const SKUS = [
   "dark": false,
   "mkey": "vakuum-isoleret-flaske",
   "art": [
-   "10067101"
+   "PFC-10067101"
   ],
   "cat": "merchandise"
  },
@@ -1590,7 +1590,7 @@ const SKUS = [
   "dark": false,
   "mkey": "krus-330-ml",
   "art": [
-   "10037700"
+   "PFC-10037700"
   ],
   "cat": "merchandise"
  },
@@ -1607,7 +1607,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stanley-everyday-236-ml-termokop",
   "art": [
-   "10083190"
+   "PFC-10083190"
   ],
   "cat": "merchandise"
  },
@@ -1624,7 +1624,7 @@ const SKUS = [
   "dark": true,
   "mkey": "foldbar-fuldautomatisk-paraply",
   "art": [
-   "10901600"
+   "PFC-10901600"
   ],
   "cat": "merchandise"
  },
@@ -1639,9 +1639,9 @@ const SKUS = [
   "stock": "På lager: 24.262 stk",
   "fam": "umbrella",
   "dark": true,
-  "mkey": "foldbar-fuldautomatisk-paraply",
+  "mkey": "foldbar-fuldautomatisk-paraply-f2",
   "art": [
-   "10901600F2"
+   "PFC-10901600F2"
   ],
   "cat": "merchandise"
  },
@@ -1658,7 +1658,7 @@ const SKUS = [
   "dark": true,
   "mkey": "foldbar-fuldautomatisk-paraply",
   "art": [
-   "19547939"
+   "PFC-19547939"
   ],
   "cat": "merchandise"
  },
@@ -1673,9 +1673,9 @@ const SKUS = [
   "stock": "På lager: 12.680 stk",
   "fam": "umbrella",
   "dark": true,
-  "mkey": "foldbar-fuldautomatisk-paraply",
+  "mkey": "foldbar-fuldautomatisk-paraply-f2",
   "art": [
-   "19547939F2"
+   "PFC-19547939F2"
   ],
   "cat": "merchandise"
  },
@@ -1692,7 +1692,7 @@ const SKUS = [
   "dark": false,
   "mkey": "foldbar-fuldautomatisk-paraply-ornage",
   "art": [
-   "10901611"
+   "PFC-10901611"
   ],
   "cat": "merchandise"
  },
@@ -1709,7 +1709,7 @@ const SKUS = [
   "dark": true,
   "mkey": "foldbar-fuldautomatisk-paraply",
   "art": [
-   "10901612"
+   "PFC-10901612"
   ],
   "cat": "merchandise"
  },
@@ -1724,9 +1724,9 @@ const SKUS = [
   "stock": "På lager: 1.501 stk",
   "fam": "umbrella",
   "dark": true,
-  "mkey": "foldbar-fuldautomatisk-paraply",
+  "mkey": "foldbar-fuldautomatisk-paraply-f2",
   "art": [
-   "10901612F2"
+   "PFC-10901612F2"
   ],
   "cat": "merchandise"
  },
@@ -1743,7 +1743,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stormsikker-paraply-23",
   "art": [
-   "P850.621"
+   "XDC-P850.621"
   ],
   "cat": "merchandise"
  },
@@ -1760,7 +1760,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stormsikker-paraply-23",
   "art": [
-   "P850.625"
+   "XDC-P850.625"
   ],
   "cat": "merchandise"
  },
@@ -1777,7 +1777,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stormsikker-taske-paraply-21",
   "art": [
-   "P850.591"
+   "XDC-P850.591"
   ],
   "cat": "merchandise"
  },
@@ -1794,7 +1794,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stormsikker-taske-paraply-21",
   "art": [
-   "P850.595"
+   "XDC-P850.595"
   ],
   "cat": "merchandise"
  },
@@ -1811,7 +1811,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stormsikker-taske-paraply-21",
   "art": [
-   "P850.594"
+   "XDC-P850.594"
   ],
   "cat": "merchandise"
  },
@@ -1828,7 +1828,7 @@ const SKUS = [
   "dark": true,
   "mkey": "umbrella",
   "art": [
-   "10905300"
+   "PFC-10905300"
   ],
   "cat": "merchandise"
  },
@@ -1845,7 +1845,7 @@ const SKUS = [
   "dark": true,
   "mkey": "umbrella",
   "art": [
-   "10905301"
+   "PFC-10905301"
   ],
   "cat": "merchandise"
  },
@@ -1862,7 +1862,7 @@ const SKUS = [
   "dark": true,
   "mkey": "umbrella",
   "art": [
-   "10905303"
+   "PFC-10905303"
   ],
   "cat": "merchandise"
  },
@@ -1877,9 +1877,9 @@ const SKUS = [
   "stock": "På lager: 12.457 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc",
   "art": [
-   "12071090"
+   "PFC-12071090"
   ],
   "cat": "merchandise"
  },
@@ -1894,9 +1894,9 @@ const SKUS = [
   "stock": "På lager: 12.457 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc-f2",
   "art": [
-   "12071090F2"
+   "PFC-12071090F2"
   ],
   "cat": "merchandise"
  },
@@ -1911,9 +1911,9 @@ const SKUS = [
   "stock": "Forventet på lager: 6. okt. 2026",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.621"
+   "XDC-P762.621"
   ],
   "cat": "merchandise"
  },
@@ -1928,9 +1928,9 @@ const SKUS = [
   "stock": "Forventet på lager: 6. okt. 2026",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.621F2"
+   "XDC-P762.621F2"
   ],
   "cat": "merchandise"
  },
@@ -1945,9 +1945,9 @@ const SKUS = [
   "stock": "På lager: 2.235 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.627"
+   "XDC-P762.627"
   ],
   "cat": "merchandise"
  },
@@ -1962,9 +1962,9 @@ const SKUS = [
   "stock": "På lager: 2.235 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.627F2"
+   "XDC-P762.627F2"
   ],
   "cat": "merchandise"
  },
@@ -1979,9 +1979,9 @@ const SKUS = [
   "stock": "På lager: 11.542 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.622"
+   "XDC-P762.622"
   ],
   "cat": "merchandise"
  },
@@ -1996,9 +1996,9 @@ const SKUS = [
   "stock": "På lager: 11.542 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.622F2"
+   "XDC-P762.622F2"
   ],
   "cat": "merchandise"
  },
@@ -2013,9 +2013,9 @@ const SKUS = [
   "stock": "På lager: 7.231 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc",
   "art": [
-   "12071055"
+   "PFC-12071055"
   ],
   "cat": "merchandise"
  },
@@ -2030,9 +2030,9 @@ const SKUS = [
   "stock": "På lager: 7.231 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc-f2",
   "art": [
-   "12071055F2"
+   "PFC-12071055F2"
   ],
   "cat": "merchandise"
  },
@@ -2047,9 +2047,9 @@ const SKUS = [
   "stock": "På lager: 15.623 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.629"
+   "XDC-P762.629"
   ],
   "cat": "merchandise"
  },
@@ -2064,9 +2064,9 @@ const SKUS = [
   "stock": "På lager: 15.623 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.629F2"
+   "XDC-P762.629F2"
   ],
   "cat": "merchandise"
  },
@@ -2081,9 +2081,9 @@ const SKUS = [
   "stock": "På lager: 40.383 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc",
   "art": [
-   "12071006"
+   "PFC-12071006"
   ],
   "cat": "merchandise"
  },
@@ -2098,9 +2098,9 @@ const SKUS = [
   "stock": "På lager: 40.383 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc-f2",
   "art": [
-   "12071006F2"
+   "PFC-12071006F2"
   ],
   "cat": "merchandise"
  },
@@ -2115,9 +2115,9 @@ const SKUS = [
   "stock": "På lager: 14.390 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.623"
+   "XDC-P762.623"
   ],
   "cat": "merchandise"
  },
@@ -2132,9 +2132,9 @@ const SKUS = [
   "stock": "På lager: 14.390 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.623F2"
+   "XDC-P762.623F2"
   ],
   "cat": "merchandise"
  },
@@ -2149,9 +2149,9 @@ const SKUS = [
   "stock": "På lager: 3.722 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc",
   "art": [
-   "12071021"
+   "PFC-12071021"
   ],
   "cat": "merchandise"
  },
@@ -2166,9 +2166,9 @@ const SKUS = [
   "stock": "På lager: 3.722 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc-f2",
   "art": [
-   "12071021F2"
+   "PFC-12071021F2"
   ],
   "cat": "merchandise"
  },
@@ -2183,9 +2183,9 @@ const SKUS = [
   "stock": "På lager: 14.283 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.624"
+   "XDC-P762.624"
   ],
   "cat": "merchandise"
  },
@@ -2200,9 +2200,9 @@ const SKUS = [
   "stock": "På lager: 14.283 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.624F2"
+   "XDC-P762.624F2"
   ],
   "cat": "merchandise"
  },
@@ -2217,9 +2217,9 @@ const SKUS = [
   "stock": "På lager: 3.062 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc",
   "art": [
-   "12071001"
+   "PFC-12071001"
   ],
   "cat": "merchandise"
  },
@@ -2234,9 +2234,9 @@ const SKUS = [
   "stock": "På lager: 3.062 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-pfc-f2",
   "art": [
-   "12071001F2"
+   "PFC-12071001F2"
   ],
   "cat": "merchandise"
  },
@@ -2251,9 +2251,9 @@ const SKUS = [
   "stock": "På lager: 4.856 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc",
   "art": [
-   "P762.6203"
+   "XDC-P762.6203"
   ],
   "cat": "merchandise"
  },
@@ -2268,9 +2268,9 @@ const SKUS = [
   "stock": "På lager: 4.856 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-xdc-f2",
   "art": [
-   "P762.6203F2"
+   "XDC-P762.6203F2"
   ],
   "cat": "merchandise"
  },
@@ -2287,7 +2287,7 @@ const SKUS = [
   "dark": true,
   "mkey": "noeglesnor",
   "art": [
-   "10251790"
+   "PFC-10251790"
   ],
   "cat": "merchandise"
  },
@@ -2304,7 +2304,7 @@ const SKUS = [
   "dark": true,
   "mkey": "noeglesnor",
   "art": [
-   "10251755"
+   "PFC-10251755"
   ],
   "cat": "merchandise"
  },
@@ -2321,7 +2321,7 @@ const SKUS = [
   "dark": true,
   "mkey": "noeglesnor",
   "art": [
-   "10251721"
+   "PFC-10251721"
   ],
   "cat": "merchandise"
  },
@@ -2338,7 +2338,7 @@ const SKUS = [
   "dark": false,
   "mkey": "noeglesnor",
   "art": [
-   "10251701"
+   "PFC-10251701"
   ],
   "cat": "merchandise"
  },
@@ -2355,7 +2355,7 @@ const SKUS = [
   "dark": false,
   "mkey": "3-in-1-braided-cable",
   "art": [
-   "P302.232"
+   "XDC-P302.232"
   ],
   "cat": "merchandise"
  },
@@ -2372,7 +2372,7 @@ const SKUS = [
   "dark": true,
   "mkey": "6-in-1-cable",
   "art": [
-   "P302.661"
+   "XDC-P302.661"
   ],
   "cat": "merchandise"
  },
@@ -2387,9 +2387,9 @@ const SKUS = [
   "stock": "På lager: 4.917 stk",
   "fam": "gift",
   "dark": true,
-  "mkey": "6-in-1-cable",
+  "mkey": "6-in-1-cable-f2",
   "art": [
-   "P302.661F2"
+   "XDC-P302.661F2"
   ],
   "cat": "merchandise"
  },
@@ -2406,7 +2406,7 @@ const SKUS = [
   "dark": false,
   "mkey": "6-in-1-cable",
   "art": [
-   "P302.663"
+   "XDC-P302.663"
   ],
   "cat": "merchandise"
  },
@@ -2421,9 +2421,9 @@ const SKUS = [
   "stock": "På lager: 502 stk",
   "fam": "gift",
   "dark": false,
-  "mkey": "6-in-1-cable",
+  "mkey": "6-in-1-cable-f2",
   "art": [
-   "P302.663F2"
+   "XDC-P302.663F2"
   ],
   "cat": "merchandise"
  },
@@ -2440,7 +2440,7 @@ const SKUS = [
   "dark": false,
   "mkey": "cyclecell-5000-mah-powerbank",
   "art": [
-   "P322.5301"
+   "XDC-P322.5301"
   ],
   "cat": "merchandise"
  },
@@ -2455,9 +2455,9 @@ const SKUS = [
   "stock": "På lager: 5.720 stk",
   "fam": "tech",
   "dark": false,
-  "mkey": "cyclecell-5000-mah-powerbank",
+  "mkey": "cyclecell-5000-mah-powerbank-f2",
   "art": [
-   "P322.5301F2"
+   "XDC-P322.5301F2"
   ],
   "cat": "merchandise"
  },
@@ -2474,7 +2474,7 @@ const SKUS = [
   "dark": true,
   "mkey": "magnetic-powerbank",
   "art": [
-   "P322.401"
+   "XDC-P322.401"
   ],
   "cat": "merchandise"
  },
@@ -2489,9 +2489,9 @@ const SKUS = [
   "stock": "På lager: 10.075 stk",
   "fam": "tech",
   "dark": true,
-  "mkey": "magnetic-powerbank",
+  "mkey": "magnetic-powerbank-f2",
   "art": [
-   "P322.401F2"
+   "XDC-P322.401F2"
   ],
   "cat": "merchandise"
  },
@@ -2508,7 +2508,7 @@ const SKUS = [
   "dark": false,
   "mkey": "magnetic-powerbank",
   "art": [
-   "P322.403"
+   "XDC-P322.403"
   ],
   "cat": "merchandise"
  },
@@ -2523,9 +2523,9 @@ const SKUS = [
   "stock": "På lager: 5.420 stk",
   "fam": "tech",
   "dark": false,
-  "mkey": "magnetic-powerbank",
+  "mkey": "magnetic-powerbank-f2",
   "art": [
-   "P322.403F2"
+   "XDC-P322.403F2"
   ],
   "cat": "merchandise"
  },
@@ -2542,7 +2542,7 @@ const SKUS = [
   "dark": true,
   "mkey": "powerbank",
   "art": [
-   "12438390"
+   "PFC-12438390"
   ],
   "cat": "merchandise"
  },
@@ -2559,7 +2559,7 @@ const SKUS = [
   "dark": false,
   "mkey": "powerbank",
   "art": [
-   "12438301"
+   "PFC-12438301"
   ],
   "cat": "merchandise"
  },
@@ -2576,7 +2576,7 @@ const SKUS = [
   "dark": false,
   "mkey": "wireless-charger-with-usb-ports",
   "art": [
-   "P308.463"
+   "XDC-P308.463"
   ],
   "cat": "merchandise"
  },
@@ -2593,7 +2593,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cap",
   "art": [
-   "37541900"
+   "PFC-37541900"
   ],
   "cat": "merchandise"
  },
@@ -2610,7 +2610,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cap",
   "art": [
-   "37541610"
+   "PFC-37541610"
   ],
   "cat": "merchandise"
  },
@@ -2627,7 +2627,7 @@ const SKUS = [
   "dark": false,
   "mkey": "cap",
   "art": [
-   "37541070"
+   "PFC-37541070"
   ],
   "cat": "merchandise"
  },
@@ -2644,7 +2644,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cap",
   "art": [
-   "37541550"
+   "PFC-37541550"
   ],
   "cat": "merchandise"
  },
@@ -2661,7 +2661,7 @@ const SKUS = [
   "dark": false,
   "mkey": "cap",
   "art": [
-   "37541010"
+   "PFC-37541010"
   ],
   "cat": "merchandise"
  },
@@ -2678,7 +2678,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-fleece-midlayer-unisex",
   "art": [
-   "1910396B"
+   "NEW-1910396B"
   ],
   "cat": "beklaedning"
  },
@@ -2695,7 +2695,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-fleece-midlayer-unisex",
   "art": [
-   "1910396GE"
+   "NEW-1910396GE"
   ],
   "cat": "beklaedning"
  },
@@ -2712,7 +2712,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-explore-fleece-midlayer-unisex",
   "art": [
-   "1910396WH"
+   "NEW-1910396WH"
   ],
   "cat": "beklaedning"
  },
@@ -2729,7 +2729,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-fleece-midlayer-unisex",
   "art": [
-   "1910396N"
+   "NEW-1910396N"
   ],
   "cat": "beklaedning"
  },
@@ -2746,7 +2746,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-pile-fleece-jacket-unisex",
   "art": [
-   "1912220BL"
+   "NEW-1912220BL"
   ],
   "cat": "beklaedning"
  },
@@ -2763,7 +2763,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-pile-fleece-jacket-unisex",
   "art": [
-   "1912220GE"
+   "NEW-1912220GE"
   ],
   "cat": "beklaedning"
  },
@@ -2780,7 +2780,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-pile-fleece-jacket-unisex",
   "art": [
-   "1912220NA"
+   "NEW-1912220NA"
   ],
   "cat": "beklaedning"
  },
@@ -2797,7 +2797,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-explore-pile-fleece-jacket-unisex",
   "art": [
-   "1912220WH"
+   "NEW-1912220WH"
   ],
   "cat": "beklaedning"
  },
@@ -2814,7 +2814,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cavalero-jacket-men",
   "art": [
-   "351462BL"
+   "CUT-351462BL"
   ],
   "cat": "beklaedning"
  },
@@ -2831,7 +2831,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cavalero-jacket-men",
   "art": [
-   "351462NA"
+   "CUT-351462NA"
   ],
   "cat": "beklaedning"
  },
@@ -2848,7 +2848,7 @@ const SKUS = [
   "dark": true,
   "mkey": "knitted-fleece-jacket-unisex",
   "art": [
-   "9615B"
+   "TEE-9615B"
   ],
   "cat": "beklaedning"
  },
@@ -2865,7 +2865,7 @@ const SKUS = [
   "dark": true,
   "mkey": "knitted-fleece-jacket-unisex",
   "art": [
-   "9615NA"
+   "TEE-9615NA"
   ],
   "cat": "beklaedning"
  },
@@ -2882,7 +2882,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oak-harbor-jacket-unisex",
   "art": [
-   "351452B"
+   "CUT-351452B"
   ],
   "cat": "beklaedning"
  },
@@ -2899,7 +2899,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oak-harbor-jacket-unisex",
   "art": [
-   "351452N"
+   "CUT-351452N"
   ],
   "cat": "beklaedning"
  },
@@ -2916,7 +2916,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oak-harbor-vest-men",
   "art": [
-   "351476B"
+   "CUT-351476B"
   ],
   "cat": "beklaedning"
  },
@@ -2933,7 +2933,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oak-harbor-vest-men",
   "art": [
-   "351476N"
+   "CUT-351476N"
   ],
   "cat": "beklaedning"
  },
@@ -2950,7 +2950,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oak-harbor-vest-women",
   "art": [
-   "351477B"
+   "CUT-351477B"
   ],
   "cat": "beklaedning"
  },
@@ -2967,7 +2967,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oak-harbor-vest-women",
   "art": [
-   "351477N"
+   "CUT-351477N"
   ],
   "cat": "beklaedning"
  },
@@ -2984,7 +2984,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-fleece-jacket-unisex",
   "art": [
-   "C17421BL"
+   "NEW-C17421BL"
   ],
   "cat": "beklaedning"
  },
@@ -3001,7 +3001,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-fleece-jacket-unisex",
   "art": [
-   "C17421GE"
+   "NEW-C17421GE"
   ],
   "cat": "beklaedning"
  },
@@ -3018,7 +3018,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-fleece-jacket-unisex",
   "art": [
-   "C17421NA"
+   "NEW-C17421NA"
   ],
   "cat": "beklaedning"
  },
@@ -3035,7 +3035,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-fleece-jacket-unisex",
   "art": [
-   "C17421RA"
+   "NEW-C17421RA"
   ],
   "cat": "beklaedning"
  },
@@ -3052,7 +3052,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-hybrid-jacket-mens",
   "art": [
-   "1911890B"
+   "NEW-1911890B"
   ],
   "cat": "beklaedning"
  },
@@ -3069,7 +3069,7 @@ const SKUS = [
   "dark": true,
   "mkey": "westlake-jacket-unisex",
   "art": [
-   "WESTLAKEBL"
+   "NIM-WESTLAKEBL"
   ],
   "cat": "beklaedning"
  },
@@ -3086,7 +3086,7 @@ const SKUS = [
   "dark": true,
   "mkey": "westlake-jacket-unisex",
   "art": [
-   "WESTLAKENA"
+   "NIM-WESTLAKENA"
   ],
   "cat": "beklaedning"
  },
@@ -3103,7 +3103,7 @@ const SKUS = [
   "dark": true,
   "mkey": "all-weather-jacket-unisex",
   "art": [
-   "9606B"
+   "TEE-9606B"
   ],
   "cat": "beklaedning"
  },
@@ -3120,7 +3120,7 @@ const SKUS = [
   "dark": true,
   "mkey": "all-weather-jacket-unisex",
   "art": [
-   "9606N"
+   "TEE-9606N"
   ],
   "cat": "beklaedning"
  },
@@ -3137,7 +3137,7 @@ const SKUS = [
   "dark": true,
   "mkey": "club-jacket-unisex",
   "art": [
-   "9602R"
+   "Tee-9602R"
   ],
   "cat": "beklaedning"
  },
@@ -3154,7 +3154,7 @@ const SKUS = [
   "dark": true,
   "mkey": "henderson-jacket-mens",
   "art": [
-   "HENDERSONM"
+   "NIM-HENDERSONM"
   ],
   "cat": "beklaedning"
  },
@@ -3171,7 +3171,7 @@ const SKUS = [
   "dark": true,
   "mkey": "henderson-jacket-womens",
   "art": [
-   "HENDERSONL"
+   "NIM-HENDERSONL"
   ],
   "cat": "beklaedning"
  },
@@ -3188,7 +3188,7 @@ const SKUS = [
   "dark": true,
   "mkey": "padded-lightweight-jacket-unisex",
   "art": [
-   "9630"
+   "TEE-9630"
   ],
   "cat": "beklaedning"
  },
@@ -3205,7 +3205,7 @@ const SKUS = [
   "dark": true,
   "mkey": "padded-lightweight-jacket-unisex",
   "art": [
-   "9630NA"
+   "TEE-9630NA"
   ],
   "cat": "beklaedning"
  },
@@ -3222,7 +3222,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-softshell-jacket-men",
   "art": [
-   "1915258BL"
+   "NEW-1915258BL"
   ],
   "cat": "beklaedning"
  },
@@ -3239,7 +3239,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-softshell-jacket-men",
   "art": [
-   "1915258NA"
+   "NEW-1915258NA"
   ],
   "cat": "beklaedning"
  },
@@ -3256,7 +3256,7 @@ const SKUS = [
   "dark": true,
   "mkey": "classic-softshell-hoody-mens",
   "art": [
-   "0200912B"
+   "NEW-0200912B"
   ],
   "cat": "beklaedning"
  },
@@ -3273,7 +3273,7 @@ const SKUS = [
   "dark": true,
   "mkey": "classic-softshell-hoody-women",
   "art": [
-   "0200917B"
+   "NEW-0200917B"
   ],
   "cat": "beklaedning"
  },
@@ -3290,7 +3290,7 @@ const SKUS = [
   "dark": true,
   "mkey": "classic-softshell-hoody-women",
   "art": [
-   "0200917N"
+   "NEW-0200917N"
   ],
   "cat": "beklaedning"
  },
@@ -3307,7 +3307,7 @@ const SKUS = [
   "dark": true,
   "mkey": "classic-softshell-hoody-mens",
   "art": [
-   "0200912N"
+   "NEW-0200912N"
   ],
   "cat": "beklaedning"
  },
@@ -3324,7 +3324,7 @@ const SKUS = [
   "dark": true,
   "mkey": "detroit-jacket-unisex",
   "art": [
-   "DETROITNA"
+   "NIM-DETROITNA"
   ],
   "cat": "beklaedning"
  },
@@ -3341,7 +3341,7 @@ const SKUS = [
   "dark": true,
   "mkey": "softshell-jacket-unisex",
   "art": [
-   "9510"
+   "TEE-9510"
   ],
   "cat": "beklaedning"
  },
@@ -3358,7 +3358,7 @@ const SKUS = [
   "dark": true,
   "mkey": "softshell-jacket-unisex",
   "art": [
-   "9510BL"
+   "TEE-9510BL"
   ],
   "cat": "beklaedning"
  },
@@ -3375,7 +3375,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-shell-jacket-unisex",
   "art": [
-   "1913806BL"
+   "NEW-1913806BL"
   ],
   "cat": "beklaedning"
  },
@@ -3392,7 +3392,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-shell-jacket-unisex",
   "art": [
-   "1913806NA"
+   "NEW-1913806NA"
   ],
   "cat": "beklaedning"
  },
@@ -3409,7 +3409,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-explore-shell-jacket-black",
   "art": [
-   "1913808B"
+   "NEW-1913808B"
   ],
   "cat": "beklaedning"
  },
@@ -3426,7 +3426,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-explore-shell-jacket-blaze",
   "art": [
-   "1913808N"
+   "NEW-1913808N"
   ],
   "cat": "beklaedning"
  },
@@ -3443,7 +3443,7 @@ const SKUS = [
   "dark": true,
   "mkey": "all-weather-winter-jacket-unisex",
   "art": [
-   "9680BL"
+   "TEE-9680BL"
   ],
   "cat": "beklaedning"
  },
@@ -3460,7 +3460,7 @@ const SKUS = [
   "dark": true,
   "mkey": "all-weather-winter-jacket-unisex",
   "art": [
-   "9680NA"
+   "TEE-9680NA"
   ],
   "cat": "beklaedning"
  },
@@ -3477,7 +3477,7 @@ const SKUS = [
   "dark": true,
   "mkey": "avalon-jacket-unisex",
   "art": [
-   "AVATONBL"
+   "NIM-AVATONBL"
   ],
   "cat": "beklaedning"
  },
@@ -3494,7 +3494,7 @@ const SKUS = [
   "dark": true,
   "mkey": "avalon-jacket-unisex",
   "art": [
-   "AVATONNA"
+   "NIM-AVATONNA"
   ],
   "cat": "beklaedning"
  },
@@ -3511,7 +3511,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-explore-lt-insulation-jacket-mens",
   "art": [
-   "1915260BL"
+   "NEW-1915260BL"
   ],
   "cat": "beklaedning"
  },
@@ -3528,7 +3528,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-explore-lt-insulation-jacket-mens",
   "art": [
-   "1915260NA"
+   "NEW-1915260NA"
   ],
   "cat": "beklaedning"
  },
@@ -3545,7 +3545,7 @@ const SKUS = [
   "dark": true,
   "mkey": "idaho-jacket-unisex",
   "art": [
-   "0200976B"
+   "NEW-0200976B"
   ],
   "cat": "beklaedning"
  },
@@ -3562,7 +3562,7 @@ const SKUS = [
   "dark": true,
   "mkey": "idaho-jacket-unisex",
   "art": [
-   "0200976N"
+   "NEW-0200976N"
   ],
   "cat": "beklaedning"
  },
@@ -3579,7 +3579,7 @@ const SKUS = [
   "dark": true,
   "mkey": "telluride-jacket-unisex",
   "art": [
-   "TELLURIDENA"
+   "NIM-TELLURIDENA"
   ],
   "cat": "beklaedning"
  },
@@ -3596,7 +3596,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-jacket-mens",
   "art": [
-   "1916379BL"
+   "NEW-1916379BL"
   ],
   "cat": "beklaedning"
  },
@@ -3613,7 +3613,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-jacket-mens",
   "art": [
-   "1916379NA"
+   "NEW-1916379NA"
   ],
   "cat": "beklaedning"
  },
@@ -3630,7 +3630,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-jacket-mens",
   "art": [
-   "1916379GE"
+   "NEW-1916379GE"
   ],
   "cat": "beklaedning"
  },
@@ -3647,7 +3647,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-padded-parka-mens",
   "art": [
-   "1916377BL"
+   "NEW-1916377BL"
   ],
   "cat": "beklaedning"
  },
@@ -3664,7 +3664,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-padded-parka-mens",
   "art": [
-   "1916377NA"
+   "NEW-1916377NA"
   ],
   "cat": "beklaedning"
  },
@@ -3681,7 +3681,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-padded-parka-mens",
   "art": [
-   "1916377GE"
+   "NEW-1916377GE"
   ],
   "cat": "beklaedning"
  },
@@ -3698,7 +3698,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-padded-parka-womens",
   "art": [
-   "1916378BL"
+   "NEW-1916378BL"
   ],
   "cat": "beklaedning"
  },
@@ -3715,7 +3715,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-padded-parka-womens",
   "art": [
-   "1916378NA"
+   "NEW-1916378NA"
   ],
   "cat": "beklaedning"
  },
@@ -3732,7 +3732,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-padded-parka-womens",
   "art": [
-   "1916378GE"
+   "NEW-1916378GE"
   ],
   "cat": "beklaedning"
  },
@@ -3749,7 +3749,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-parka-womens",
   "art": [
-   "1916380BL"
+   "NEW-1916380BL"
   ],
   "cat": "beklaedning"
  },
@@ -3766,7 +3766,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-parka-womens",
   "art": [
-   "1916380NA"
+   "NEW-1916380NA"
   ],
   "cat": "beklaedning"
  },
@@ -3783,7 +3783,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-parka-womens",
   "art": [
-   "1916380GE"
+   "NEW-1916380GE"
   ],
   "cat": "beklaedning"
  },
@@ -3800,7 +3800,7 @@ const SKUS = [
   "dark": true,
   "mkey": "york-regnjakke-unisex",
   "art": [
-   "YORKBL"
+   "NIM-YORKBL"
   ],
   "cat": "beklaedning"
  },
@@ -3817,7 +3817,7 @@ const SKUS = [
   "dark": true,
   "mkey": "york-regnjakke-unisex",
   "art": [
-   "YORKNA"
+   "NIM-YORKNA"
   ],
   "cat": "beklaedning"
  },
@@ -3834,7 +3834,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-shell-coat-unisex",
   "art": [
-   "1916385BL"
+   "NEW-1916385BL"
   ],
   "cat": "beklaedning"
  },
@@ -3851,7 +3851,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-shell-coat-unisex",
   "art": [
-   "1916385TA"
+   "NEW-1916385TA"
   ],
   "cat": "beklaedning"
  },
@@ -3868,7 +3868,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-light-padded-vest-unisex",
   "art": [
-   "1910986B"
+   "NEW-1910986B"
   ],
   "cat": "beklaedning"
  },
@@ -3885,7 +3885,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-light-padded-vest-unisex",
   "art": [
-   "1910986GE"
+   "NEW-1910986GE"
   ],
   "cat": "beklaedning"
  },
@@ -3902,7 +3902,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-light-padded-vest-unisex",
   "art": [
-   "1910986N"
+   "NEW-1910986N"
   ],
   "cat": "beklaedning"
  },
@@ -3919,7 +3919,7 @@ const SKUS = [
   "dark": true,
   "mkey": "idaho-vest-unisex",
   "art": [
-   "0200974B"
+   "NEW-0200974B"
   ],
   "cat": "beklaedning"
  },
@@ -3936,7 +3936,7 @@ const SKUS = [
   "dark": true,
   "mkey": "idaho-vest-unisex",
   "art": [
-   "0200974N"
+   "NEW-0200974N"
   ],
   "cat": "beklaedning"
  },
@@ -3953,7 +3953,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-explore-pile-fleece-vest-unisex",
   "art": [
-   "1913810W"
+   "NEW-1913810W"
   ],
   "cat": "beklaedning"
  },
@@ -3970,7 +3970,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-pile-fleece-vest-unisex",
   "art": [
-   "1913810B"
+   "NEW-1913810B"
   ],
   "cat": "beklaedning"
  },
@@ -3987,7 +3987,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-explore-pile-fleece-vest-unisex",
   "art": [
-   "1913810GE"
+   "NEW-1913810GE"
   ],
   "cat": "beklaedning"
  },
@@ -4004,7 +4004,7 @@ const SKUS = [
   "dark": true,
   "mkey": "camden-vest-ladies",
   "art": [
-   "CAMDENGEW"
+   "NIM-CAMDENGEW"
   ],
   "cat": "beklaedning"
  },
@@ -4021,7 +4021,7 @@ const SKUS = [
   "dark": true,
   "mkey": "camden-vest-ladies",
   "art": [
-   "CAMDENWMN"
+   "NIM-CAMDENWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4038,7 +4038,7 @@ const SKUS = [
   "dark": true,
   "mkey": "camden-vest-mens",
   "art": [
-   "CAMDENGEM"
+   "NIM-CAMDENGEM"
   ],
   "cat": "beklaedning"
  },
@@ -4055,7 +4055,7 @@ const SKUS = [
   "dark": true,
   "mkey": "camden-vest-mens",
   "art": [
-   "CAMDENMEN"
+   "NIM-CAMDENMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4072,7 +4072,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crossover-bodywarmer-unisex",
   "art": [
-   "9624B"
+   "TEE-9624B"
   ],
   "cat": "beklaedning"
  },
@@ -4089,7 +4089,7 @@ const SKUS = [
   "dark": true,
   "mkey": "padded-lightweight-vest-unisex",
   "art": [
-   "9632"
+   "TEE-9632"
   ],
   "cat": "beklaedning"
  },
@@ -4106,7 +4106,7 @@ const SKUS = [
   "dark": true,
   "mkey": "vesper-vest-unisex",
   "art": [
-   "VESPERMBL"
+   "NIM-VESPERMBL"
   ],
   "cat": "beklaedning"
  },
@@ -4123,7 +4123,7 @@ const SKUS = [
   "dark": true,
   "mkey": "vesper-vest-unisex",
   "art": [
-   "VESPERMNA"
+   "NIM-VESPERMNA"
   ],
   "cat": "beklaedning"
  },
@@ -4140,7 +4140,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-mens",
   "art": [
-   "1909138B"
+   "NEW-1909138B"
   ],
   "cat": "beklaedning"
  },
@@ -4157,7 +4157,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-mens",
   "art": [
-   "1909138DG"
+   "NEW-1909138DG"
   ],
   "cat": "beklaedning"
  },
@@ -4174,7 +4174,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-mens",
   "art": [
-   "1909138GM"
+   "NEW-1909138GM"
   ],
   "cat": "beklaedning"
  },
@@ -4191,7 +4191,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-mens",
   "art": [
-   "1909138N"
+   "NEW-1909138N"
   ],
   "cat": "beklaedning"
  },
@@ -4208,7 +4208,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-polo-shirt-mens",
   "art": [
-   "1909138W"
+   "NEW-1909138W"
   ],
   "cat": "beklaedning"
  },
@@ -4225,7 +4225,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-womens",
   "art": [
-   "1909139N"
+   "NEW-1909139N"
   ],
   "cat": "beklaedning"
  },
@@ -4242,7 +4242,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-womens",
   "art": [
-   "1909139B"
+   "NEW-1909139B"
   ],
   "cat": "beklaedning"
  },
@@ -4259,7 +4259,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-womens",
   "art": [
-   "1909139DG"
+   "NEW-1909139DG"
   ],
   "cat": "beklaedning"
  },
@@ -4276,7 +4276,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-polo-shirt-womens",
   "art": [
-   "1909139GM"
+   "NEW-1909139GM"
   ],
   "cat": "beklaedning"
  },
@@ -4293,7 +4293,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-polo-shirt-womens",
   "art": [
-   "1909139W"
+   "NEW-1909139W"
   ],
   "cat": "beklaedning"
  },
@@ -4310,7 +4310,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cotton-polo-mens",
   "art": [
-   "1440BL"
+   "TEE-1440BL"
   ],
   "cat": "beklaedning"
  },
@@ -4327,7 +4327,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cotton-polo-mens",
   "art": [
-   "1440NA"
+   "TEE-1440NA"
   ],
   "cat": "beklaedning"
  },
@@ -4344,7 +4344,7 @@ const SKUS = [
   "dark": true,
   "mkey": "frequent-polo-shirt-men",
   "art": [
-   "C17239BL"
+   "NEW-C17239BL"
   ],
   "cat": "beklaedning"
  },
@@ -4361,7 +4361,7 @@ const SKUS = [
   "dark": false,
   "mkey": "frequent-polo-shirt-men",
   "art": [
-   "C17239WH"
+   "NEW-C17239WH"
   ],
   "cat": "beklaedning"
  },
@@ -4378,7 +4378,7 @@ const SKUS = [
   "dark": true,
   "mkey": "frequent-polo-shirt-men",
   "art": [
-   "C17239NA"
+   "NEW-C17239NA"
   ],
   "cat": "beklaedning"
  },
@@ -4395,7 +4395,7 @@ const SKUS = [
   "dark": true,
   "mkey": "harvard-classic-men",
   "art": [
-   "HARVARDMB"
+   "NIM-HARVARDMB"
   ],
   "cat": "beklaedning"
  },
@@ -4412,7 +4412,7 @@ const SKUS = [
   "dark": true,
   "mkey": "harvard-classic-men",
   "art": [
-   "HARVARDMN"
+   "NIM-HARVARDMN"
   ],
   "cat": "beklaedning"
  },
@@ -4429,7 +4429,7 @@ const SKUS = [
   "dark": false,
   "mkey": "harvard-classic-men",
   "art": [
-   "HARVARDMW"
+   "NIM-HARVARDMW"
   ],
   "cat": "beklaedning"
  },
@@ -4446,7 +4446,7 @@ const SKUS = [
   "dark": true,
   "mkey": "harvard-v-neck-women",
   "art": [
-   "HARVARDVWB"
+   "NIM-HARVARDVWB"
   ],
   "cat": "beklaedning"
  },
@@ -4463,7 +4463,7 @@ const SKUS = [
   "dark": true,
   "mkey": "harvard-v-neck-women",
   "art": [
-   "HARVARDVWN"
+   "NIM-HARVARDVWN"
   ],
   "cat": "beklaedning"
  },
@@ -4480,7 +4480,7 @@ const SKUS = [
   "dark": false,
   "mkey": "harvard-v-neck-women",
   "art": [
-   "HARVARDVWW"
+   "NIM-HARVARDVWW"
   ],
   "cat": "beklaedning"
  },
@@ -4497,7 +4497,7 @@ const SKUS = [
   "dark": false,
   "mkey": "poloshirt-deluxe-mens",
   "art": [
-   "1405W"
+   "TEE-1405W"
   ],
   "cat": "beklaedning"
  },
@@ -4514,7 +4514,7 @@ const SKUS = [
   "dark": true,
   "mkey": "poloshirt-deluxe-mens",
   "art": [
-   "1405B"
+   "TEE-1405B"
   ],
   "cat": "beklaedning"
  },
@@ -4531,7 +4531,7 @@ const SKUS = [
   "dark": true,
   "mkey": "poloshirt-deluxe-mens",
   "art": [
-   "1405G"
+   "TEE-1405G"
   ],
   "cat": "beklaedning"
  },
@@ -4548,7 +4548,7 @@ const SKUS = [
   "dark": true,
   "mkey": "poloshirt-deluxe-mens",
   "art": [
-   "1405N"
+   "TEE-1405N"
   ],
   "cat": "beklaedning"
  },
@@ -4565,7 +4565,7 @@ const SKUS = [
   "dark": true,
   "mkey": "poloshirt-deluxe-womens",
   "art": [
-   "145B"
+   "TEE-145B"
   ],
   "cat": "beklaedning"
  },
@@ -4582,7 +4582,7 @@ const SKUS = [
   "dark": true,
   "mkey": "poloshirt-deluxe-womens",
   "art": [
-   "145G"
+   "TEE-145G"
   ],
   "cat": "beklaedning"
  },
@@ -4599,7 +4599,7 @@ const SKUS = [
   "dark": true,
   "mkey": "poloshirt-deluxe-womens",
   "art": [
-   "145N"
+   "TEE-145N"
   ],
   "cat": "beklaedning"
  },
@@ -4616,7 +4616,7 @@ const SKUS = [
   "dark": false,
   "mkey": "poloshirt-deluxe-womens",
   "art": [
-   "145W"
+   "TEE-145W"
   ],
   "cat": "beklaedning"
  },
@@ -4633,7 +4633,7 @@ const SKUS = [
   "dark": true,
   "mkey": "premium-polo-mens",
   "art": [
-   "354420B"
+   "CUT-354420B"
   ],
   "cat": "beklaedning"
  },
@@ -4650,7 +4650,7 @@ const SKUS = [
   "dark": true,
   "mkey": "premium-polo-mens",
   "art": [
-   "354420N"
+   "CUT-354420N"
   ],
   "cat": "beklaedning"
  },
@@ -4667,7 +4667,7 @@ const SKUS = [
   "dark": false,
   "mkey": "premium-polo-mens",
   "art": [
-   "354420W"
+   "CUT-354420W"
   ],
   "cat": "beklaedning"
  },
@@ -4684,7 +4684,7 @@ const SKUS = [
   "dark": true,
   "mkey": "premium-polo-womens",
   "art": [
-   "354421B"
+   "CUT-354421B"
   ],
   "cat": "beklaedning"
  },
@@ -4701,7 +4701,7 @@ const SKUS = [
   "dark": true,
   "mkey": "premium-polo-womens",
   "art": [
-   "354421N"
+   "CUT-354421N"
   ],
   "cat": "beklaedning"
  },
@@ -4718,7 +4718,7 @@ const SKUS = [
   "dark": false,
   "mkey": "premium-polo-womens",
   "art": [
-   "354421W"
+   "CUT-354421W"
   ],
   "cat": "beklaedning"
  },
@@ -4735,7 +4735,7 @@ const SKUS = [
   "dark": true,
   "mkey": "carlington-l-s-polo-mens",
   "art": [
-   "CARLINGTONBMEN"
+   "NIM-CARLINGTONBMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4752,7 +4752,7 @@ const SKUS = [
   "dark": true,
   "mkey": "carlington-l-s-polo-mens",
   "art": [
-   "CARLINGTONNMEN"
+   "NIM-CARLINGTONNMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4769,7 +4769,7 @@ const SKUS = [
   "dark": false,
   "mkey": "carlington-l-s-polo-mens",
   "art": [
-   "CARLINGTONWMEN"
+   "NIM-CARLINGTONWMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4786,7 +4786,7 @@ const SKUS = [
   "dark": true,
   "mkey": "carlington-l-s-polo-womens",
   "art": [
-   "CARLINGTONBWMN"
+   "NIM-CARLINGTONBWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4803,7 +4803,7 @@ const SKUS = [
   "dark": true,
   "mkey": "carlington-l-s-polo-womens",
   "art": [
-   "CARLINGTONNWMN"
+   "NIM-CARLINGTONNWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4820,7 +4820,7 @@ const SKUS = [
   "dark": false,
   "mkey": "carlington-l-s-polo-womens",
   "art": [
-   "CARLINGTONWWMN"
+   "NIM-CARLINGTONWWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4837,7 +4837,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cotton-long-sleeve-polo-mens",
   "art": [
-   "1442BL"
+   "TEE-1442BL"
   ],
   "cat": "beklaedning"
  },
@@ -4854,7 +4854,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cotton-long-sleeve-polo-mens",
   "art": [
-   "1442NA"
+   "TEE-1442NA"
   ],
   "cat": "beklaedning"
  },
@@ -4871,7 +4871,7 @@ const SKUS = [
   "dark": true,
   "mkey": "danbury-men",
   "art": [
-   "DANBURYBMEN"
+   "NIM-DANBURYBMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4888,7 +4888,7 @@ const SKUS = [
   "dark": true,
   "mkey": "danbury-men",
   "art": [
-   "DANBURYNMEN"
+   "NIM-DANBURYNMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4905,7 +4905,7 @@ const SKUS = [
   "dark": false,
   "mkey": "danbury-men",
   "art": [
-   "DANBURYWMEN"
+   "NIM-DANBURYWMEN"
   ],
   "cat": "beklaedning"
  },
@@ -4922,7 +4922,7 @@ const SKUS = [
   "dark": true,
   "mkey": "danbury-women",
   "art": [
-   "DANBURYBWMN"
+   "NIM-DANBURYBWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4939,7 +4939,7 @@ const SKUS = [
   "dark": true,
   "mkey": "danbury-women",
   "art": [
-   "DANBURYNWMN"
+   "NIM-DANBURYNWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4956,7 +4956,7 @@ const SKUS = [
   "dark": false,
   "mkey": "danbury-women",
   "art": [
-   "DANBURYWWMN"
+   "NIM-DANBURYWWMN"
   ],
   "cat": "beklaedning"
  },
@@ -4973,7 +4973,7 @@ const SKUS = [
   "dark": true,
   "mkey": "interlock-t-shirt-mens",
   "art": [
-   "520B"
+   "TEE-520B"
   ],
   "cat": "beklaedning"
  },
@@ -4990,7 +4990,7 @@ const SKUS = [
   "dark": true,
   "mkey": "interlock-t-shirt-mens",
   "art": [
-   "520N"
+   "TEE-520N"
   ],
   "cat": "beklaedning"
  },
@@ -5007,7 +5007,7 @@ const SKUS = [
   "dark": false,
   "mkey": "interlock-t-shirt-mens",
   "art": [
-   "520W"
+   "TEE-520W"
   ],
   "cat": "beklaedning"
  },
@@ -5024,7 +5024,7 @@ const SKUS = [
   "dark": true,
   "mkey": "interlock-t-shirt-womens",
   "art": [
-   "580N"
+   "TEE-580N"
   ],
   "cat": "beklaedning"
  },
@@ -5041,7 +5041,7 @@ const SKUS = [
   "dark": false,
   "mkey": "interlock-t-shirt-womens",
   "art": [
-   "580W"
+   "TEE-580W"
   ],
   "cat": "beklaedning"
  },
@@ -5058,7 +5058,7 @@ const SKUS = [
   "dark": true,
   "mkey": "interlockt-shirt-womens",
   "art": [
-   "580B"
+   "TEE-580B"
   ],
   "cat": "beklaedning"
  },
@@ -5075,7 +5075,7 @@ const SKUS = [
   "dark": false,
   "mkey": "t-shirt-loose-fit-unisex",
   "art": [
-   "3410020WH"
+   "NEW-3410020WH"
   ],
   "cat": "beklaedning"
  },
@@ -5092,7 +5092,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-loose-fit-unisex",
   "art": [
-   "3410020BL"
+   "NEW-3410020BL"
   ],
   "cat": "beklaedning"
  },
@@ -5109,7 +5109,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-loose-fit-unisex",
   "art": [
-   "3410020GR"
+   "NEW-3410020GR"
   ],
   "cat": "beklaedning"
  },
@@ -5126,7 +5126,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-loose-fit-unisex",
   "art": [
-   "3410020NA"
+   "NEW-3410020NA"
   ],
   "cat": "beklaedning"
  },
@@ -5143,7 +5143,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-regular-fit-unisex",
   "art": [
-   "3410010BL"
+   "NEW-3410010BL"
   ],
   "cat": "beklaedning"
  },
@@ -5160,7 +5160,7 @@ const SKUS = [
   "dark": false,
   "mkey": "t-shirt-regular-fit-unisex",
   "art": [
-   "3410010GM"
+   "NEW-3410010GM"
   ],
   "cat": "beklaedning"
  },
@@ -5177,7 +5177,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-regular-fit-unisex",
   "art": [
-   "3410010NA"
+   "NEW-3410010NA"
   ],
   "cat": "beklaedning"
  },
@@ -5194,7 +5194,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-regular-fit-unisex",
   "art": [
-   "3410010RE"
+   "NEW-3410010RE"
   ],
   "cat": "beklaedning"
  },
@@ -5211,7 +5211,7 @@ const SKUS = [
   "dark": true,
   "mkey": "t-shirt-regular-fit-unisex",
   "art": [
-   "3410010GE"
+   "NEW-3410010GE"
   ],
   "cat": "beklaedning"
  },
@@ -5228,7 +5228,7 @@ const SKUS = [
   "dark": false,
   "mkey": "t-shirt-regular-fit-unisex",
   "art": [
-   "3410010WH"
+   "NEW-3410010WH"
   ],
   "cat": "beklaedning"
  },
@@ -5245,7 +5245,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-loose-fit-tee-unisex",
   "art": [
-   "1160BL"
+   "TEE-1160BL"
   ],
   "cat": "beklaedning"
  },
@@ -5262,7 +5262,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-loose-fit-tee-unisex",
   "art": [
-   "1160CR"
+   "TEE-1160CR"
   ],
   "cat": "beklaedning"
  },
@@ -5279,7 +5279,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-loose-fit-tee-unisex",
   "art": [
-   "1160NA"
+   "TEE-1160NA"
   ],
   "cat": "beklaedning"
  },
@@ -5296,7 +5296,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-loose-fit-tee-unisex",
   "art": [
-   "1160GR"
+   "TEE-1160GR"
   ],
   "cat": "beklaedning"
  },
@@ -5313,7 +5313,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-loose-fit-tee-unisex",
   "art": [
-   "1160WH"
+   "TEE-1160WH"
   ],
   "cat": "beklaedning"
  },
@@ -5330,7 +5330,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150BL"
+   "TEE-1150BL"
   ],
   "cat": "beklaedning"
  },
@@ -5347,7 +5347,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150GE"
+   "TEE-1150GE"
   ],
   "cat": "beklaedning"
  },
@@ -5364,7 +5364,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150CR"
+   "TEE-1150CR"
   ],
   "cat": "beklaedning"
  },
@@ -5381,7 +5381,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150NA"
+   "TEE-1150NA"
   ],
   "cat": "beklaedning"
  },
@@ -5398,7 +5398,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150MO"
+   "TEE-1150MO"
   ],
   "cat": "beklaedning"
  },
@@ -5415,7 +5415,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150RE"
+   "TEE-1150RE"
   ],
   "cat": "beklaedning"
  },
@@ -5432,7 +5432,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-luxury-tee-unisex",
   "art": [
-   "1150WH"
+   "TEE-1150WH"
   ],
   "cat": "beklaedning"
  },
@@ -5449,7 +5449,7 @@ const SKUS = [
   "dark": true,
   "mkey": "interlock-long-sleevet-shirt-mens",
   "art": [
-   "530B"
+   "TEE-530B"
   ],
   "cat": "beklaedning"
  },
@@ -5466,7 +5466,7 @@ const SKUS = [
   "dark": true,
   "mkey": "interlock-long-sleevet-shirt-womens",
   "art": [
-   "590B"
+   "TEE-590B"
   ],
   "cat": "beklaedning"
  },
@@ -5483,7 +5483,7 @@ const SKUS = [
   "dark": true,
   "mkey": "advantage-leisure-shirt-men",
   "art": [
-   "352414B"
+   "CUT-352414B"
   ],
   "cat": "beklaedning"
  },
@@ -5500,7 +5500,7 @@ const SKUS = [
   "dark": true,
   "mkey": "advantage-leisure-shirt-men",
   "art": [
-   "352414N"
+   "CUT-352414N"
   ],
   "cat": "beklaedning"
  },
@@ -5517,7 +5517,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brownsville-unisex",
   "art": [
-   "BROWNSVILLEB"
+   "NIM-BROWNSVILLEB"
   ],
   "cat": "beklaedning"
  },
@@ -5534,7 +5534,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brownsville-unisex",
   "art": [
-   "BROWNSVILLEG"
+   "NIM-BROWNSVILLEG"
   ],
   "cat": "beklaedning"
  },
@@ -5551,7 +5551,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brownsville-unisex",
   "art": [
-   "BROWNSVILLEN"
+   "NIM-BROWNSVILLEN"
   ],
   "cat": "beklaedning"
  },
@@ -5568,7 +5568,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cambridge-unisex",
   "art": [
-   "CAMBRIDGEB"
+   "NIM-CAMBRIDGEB"
   ],
   "cat": "beklaedning"
  },
@@ -5585,7 +5585,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cambridge-unisex",
   "art": [
-   "CAMBRIDGEG"
+   "NIM-CAMBRIDGEG"
   ],
   "cat": "beklaedning"
  },
@@ -5602,7 +5602,7 @@ const SKUS = [
   "dark": true,
   "mkey": "cambridge-unisex",
   "art": [
-   "CAMBRIDGEN"
+   "NIM-CAMBRIDGEN"
   ],
   "cat": "beklaedning"
  },
@@ -5619,7 +5619,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crewneck-regular-fit-unisex",
   "art": [
-   "3430010BL"
+   "NEW-3430010BL"
   ],
   "cat": "beklaedning"
  },
@@ -5636,7 +5636,7 @@ const SKUS = [
   "dark": false,
   "mkey": "crewneck-regular-fit-unisex",
   "art": [
-   "3430010GM"
+   "NEW-3430010GM"
   ],
   "cat": "beklaedning"
  },
@@ -5653,7 +5653,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crewneck-regular-fit-unisex",
   "art": [
-   "3430010NA"
+   "NEW-3430010NA"
   ],
   "cat": "beklaedning"
  },
@@ -5670,7 +5670,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crewneck-regular-fit-unisex",
   "art": [
-   "3430010RE"
+   "NEW-3430010RE"
   ],
   "cat": "beklaedning"
  },
@@ -5687,7 +5687,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crewneck-regular-fit-unisex",
   "art": [
-   "3430010GE"
+   "NEW-3430010GE"
   ],
   "cat": "beklaedning"
  },
@@ -5704,7 +5704,7 @@ const SKUS = [
   "dark": true,
   "mkey": "glendale-1-4-zip-sweatshirt-unisex",
   "art": [
-   "GLENDALEBL"
+   "NIM-GLENDALEBL"
   ],
   "cat": "beklaedning"
  },
@@ -5721,7 +5721,7 @@ const SKUS = [
   "dark": true,
   "mkey": "glendale-1-4-zip-sweatshirt-unisex",
   "art": [
-   "GLENDALEGR"
+   "NIM-GLENDALEGR"
   ],
   "cat": "beklaedning"
  },
@@ -5738,7 +5738,7 @@ const SKUS = [
   "dark": true,
   "mkey": "glendale-1-4-zip-sweatshirt-unisex",
   "art": [
-   "GLENDALENA"
+   "NIM-GLENDALENA"
   ],
   "cat": "beklaedning"
  },
@@ -5755,7 +5755,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-crewneck-mens",
   "art": [
-   "355416B"
+   "CUT-355416B"
   ],
   "cat": "beklaedning"
  },
@@ -5772,7 +5772,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-crewneck-mens",
   "art": [
-   "355416G"
+   "CUT-355416G"
   ],
   "cat": "beklaedning"
  },
@@ -5789,7 +5789,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-crewneck-mens",
   "art": [
-   "355416N"
+   "CUT-355416N"
   ],
   "cat": "beklaedning"
  },
@@ -5806,7 +5806,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-half-zip-sweater-mens",
   "art": [
-   "355428BL"
+   "CUT-355428BL"
   ],
   "cat": "beklaedning"
  },
@@ -5823,7 +5823,7 @@ const SKUS = [
   "dark": false,
   "mkey": "oakville-half-zip-sweater-mens",
   "art": [
-   "355428GM"
+   "CUT-355428GM"
   ],
   "cat": "beklaedning"
  },
@@ -5840,7 +5840,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-half-zip-sweater-mens",
   "art": [
-   "355428NA"
+   "CUT-355428NA"
   ],
   "cat": "beklaedning"
  },
@@ -5857,7 +5857,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-v-neck-mens",
   "art": [
-   "355418B"
+   "CUT-355418B"
   ],
   "cat": "beklaedning"
  },
@@ -5874,7 +5874,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-v-neck-mens",
   "art": [
-   "355418G"
+   "CUT-355418G"
   ],
   "cat": "beklaedning"
  },
@@ -5891,7 +5891,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-v-neck-mens",
   "art": [
-   "355418N"
+   "CUT-355418N"
   ],
   "cat": "beklaedning"
  },
@@ -5908,7 +5908,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-v-neck-womens",
   "art": [
-   "355419B"
+   "CUT-355419B"
   ],
   "cat": "beklaedning"
  },
@@ -5925,7 +5925,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-v-neck-womens",
   "art": [
-   "355419G"
+   "CUT-355419G"
   ],
   "cat": "beklaedning"
  },
@@ -5942,7 +5942,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oakville-v-neck-womens",
   "art": [
-   "355419N"
+   "CUT-355419N"
   ],
   "cat": "beklaedning"
  },
@@ -5959,7 +5959,7 @@ const SKUS = [
   "dark": true,
   "mkey": "pemberton-cardigan-full-zip-unisex",
   "art": [
-   "358426BL"
+   "CUT-358426BL"
   ],
   "cat": "beklaedning"
  },
@@ -5976,7 +5976,7 @@ const SKUS = [
   "dark": true,
   "mkey": "pemberton-cardigan-full-zip-unisex",
   "art": [
-   "358426NA"
+   "CUT-358426NA"
   ],
   "cat": "beklaedning"
  },
@@ -5993,7 +5993,7 @@ const SKUS = [
   "dark": true,
   "mkey": "pemberton-half-zip-unisex",
   "art": [
-   "358434BL"
+   "CUT-358434BL"
   ],
   "cat": "beklaedning"
  },
@@ -6010,7 +6010,7 @@ const SKUS = [
   "dark": true,
   "mkey": "pemberton-half-zip-unisex",
   "art": [
-   "358434NA"
+   "CUT-358434NA"
   ],
   "cat": "beklaedning"
  },
@@ -6027,7 +6027,7 @@ const SKUS = [
   "dark": true,
   "mkey": "trenton-sweatshirt-unisex",
   "art": [
-   "TRENTONBL"
+   "NIM-TRENTONBL"
   ],
   "cat": "beklaedning"
  },
@@ -6044,7 +6044,7 @@ const SKUS = [
   "dark": true,
   "mkey": "trenton-sweatshirt-unisex",
   "art": [
-   "TRENTONGR"
+   "NIM-TRENTONGR"
   ],
   "cat": "beklaedning"
  },
@@ -6061,7 +6061,7 @@ const SKUS = [
   "dark": true,
   "mkey": "trenton-sweatshirt-unisex",
   "art": [
-   "TRENTONNA"
+   "NIM-TRENTONNA"
   ],
   "cat": "beklaedning"
  },
@@ -6078,7 +6078,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-sweatshirt-unisex",
   "art": [
-   "5150BL"
+   "TEE-5150BL"
   ],
   "cat": "beklaedning"
  },
@@ -6095,7 +6095,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-sweatshirt-unisex",
   "art": [
-   "5150GR"
+   "TEE-5150GR"
   ],
   "cat": "beklaedning"
  },
@@ -6112,7 +6112,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-sweatshirt-unisex",
   "art": [
-   "5150NA"
+   "TEE-5150NA"
   ],
   "cat": "beklaedning"
  },
@@ -6129,7 +6129,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hoodie-regular-fit-unisex",
   "art": [
-   "3440010BL"
+   "NEW-3440010BL"
   ],
   "cat": "beklaedning"
  },
@@ -6146,7 +6146,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hoodie-regular-fit-unisex",
   "art": [
-   "3440010GM"
+   "NEW-3440010GM"
   ],
   "cat": "beklaedning"
  },
@@ -6163,7 +6163,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hoodie-regular-fit-unisex",
   "art": [
-   "3440010NA"
+   "NEW-3440010NA"
   ],
   "cat": "beklaedning"
  },
@@ -6180,7 +6180,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hoodie-regular-fit-unisex",
   "art": [
-   "3440010RE"
+   "NEW-3440010RE"
   ],
   "cat": "beklaedning"
  },
@@ -6197,7 +6197,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hoodie-regular-fit-unisex",
   "art": [
-   "3440010GE"
+   "NEW-3440010GE"
   ],
   "cat": "beklaedning"
  },
@@ -6214,7 +6214,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-hooded-sweatshirt-unisex",
   "art": [
-   "5152BL"
+   "TEE-5152BL"
   ],
   "cat": "beklaedning"
  },
@@ -6231,7 +6231,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-hooded-sweatshirt-unisex",
   "art": [
-   "5152GR"
+   "TEE-5152GR"
   ],
   "cat": "beklaedning"
  },
@@ -6248,7 +6248,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-hooded-sweatshirt-unisex",
   "art": [
-   "5152NA"
+   "TEE-5152NA"
   ],
   "cat": "beklaedning"
  },
@@ -6265,7 +6265,7 @@ const SKUS = [
   "dark": true,
   "mkey": "full-zip-hoodie-unisex",
   "art": [
-   "3450010BL"
+   "NEW-3450010BL"
   ],
   "cat": "beklaedning"
  },
@@ -6282,7 +6282,7 @@ const SKUS = [
   "dark": false,
   "mkey": "full-zip-hoodie-unisex",
   "art": [
-   "3450010GM"
+   "NEW-3450010GM"
   ],
   "cat": "beklaedning"
  },
@@ -6299,7 +6299,7 @@ const SKUS = [
   "dark": true,
   "mkey": "full-zip-hoodie-unisex",
   "art": [
-   "3450010NA"
+   "NEW-3450010NA"
   ],
   "cat": "beklaedning"
  },
@@ -6316,7 +6316,7 @@ const SKUS = [
   "dark": true,
   "mkey": "full-zip-hoodie-unisex",
   "art": [
-   "3450010RE"
+   "NEW-3450010RE"
   ],
   "cat": "beklaedning"
  },
@@ -6333,7 +6333,7 @@ const SKUS = [
   "dark": true,
   "mkey": "full-zip-hoodie-unisex",
   "art": [
-   "3450010GE"
+   "NEW-3450010GE"
   ],
   "cat": "beklaedning"
  },
@@ -6350,7 +6350,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-full-zip-sweatshirt-unisex",
   "art": [
-   "5154BL"
+   "TEE-5154BL"
   ],
   "cat": "beklaedning"
  },
@@ -6367,7 +6367,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-full-zip-sweatshirt-unisex",
   "art": [
-   "5154NA"
+   "TEE-5154NA"
   ],
   "cat": "beklaedning"
  },
@@ -6384,7 +6384,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crew-neck-knit-mens",
   "art": [
-   "6000BL"
+   "TEE-6000BL"
   ],
   "cat": "beklaedning"
  },
@@ -6401,7 +6401,7 @@ const SKUS = [
   "dark": false,
   "mkey": "crew-neck-knit-mens",
   "art": [
-   "6000GM"
+   "TEE-6000GM"
   ],
   "cat": "beklaedning"
  },
@@ -6418,7 +6418,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crew-neck-knit-mens",
   "art": [
-   "6000BR"
+   "TEE-6000BR"
   ],
   "cat": "beklaedning"
  },
@@ -6435,7 +6435,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crew-neck-knit-mens",
   "art": [
-   "6000NA"
+   "TEE-6000NA"
   ],
   "cat": "beklaedning"
  },
@@ -6452,7 +6452,7 @@ const SKUS = [
   "dark": true,
   "mkey": "crew-neck-knit-mens",
   "art": [
-   "6000GE"
+   "TEE-6000GE"
   ],
   "cat": "beklaedning"
  },
@@ -6469,7 +6469,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brigthton-1-4-zip-men",
   "art": [
-   "BRIGTHTONZIPBL"
+   "NIM-BRIGTHTONZIPBL"
   ],
   "cat": "beklaedning"
  },
@@ -6486,7 +6486,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brigthton-1-4-zip-men",
   "art": [
-   "BRIGTHTONZIPGE"
+   "NIM-BRIGTHTONZIPGE"
   ],
   "cat": "beklaedning"
  },
@@ -6503,7 +6503,7 @@ const SKUS = [
   "dark": false,
   "mkey": "brigthton-1-4-zip-men",
   "art": [
-   "BRIGTHTONZIPGM"
+   "NIM-BRIGTHTONZIPGM"
   ],
   "cat": "beklaedning"
  },
@@ -6520,7 +6520,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brigthton-1-4-zip-men",
   "art": [
-   "BRIGTHTONZIPNA"
+   "NIM-BRIGTHTONZIPNA"
   ],
   "cat": "beklaedning"
  },
@@ -6537,7 +6537,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brighton-cardigan-women",
   "art": [
-   "BRIGHTONCARBL"
+   "NIM-BRIGHTONCARBL"
   ],
   "cat": "beklaedning"
  },
@@ -6554,7 +6554,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brighton-cardigan-women",
   "art": [
-   "BRIGHTONCARGE"
+   "NIM-BRIGHTONCARGE"
   ],
   "cat": "beklaedning"
  },
@@ -6571,7 +6571,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brighton-cardigan-women",
   "art": [
-   "BRIGHTONCARGR"
+   "NIM-BRIGHTONCARGR"
   ],
   "cat": "beklaedning"
  },
@@ -6588,7 +6588,7 @@ const SKUS = [
   "dark": true,
   "mkey": "brighton-cardigan-women",
   "art": [
-   "BRIGHTONCARNA"
+   "NIM-BRIGHTONCARNA"
   ],
   "cat": "beklaedning"
  },
@@ -6605,7 +6605,7 @@ const SKUS = [
   "dark": true,
   "mkey": "polo-knit-mens",
   "art": [
-   "6002BL"
+   "TEE-6002BL"
   ],
   "cat": "beklaedning"
  },
@@ -6622,7 +6622,7 @@ const SKUS = [
   "dark": true,
   "mkey": "polo-knit-mens",
   "art": [
-   "6002BR"
+   "TEE-6002BR"
   ],
   "cat": "beklaedning"
  },
@@ -6639,7 +6639,7 @@ const SKUS = [
   "dark": true,
   "mkey": "polo-knit-mens",
   "art": [
-   "6002NA"
+   "TEE-6002NA"
   ],
   "cat": "beklaedning"
  },
@@ -6656,7 +6656,7 @@ const SKUS = [
   "dark": true,
   "mkey": "polo-knit-mens",
   "art": [
-   "6002GE"
+   "TEE-6002GE"
   ],
   "cat": "beklaedning"
  },
@@ -6673,7 +6673,7 @@ const SKUS = [
   "dark": true,
   "mkey": "active-stretch-shirt-mens",
   "art": [
-   "4030BL"
+   "TEE-4030BL"
   ],
   "cat": "beklaedning"
  },
@@ -6690,7 +6690,7 @@ const SKUS = [
   "dark": false,
   "mkey": "active-stretch-shirt-mens",
   "art": [
-   "4030LB"
+   "TEE-4030LB"
   ],
   "cat": "beklaedning"
  },
@@ -6707,7 +6707,7 @@ const SKUS = [
   "dark": false,
   "mkey": "active-stretch-shirt-mens",
   "art": [
-   "4030WH"
+   "TEE-4030WH"
   ],
   "cat": "beklaedning"
  },
@@ -6724,7 +6724,7 @@ const SKUS = [
   "dark": true,
   "mkey": "granville-shirt-men",
   "art": [
-   "352416BL"
+   "CUT-352416BL"
   ],
   "cat": "beklaedning"
  },
@@ -6741,7 +6741,7 @@ const SKUS = [
   "dark": false,
   "mkey": "granville-shirt-men",
   "art": [
-   "352416LB"
+   "CUT-352416LB"
   ],
   "cat": "beklaedning"
  },
@@ -6758,7 +6758,7 @@ const SKUS = [
   "dark": false,
   "mkey": "granville-shirt-men",
   "art": [
-   "352416WH"
+   "CUT-352416WH"
   ],
   "cat": "beklaedning"
  },
@@ -6775,7 +6775,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hansville-shirt-men",
   "art": [
-   "352406BL"
+   "CUT-352406BL"
   ],
   "cat": "beklaedning"
  },
@@ -6792,7 +6792,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hansville-shirt-men",
   "art": [
-   "352406NA"
+   "CUT-352406NA"
   ],
   "cat": "beklaedning"
  },
@@ -6809,7 +6809,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hansville-shirt-men",
   "art": [
-   "352406LB"
+   "CUT-352406LB"
   ],
   "cat": "beklaedning"
  },
@@ -6826,7 +6826,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hansville-shirt-men",
   "art": [
-   "352406WH"
+   "CUT-352406WH"
   ],
   "cat": "beklaedning"
  },
@@ -6843,7 +6843,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hedley-stretch-shirt-men",
   "art": [
-   "352412BL"
+   "CUT-352412BL"
   ],
   "cat": "beklaedning"
  },
@@ -6860,7 +6860,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hedley-stretch-shirt-men",
   "art": [
-   "352412WH"
+   "CUT-352412WH"
   ],
   "cat": "beklaedning"
  },
@@ -6877,7 +6877,7 @@ const SKUS = [
   "dark": false,
   "mkey": "luxury-shirt-comfort-fit-mens",
   "art": [
-   "4020LB"
+   "Tee-4020LB"
   ],
   "cat": "beklaedning"
  },
@@ -6894,7 +6894,7 @@ const SKUS = [
   "dark": false,
   "mkey": "luxury-shirt-comfort-fit-mens",
   "art": [
-   "4020W"
+   "Tee-4020W"
   ],
   "cat": "beklaedning"
  },
@@ -6911,7 +6911,7 @@ const SKUS = [
   "dark": false,
   "mkey": "luxury-shirt-slim-fit",
   "art": [
-   "4021LB"
+   "Tee-4021LB"
   ],
   "cat": "beklaedning"
  },
@@ -6928,7 +6928,7 @@ const SKUS = [
   "dark": false,
   "mkey": "luxury-shirt-slim-fit",
   "art": [
-   "4021W"
+   "Tee-4021W"
   ],
   "cat": "beklaedning"
  },
@@ -6945,7 +6945,7 @@ const SKUS = [
   "dark": false,
   "mkey": "portland-modern-fit-mens",
   "art": [
-   "PORTLANDMLB"
+   "NIM-PORTLANDMLB"
   ],
   "cat": "beklaedning"
  },
@@ -6962,7 +6962,7 @@ const SKUS = [
   "dark": false,
   "mkey": "portland-modern-fit-mens",
   "art": [
-   "PORTLANDMWH"
+   "NIM-PORTLANDMWH"
   ],
   "cat": "beklaedning"
  },
@@ -6979,7 +6979,7 @@ const SKUS = [
   "dark": false,
   "mkey": "portland-slim-fit-mens",
   "art": [
-   "PORTLANDSLB"
+   "NIM-PORTLANDSLB"
   ],
   "cat": "beklaedning"
  },
@@ -6996,7 +6996,7 @@ const SKUS = [
   "dark": false,
   "mkey": "portland-slim-fit-mens",
   "art": [
-   "PORTLANDSWH"
+   "NIM-PORTLANDSWH"
   ],
   "cat": "beklaedning"
  },
@@ -7013,7 +7013,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stretch-luxury-shirt-mens",
   "art": [
-   "4024BL"
+   "TEE-4024BL"
   ],
   "cat": "beklaedning"
  },
@@ -7030,7 +7030,7 @@ const SKUS = [
   "dark": false,
   "mkey": "stretch-luxury-shirt-mens",
   "art": [
-   "4024LB"
+   "TEE-4024LB"
   ],
   "cat": "beklaedning"
  },
@@ -7047,7 +7047,7 @@ const SKUS = [
   "dark": false,
   "mkey": "stretch-luxury-shirt-mens",
   "art": [
-   "4024WH"
+   "TEE-4024WH"
   ],
   "cat": "beklaedning"
  },
@@ -7064,7 +7064,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stretch-luxury-womens",
   "art": [
-   "4025B"
+   "Tee-4025B"
   ],
   "cat": "beklaedning"
  },
@@ -7081,7 +7081,7 @@ const SKUS = [
   "dark": false,
   "mkey": "stretch-luxury-womens",
   "art": [
-   "4025LB"
+   "Tee-4025LB"
   ],
   "cat": "beklaedning"
  },
@@ -7098,7 +7098,7 @@ const SKUS = [
   "dark": false,
   "mkey": "stretch-luxury-womens",
   "art": [
-   "4025W"
+   "Tee-4025W"
   ],
   "cat": "beklaedning"
  },
@@ -7115,7 +7115,7 @@ const SKUS = [
   "dark": true,
   "mkey": "belfair-oxford-shirt-men",
   "art": [
-   "352400BL"
+   "CUT-352400BL"
   ],
   "cat": "beklaedning"
  },
@@ -7132,7 +7132,7 @@ const SKUS = [
   "dark": true,
   "mkey": "belfair-oxford-shirt-men",
   "art": [
-   "352400LB"
+   "CUT-352400LB"
   ],
   "cat": "beklaedning"
  },
@@ -7149,7 +7149,7 @@ const SKUS = [
   "dark": true,
   "mkey": "belfair-oxford-shirt-men",
   "art": [
-   "352400NA"
+   "CUT-352400NA"
   ],
   "cat": "beklaedning"
  },
@@ -7166,7 +7166,7 @@ const SKUS = [
   "dark": false,
   "mkey": "belfair-oxford-shirt-men",
   "art": [
-   "352400WH"
+   "CUT-352400WH"
   ],
   "cat": "beklaedning"
  },
@@ -7183,7 +7183,7 @@ const SKUS = [
   "dark": false,
   "mkey": "oxford-shirt-mens",
   "art": [
-   "4000LB"
+   "TEE-4000LB"
   ],
   "cat": "beklaedning"
  },
@@ -7200,7 +7200,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oxford-shirt-mens",
   "art": [
-   "4000N"
+   "TEE-4000N"
   ],
   "cat": "beklaedning"
  },
@@ -7217,7 +7217,7 @@ const SKUS = [
   "dark": false,
   "mkey": "oxford-shirt-mens",
   "art": [
-   "4000W"
+   "TEE-4000W"
   ],
   "cat": "beklaedning"
  },
@@ -7234,7 +7234,7 @@ const SKUS = [
   "dark": false,
   "mkey": "oxford-shirt-womens",
   "art": [
-   "4001LB"
+   "TEE-4001LB"
   ],
   "cat": "beklaedning"
  },
@@ -7251,7 +7251,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oxford-shirt-womens",
   "art": [
-   "4001N"
+   "TEE-4001N"
   ],
   "cat": "beklaedning"
  },
@@ -7268,7 +7268,7 @@ const SKUS = [
   "dark": false,
   "mkey": "oxford-shirt-womens",
   "art": [
-   "4001W"
+   "TEE-4001W"
   ],
   "cat": "beklaedning"
  },
@@ -7285,7 +7285,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oxford-shirt-mens",
   "art": [
-   "4000B"
+   "TEE-4000B"
   ],
   "cat": "beklaedning"
  },
@@ -7302,7 +7302,7 @@ const SKUS = [
   "dark": true,
   "mkey": "oxford-shirt-womens",
   "art": [
-   "4001B"
+   "TEE-4001B"
   ],
   "cat": "beklaedning"
  },
@@ -7319,7 +7319,7 @@ const SKUS = [
   "dark": true,
   "mkey": "ocean-park-overshirt-unisex",
   "art": [
-   "351488NA"
+   "CUT-351488NA"
   ],
   "cat": "beklaedning"
  },
@@ -7336,7 +7336,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-essence-ss-tee-2-men",
   "art": [
-   "1914792BL"
+   "NEW-1914792BL"
   ],
   "cat": "beklaedning"
  },
@@ -7353,7 +7353,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-essence-ss-tee-2-men-rift-green",
   "art": [
-   "1914792GE"
+   "NEW-1914792GE"
   ],
   "cat": "beklaedning"
  },
@@ -7370,7 +7370,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-essence-ss-tee-2-men",
   "art": [
-   "1914792WH"
+   "NEW-1914792WH"
   ],
   "cat": "beklaedning"
  },
@@ -7387,7 +7387,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-essence-ss-tee-2-women",
   "art": [
-   "1914798BL"
+   "NEW-1914798BL"
   ],
   "cat": "beklaedning"
  },
@@ -7404,7 +7404,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-essence-ss-tee-2-women-rift-green",
   "art": [
-   "1914798GE"
+   "NEW-1914798GE"
   ],
   "cat": "beklaedning"
  },
@@ -7421,7 +7421,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-essence-ss-tee-2-women",
   "art": [
-   "1914798WH"
+   "NEW-1914798WH"
   ],
   "cat": "beklaedning"
  },
@@ -7438,7 +7438,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-men",
   "art": [
-   "1909878BL"
+   "NEW-1909878BL"
   ],
   "cat": "beklaedning"
  },
@@ -7455,7 +7455,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-men",
   "art": [
-   "1909878CR"
+   "NEW-1909878CR"
   ],
   "cat": "beklaedning"
  },
@@ -7472,7 +7472,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-men-flint",
   "art": [
-   "1909878DR"
+   "NEW-1909878DR"
   ],
   "cat": "beklaedning"
  },
@@ -7489,7 +7489,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-men-green-leaf",
   "art": [
-   "1909878GE"
+   "NEW-1909878GE"
   ],
   "cat": "beklaedning"
  },
@@ -7506,7 +7506,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-men",
   "art": [
-   "1909878GR"
+   "NEW-1909878GR"
   ],
   "cat": "beklaedning"
  },
@@ -7523,7 +7523,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-men-jade-green",
   "art": [
-   "1909878LG"
+   "NEW-1909878LG"
   ],
   "cat": "beklaedning"
  },
@@ -7540,7 +7540,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-men",
   "art": [
-   "1909878NA"
+   "NEW-1909878NA"
   ],
   "cat": "beklaedning"
  },
@@ -7557,7 +7557,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-men-real-blue",
   "art": [
-   "1909878BU"
+   "NEW-1909878BU"
   ],
   "cat": "beklaedning"
  },
@@ -7574,7 +7574,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-men",
   "art": [
-   "1909878RE"
+   "NEW-1909878RE"
   ],
   "cat": "beklaedning"
  },
@@ -7591,7 +7591,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-men",
   "art": [
-   "1909878WH"
+   "NEW-1909878WH"
   ],
   "cat": "beklaedning"
  },
@@ -7608,7 +7608,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879BL"
+   "NEW-1909879BL"
   ],
   "cat": "beklaedning"
  },
@@ -7625,7 +7625,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879CR"
+   "NEW-1909879CR"
   ],
   "cat": "beklaedning"
  },
@@ -7642,7 +7642,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-women-flint",
   "art": [
-   "1909879DR"
+   "NEW-1909879DR"
   ],
   "cat": "beklaedning"
  },
@@ -7659,7 +7659,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879GR"
+   "NEW-1909879GR"
   ],
   "cat": "beklaedning"
  },
@@ -7676,7 +7676,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-women-jade-green",
   "art": [
-   "1909879LG"
+   "NEW-1909879LG"
   ],
   "cat": "beklaedning"
  },
@@ -7693,7 +7693,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879GE"
+   "NEW-1909879GE"
   ],
   "cat": "beklaedning"
  },
@@ -7710,7 +7710,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879NA"
+   "NEW-1909879NA"
   ],
   "cat": "beklaedning"
  },
@@ -7727,7 +7727,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-women-real-blue",
   "art": [
-   "1909879BU"
+   "NEW-1909879BU"
   ],
   "cat": "beklaedning"
  },
@@ -7744,7 +7744,7 @@ const SKUS = [
   "dark": true,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879RE"
+   "NEW-1909879RE"
   ],
   "cat": "beklaedning"
  },
@@ -7761,7 +7761,7 @@ const SKUS = [
   "dark": false,
   "mkey": "core-unify-training-tee-women",
   "art": [
-   "1909879WH"
+   "NEW-1909879WH"
   ],
   "cat": "beklaedning"
  },
@@ -7778,7 +7778,7 @@ const SKUS = [
   "dark": true,
   "mkey": "wool-ss-tee-men",
   "art": [
-   "1913721BL"
+   "NEW-1913721BL"
   ],
   "cat": "beklaedning"
  },
@@ -7795,7 +7795,7 @@ const SKUS = [
   "dark": false,
   "mkey": "wool-ss-tee-men",
   "art": [
-   "1913721CR"
+   "NEW-1913721CR"
   ],
   "cat": "beklaedning"
  },
@@ -7812,7 +7812,7 @@ const SKUS = [
   "dark": true,
   "mkey": "wool-ss-tee-men",
   "art": [
-   "1913721NA"
+   "NEW-1913721NA"
   ],
   "cat": "beklaedning"
  },
@@ -7829,7 +7829,7 @@ const SKUS = [
   "dark": true,
   "mkey": "wool-ss-tee-women",
   "art": [
-   "1913722BL"
+   "NEW-1913722BL"
   ],
   "cat": "beklaedning"
  },
@@ -7846,7 +7846,7 @@ const SKUS = [
   "dark": true,
   "mkey": "wool-ss-tee-women",
   "art": [
-   "1913722NA"
+   "NEW-1913722NA"
   ],
   "cat": "beklaedning"
  },
@@ -7863,7 +7863,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-essence-2-in-1-shorts-2-men",
   "art": [
-   "1915950BL"
+   "NEW-1915950BL"
   ],
   "cat": "beklaedning"
  },
@@ -7880,7 +7880,7 @@ const SKUS = [
   "dark": false,
   "mkey": "adv-essence-2-in-1-shorts-2-women",
   "art": [
-   "1915946BL"
+   "NEW-1915946BL"
   ],
   "cat": "beklaedning"
  },
@@ -7897,7 +7897,7 @@ const SKUS = [
   "dark": false,
   "mkey": "essence-short-tights-3-men",
   "art": [
-   "C17230BL"
+   "NEW-C17230BL"
   ],
   "cat": "beklaedning"
  },
@@ -7914,7 +7914,7 @@ const SKUS = [
   "dark": false,
   "mkey": "essence-short-tights-3-women",
   "art": [
-   "C17233BL"
+   "NEW-C17233BL"
   ],
   "cat": "beklaedning"
  },
@@ -7931,7 +7931,7 @@ const SKUS = [
   "dark": false,
   "mkey": "essence-tights-3-men",
   "art": [
-   "C17228BL"
+   "NEW-C17228BL"
   ],
   "cat": "beklaedning"
  },
@@ -7948,7 +7948,7 @@ const SKUS = [
   "dark": false,
   "mkey": "essence-tights-3-women",
   "art": [
-   "C17231BL"
+   "NEW-C17231BL"
   ],
   "cat": "beklaedning"
  },
@@ -7965,7 +7965,7 @@ const SKUS = [
   "dark": false,
   "mkey": "endur-cargo-bib-shorts-c3-men",
   "art": [
-   "C17327BL"
+   "NEW-C17327BL"
   ],
   "cat": "beklaedning"
  },
@@ -7982,7 +7982,7 @@ const SKUS = [
   "dark": false,
   "mkey": "endur-cargo-bib-shorts-c3-women",
   "art": [
-   "C17329BL"
+   "NEW-C17329BL"
   ],
   "cat": "beklaedning"
  },
@@ -7999,7 +7999,7 @@ const SKUS = [
   "dark": false,
   "mkey": "endur-cargo-shorts-c3-men",
   "art": [
-   "C17328BL"
+   "NEW-C17328BL"
   ],
   "cat": "beklaedning"
  },
@@ -8016,7 +8016,7 @@ const SKUS = [
   "dark": false,
   "mkey": "endur-cargo-shorts-c3-women",
   "art": [
-   "C17330BL"
+   "NEW-C17330BL"
   ],
   "cat": "beklaedning"
  },
@@ -8033,7 +8033,7 @@ const SKUS = [
   "dark": true,
   "mkey": "everyday-ss-jersey-men",
   "art": [
-   "C17362BL"
+   "NEW-C17362BL"
   ],
   "cat": "beklaedning"
  },
@@ -8050,7 +8050,7 @@ const SKUS = [
   "dark": true,
   "mkey": "everyday-ss-jersey-men",
   "art": [
-   "C17362NA"
+   "NEW-C17362NA"
   ],
   "cat": "beklaedning"
  },
@@ -8067,7 +8067,7 @@ const SKUS = [
   "dark": true,
   "mkey": "everyday-ss-jersey-women",
   "art": [
-   "C17363BL"
+   "NEW-C17363BL"
   ],
   "cat": "beklaedning"
  },
@@ -8084,7 +8084,7 @@ const SKUS = [
   "dark": true,
   "mkey": "everyday-ss-jersey-women",
   "art": [
-   "C17363NA"
+   "NEW-C17363NA"
   ],
   "cat": "beklaedning"
  },
@@ -8101,7 +8101,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-unify-fz-hood-unisex",
   "art": [
-   "1909132B"
+   "NEW-1909132B"
   ],
   "cat": "beklaedning"
  },
@@ -8118,7 +8118,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-unify-fz-hood-unisex",
   "art": [
-   "1909132GM"
+   "NEW-1909132GM"
   ],
   "cat": "beklaedning"
  },
@@ -8135,7 +8135,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-unify-fz-hood-unisex",
   "art": [
-   "1909132N"
+   "NEW-1909132N"
   ],
   "cat": "beklaedning"
  },
@@ -8152,7 +8152,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-unify-jacket-unisex",
   "art": [
-   "1909134B"
+   "NEW-1909134B"
   ],
   "cat": "beklaedning"
  },
@@ -8169,7 +8169,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-unify-jacket-unisex",
   "art": [
-   "1909134GM"
+   "NEW-1909134GM"
   ],
   "cat": "beklaedning"
  },
@@ -8186,7 +8186,7 @@ const SKUS = [
   "dark": true,
   "mkey": "adv-unify-jacket-unisex",
   "art": [
-   "1909134N"
+   "NEW-1909134N"
   ],
   "cat": "beklaedning"
  },
@@ -8203,7 +8203,7 @@ const SKUS = [
   "dark": false,
   "mkey": "edgemont-chinos-men",
   "art": [
-   "356420W"
+   "CUT-356420W"
   ],
   "cat": "beklaedning"
  },
@@ -8220,7 +8220,7 @@ const SKUS = [
   "dark": true,
   "mkey": "edgemont-chinos-men",
   "art": [
-   "356420B"
+   "CUT-356420B"
   ],
   "cat": "beklaedning"
  },
@@ -8237,7 +8237,7 @@ const SKUS = [
   "dark": true,
   "mkey": "edgemont-chinos-men",
   "art": [
-   "356420N"
+   "CUT-356420N"
   ],
   "cat": "beklaedning"
  },
@@ -8254,7 +8254,7 @@ const SKUS = [
   "dark": false,
   "mkey": "edgemont-chinos-women",
   "art": [
-   "356421WH"
+   "CUT-356421WH"
   ],
   "cat": "beklaedning"
  },
@@ -8271,7 +8271,7 @@ const SKUS = [
   "dark": true,
   "mkey": "edgemont-chinos-women",
   "art": [
-   "356421BL"
+   "CUT-356421BL"
   ],
   "cat": "beklaedning"
  },
@@ -8288,7 +8288,7 @@ const SKUS = [
   "dark": true,
   "mkey": "edgemont-chinos-women",
   "art": [
-   "356421NA"
+   "CUT-356421NA"
   ],
   "cat": "beklaedning"
  },
@@ -8305,7 +8305,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-cargopants-men",
   "art": [
-   "C17419BL"
+   "NEW-C17419BL"
   ],
   "cat": "beklaedning"
  },
@@ -8322,7 +8322,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-cargopants-men",
   "art": [
-   "C17419RA"
+   "NEW-C17419RA"
   ],
   "cat": "beklaedning"
  },
@@ -8339,7 +8339,7 @@ const SKUS = [
   "dark": true,
   "mkey": "urban-cargopants-women",
   "art": [
-   "C17420BL"
+   "NEW-C17420BL"
   ],
   "cat": "beklaedning"
  },
@@ -8356,7 +8356,7 @@ const SKUS = [
   "dark": false,
   "mkey": "urban-cargopants-women",
   "art": [
-   "C17420RA"
+   "NEW-C17420RA"
   ],
   "cat": "beklaedning"
  },
@@ -8373,7 +8373,7 @@ const SKUS = [
   "dark": false,
   "mkey": "pro-endur-distance-men-black-white",
   "art": [
-   "1912183B"
+   "NEW-1912183B"
   ],
   "cat": "beklaedning"
  },
@@ -8390,7 +8390,7 @@ const SKUS = [
   "dark": false,
   "mkey": "pro-endur-distance-women-black-white",
   "art": [
-   "1912184B"
+   "NEW-1912184B"
   ],
   "cat": "beklaedning"
  },
@@ -8407,7 +8407,7 @@ const SKUS = [
   "dark": false,
   "mkey": "v150-engineered-men-black-black",
   "art": [
-   "1908265B"
+   "NEW-1908265B"
   ],
   "cat": "beklaedning"
  },
@@ -8424,7 +8424,7 @@ const SKUS = [
   "dark": true,
   "mkey": "v150-engineered-men",
   "art": [
-   "1908265N"
+   "NEW-1908265N"
   ],
   "cat": "beklaedning"
  },
@@ -8441,7 +8441,7 @@ const SKUS = [
   "dark": false,
   "mkey": "v150-engineered-men",
   "art": [
-   "1908265W"
+   "NEW-1908265W"
   ],
   "cat": "beklaedning"
  },
@@ -8458,7 +8458,7 @@ const SKUS = [
   "dark": false,
   "mkey": "v150-engineered-women-black-black",
   "art": [
-   "1908264B"
+   "NEW-1908264B"
   ],
   "cat": "beklaedning"
  },
@@ -8475,7 +8475,7 @@ const SKUS = [
   "dark": true,
   "mkey": "v150-engineered-women",
   "art": [
-   "1908264N"
+   "NEW-1908264N"
   ],
   "cat": "beklaedning"
  },
@@ -8492,7 +8492,7 @@ const SKUS = [
   "dark": false,
   "mkey": "v150-engineered-women",
   "art": [
-   "1908264W"
+   "NEW-1908264W"
   ],
   "cat": "beklaedning"
  },
@@ -8509,7 +8509,7 @@ const SKUS = [
   "dark": false,
   "mkey": "classic-lincoln-polo-unisex",
   "art": [
-   "028244W"
+   "NEW-028244W"
   ],
   "cat": "beklaedning"
  },
@@ -8526,7 +8526,7 @@ const SKUS = [
   "dark": false,
   "mkey": "curve-recyclex-rygsaek",
   "art": [
-   "1362"
+   "HIG-1362"
   ],
   "cat": "tasker"
  },
@@ -8543,7 +8543,7 @@ const SKUS = [
   "dark": false,
   "mkey": "high-sierra-jane-rygsaek-rpet",
   "art": [
-   "1363"
+   "HIG-1363"
   ],
   "cat": "tasker"
  },
@@ -8558,9 +8558,9 @@ const SKUS = [
   "stock": "På lager: 1.719 stk",
   "fam": "bag",
   "dark": false,
-  "mkey": "high-sierra-laptop-taske-rpet",
+  "mkey": "high-sierra-laptop-taske-rpet-hig-1212",
   "art": [
-   "HIG-1212"
+   "H-HIG-1212"
   ],
   "cat": "tasker"
  },
@@ -8575,9 +8575,9 @@ const SKUS = [
   "stock": "På lager: 261 stk",
   "fam": "bag",
   "dark": false,
-  "mkey": "high-sierra-laptop-taske-rpet",
+  "mkey": "high-sierra-laptop-taske-rpet-hig-1214",
   "art": [
-   "HIG-1214"
+   "H-HIG-1214"
   ],
   "cat": "tasker"
  },
@@ -8594,7 +8594,7 @@ const SKUS = [
   "dark": false,
   "mkey": "holmes-recyclex-rygsaek",
   "art": [
-   "1395"
+   "HIG-1395"
   ],
   "cat": "tasker"
  },
@@ -8611,7 +8611,7 @@ const SKUS = [
   "dark": false,
   "mkey": "pc-rygsaek",
   "art": [
-   "METZBP1"
+   "UTO-METZBP1"
   ],
   "cat": "tasker"
  },
@@ -8628,7 +8628,7 @@ const SKUS = [
   "dark": false,
   "mkey": "pc-trolley-high-sierra-freewheel",
   "art": [
-   "53991M/L"
+   "HIG-53991M/L"
   ],
   "cat": "tasker"
  },
@@ -8645,7 +8645,7 @@ const SKUS = [
   "dark": false,
   "mkey": "sportstaske",
   "art": [
-   "METZSB1"
+   "UTO-METZSB1"
   ],
   "cat": "tasker"
  },
@@ -8662,7 +8662,7 @@ const SKUS = [
   "dark": false,
   "mkey": "sportstaske-weekendtaske-wheel-n-go-high-sierra",
   "art": [
-   "57234M/L"
+   "HIG-57234M/L"
   ],
   "cat": "tasker"
  },
@@ -8679,7 +8679,7 @@ const SKUS = [
   "dark": false,
   "mkey": "swerve-recyclex-rygsaek",
   "art": [
-   "1361"
+   "HIG-1361"
   ],
   "cat": "tasker"
  },
@@ -8696,7 +8696,7 @@ const SKUS = [
   "dark": false,
   "mkey": "switchblade-recyclex-sportstaske",
   "art": [
-   "7139"
+   "HIG-7139"
   ],
   "cat": "tasker"
  },
@@ -8713,7 +8713,7 @@ const SKUS = [
   "dark": false,
   "mkey": "swoop-recyclex-rygsaek",
   "art": [
-   "1360"
+   "HIG-1360"
   ],
   "cat": "tasker"
  },
@@ -8730,7 +8730,7 @@ const SKUS = [
   "dark": true,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.171"
+   "XDC-P611.171"
   ],
   "cat": "onboarding"
  },
@@ -8747,7 +8747,7 @@ const SKUS = [
   "dark": true,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.177"
+   "XDC-P611.177"
   ],
   "cat": "onboarding"
  },
@@ -8764,7 +8764,7 @@ const SKUS = [
   "dark": true,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.175"
+   "XDC-P611.175"
   ],
   "cat": "onboarding"
  },
@@ -8781,7 +8781,7 @@ const SKUS = [
   "dark": false,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.172"
+   "XDC-P611.172"
   ],
   "cat": "onboarding"
  },
@@ -8798,7 +8798,7 @@ const SKUS = [
   "dark": false,
   "mkey": "aluminum-pen",
   "art": [
-   "P611.173"
+   "XDC-P611.173"
   ],
   "cat": "onboarding"
  },
@@ -8815,7 +8815,7 @@ const SKUS = [
   "dark": true,
   "mkey": "softcover-a5-notebook",
   "art": [
-   "P774.221"
+   "XDC-P774.221"
   ],
   "cat": "onboarding"
  },
@@ -8832,7 +8832,7 @@ const SKUS = [
   "dark": true,
   "mkey": "softcover-a5-notebook",
   "art": [
-   "P774.225"
+   "XDC-P774.225"
   ],
   "cat": "onboarding"
  },
@@ -8847,9 +8847,9 @@ const SKUS = [
   "stock": "På lager: 3.676 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.001PR"
+   "XDC-P438.001PR"
   ],
   "cat": "onboarding"
  },
@@ -8864,9 +8864,9 @@ const SKUS = [
   "stock": "På lager: 3.676 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.001EN"
+   "XDC-P438.001EN"
   ],
   "cat": "onboarding"
  },
@@ -8881,9 +8881,9 @@ const SKUS = [
   "stock": "På lager: 64 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.008PR"
+   "XDC-P438.008PR"
   ],
   "cat": "onboarding"
  },
@@ -8898,9 +8898,9 @@ const SKUS = [
   "stock": "På lager: 64 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.008EN"
+   "XDC-P438.008EN"
   ],
   "cat": "onboarding"
  },
@@ -8915,9 +8915,9 @@ const SKUS = [
   "stock": "På lager: 6.034 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.000PR"
+   "XDC-P438.000PR"
   ],
   "cat": "onboarding"
  },
@@ -8932,9 +8932,9 @@ const SKUS = [
   "stock": "På lager: 6.034 stk",
   "fam": "bottle",
   "dark": true,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.000EN"
+   "XDC-P438.000EN"
   ],
   "cat": "onboarding"
  },
@@ -8949,9 +8949,9 @@ const SKUS = [
   "stock": "På lager: 813 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.002PR"
+   "XDC-P438.002PR"
   ],
   "cat": "onboarding"
  },
@@ -8966,9 +8966,9 @@ const SKUS = [
   "stock": "På lager: 813 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.002EN"
+   "XDC-P438.002EN"
   ],
   "cat": "onboarding"
  },
@@ -8983,9 +8983,9 @@ const SKUS = [
   "stock": "På lager: 3.182 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-pr",
   "art": [
-   "P438.003PR"
+   "XDC-P438.003PR"
   ],
   "cat": "onboarding"
  },
@@ -9000,9 +9000,9 @@ const SKUS = [
   "stock": "På lager: 3.182 stk",
   "fam": "bottle",
   "dark": false,
-  "mkey": "avira-avior-bottle-500-ml",
+  "mkey": "avira-avior-bottle-500-ml-en",
   "art": [
-   "P438.003EN"
+   "XDC-P438.003EN"
   ],
   "cat": "onboarding"
  },
@@ -9019,7 +9019,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.041"
+   "XDC-P433.041"
   ],
   "cat": "onboarding"
  },
@@ -9036,7 +9036,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.047"
+   "XDC-P433.047"
   ],
   "cat": "onboarding"
  },
@@ -9053,7 +9053,7 @@ const SKUS = [
   "dark": true,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.0425"
+   "XDC-P433.0425"
   ],
   "cat": "onboarding"
  },
@@ -9070,7 +9070,7 @@ const SKUS = [
   "dark": false,
   "mkey": "stainless-steel-vacuum-bottle",
   "art": [
-   "P433.043"
+   "XDC-P433.043"
   ],
   "cat": "onboarding"
  },
@@ -9087,7 +9087,7 @@ const SKUS = [
   "dark": true,
   "mkey": "mulepose",
   "art": [
-   "P762.621"
+   "XDC-P762.621"
   ],
   "cat": "onboarding"
  },
@@ -9102,9 +9102,9 @@ const SKUS = [
   "stock": "Forventet på lager: 6. okt. 2026",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.621F2"
+   "XDC-P762.621F2"
   ],
   "cat": "onboarding"
  },
@@ -9121,7 +9121,7 @@ const SKUS = [
   "dark": true,
   "mkey": "mulepose",
   "art": [
-   "P762.627"
+   "XDC-P762.627"
   ],
   "cat": "onboarding"
  },
@@ -9136,9 +9136,9 @@ const SKUS = [
   "stock": "På lager: 2.235 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.627F2"
+   "XDC-P762.627F2"
   ],
   "cat": "onboarding"
  },
@@ -9155,7 +9155,7 @@ const SKUS = [
   "dark": true,
   "mkey": "mulepose",
   "art": [
-   "P762.622"
+   "XDC-P762.622"
   ],
   "cat": "onboarding"
  },
@@ -9170,9 +9170,9 @@ const SKUS = [
   "stock": "På lager: 11.542 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.622F2"
+   "XDC-P762.622F2"
   ],
   "cat": "onboarding"
  },
@@ -9189,7 +9189,7 @@ const SKUS = [
   "dark": true,
   "mkey": "mulepose",
   "art": [
-   "P762.629"
+   "XDC-P762.629"
   ],
   "cat": "onboarding"
  },
@@ -9204,9 +9204,9 @@ const SKUS = [
   "stock": "På lager: 15.623 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.629F2"
+   "XDC-P762.629F2"
   ],
   "cat": "onboarding"
  },
@@ -9223,7 +9223,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mulepose",
   "art": [
-   "P762.623"
+   "XDC-P762.623"
   ],
   "cat": "onboarding"
  },
@@ -9238,9 +9238,9 @@ const SKUS = [
   "stock": "På lager: 14.390 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.623F2"
+   "XDC-P762.623F2"
   ],
   "cat": "onboarding"
  },
@@ -9257,7 +9257,7 @@ const SKUS = [
   "dark": true,
   "mkey": "mulepose",
   "art": [
-   "P762.624"
+   "XDC-P762.624"
   ],
   "cat": "onboarding"
  },
@@ -9272,9 +9272,9 @@ const SKUS = [
   "stock": "På lager: 14.283 stk",
   "fam": "tote",
   "dark": true,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.624F2"
+   "XDC-P762.624F2"
   ],
   "cat": "onboarding"
  },
@@ -9291,7 +9291,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mulepose",
   "art": [
-   "P762.6203"
+   "XDC-P762.6203"
   ],
   "cat": "onboarding"
  },
@@ -9306,9 +9306,9 @@ const SKUS = [
   "stock": "På lager: 4.856 stk",
   "fam": "tote",
   "dark": false,
-  "mkey": "mulepose",
+  "mkey": "mulepose-f2",
   "art": [
-   "P762.6203F2"
+   "XDC-P762.6203F2"
   ],
   "cat": "onboarding"
  },
@@ -9325,7 +9325,7 @@ const SKUS = [
   "dark": false,
   "mkey": "cyclecell-5000-mah-powerbank",
   "art": [
-   "P322.5301"
+   "XDC-P322.5301"
   ],
   "cat": "onboarding"
  },
@@ -9340,9 +9340,9 @@ const SKUS = [
   "stock": "På lager: 5.720 stk",
   "fam": "tech",
   "dark": false,
-  "mkey": "cyclecell-5000-mah-powerbank",
+  "mkey": "cyclecell-5000-mah-powerbank-f2",
   "art": [
-   "P322.5301F2"
+   "XDC-P322.5301F2"
   ],
   "cat": "onboarding"
  },
@@ -9359,7 +9359,7 @@ const SKUS = [
   "dark": true,
   "mkey": "magnetic-powerbank",
   "art": [
-   "P322.401"
+   "XDC-P322.401"
   ],
   "cat": "onboarding"
  },
@@ -9374,9 +9374,9 @@ const SKUS = [
   "stock": "På lager: 10.075 stk",
   "fam": "tech",
   "dark": true,
-  "mkey": "magnetic-powerbank",
+  "mkey": "magnetic-powerbank-f2",
   "art": [
-   "P322.401F2"
+   "XDC-P322.401F2"
   ],
   "cat": "onboarding"
  },
@@ -9393,7 +9393,7 @@ const SKUS = [
   "dark": false,
   "mkey": "magnetic-powerbank",
   "art": [
-   "P322.403"
+   "XDC-P322.403"
   ],
   "cat": "onboarding"
  },
@@ -9408,9 +9408,9 @@ const SKUS = [
   "stock": "På lager: 5.420 stk",
   "fam": "tech",
   "dark": false,
-  "mkey": "magnetic-powerbank",
+  "mkey": "magnetic-powerbank-f2",
   "art": [
-   "P322.403F2"
+   "XDC-P322.403F2"
   ],
   "cat": "onboarding"
  },
@@ -9427,7 +9427,7 @@ const SKUS = [
   "dark": false,
   "mkey": "black-box-2-x-regular-a-d",
   "art": [
-   "501407"
+   "JOH-501407"
   ],
   "cat": "laekkerier"
  },
@@ -9444,7 +9444,7 @@ const SKUS = [
   "dark": false,
   "mkey": "selection-box-350g",
   "art": [
-   "501192"
+   "JOH-501192"
   ],
   "cat": "laekkerier"
  },
@@ -9461,7 +9461,7 @@ const SKUS = [
   "dark": false,
   "mkey": "small-selection-box-175g",
   "art": [
-   "501186"
+   "JOH-501186"
   ],
   "cat": "laekkerier"
  },
@@ -9478,7 +9478,7 @@ const SKUS = [
   "dark": false,
   "mkey": "del-en-aeske-med-55-stykker-chokolade",
   "art": [
-   "2131"
+   "OLE-2131"
   ],
   "cat": "laekkerier"
  },
@@ -9495,7 +9495,7 @@ const SKUS = [
   "dark": false,
   "mkey": "gaveaeske-16-stk-chokolade",
   "art": [
-   "1024"
+   "OLE-1024"
   ],
   "cat": "laekkerier"
  },
@@ -9512,7 +9512,7 @@ const SKUS = [
   "dark": false,
   "mkey": "gaveaeske-5-stk-chokoladestaenger",
   "art": [
-   "0161"
+   "OLE-0161"
   ],
   "cat": "laekkerier"
  },
@@ -9529,7 +9529,7 @@ const SKUS = [
   "dark": false,
   "mkey": "gaveaeske-9-stk-chokolade",
   "art": [
-   "1204"
+   "OLE-1204"
   ],
   "cat": "laekkerier"
  },
@@ -9546,7 +9546,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hardbox-m-rude-16-stk",
   "art": [
-   "1026"
+   "OLE-1026"
   ],
   "cat": "laekkerier"
  },
@@ -9563,7 +9563,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hk-kande-1-2-l-staal",
   "art": [
-   "GEO-3586848"
+   "MZ3-GEO-3586848"
   ],
   "cat": "anledningsgaver"
  },
@@ -9580,7 +9580,7 @@ const SKUS = [
   "dark": false,
   "mkey": "flowerpot-vp4-bordlampe-i-mat-graa",
   "art": [
-   "AND-20739101"
+   "MZA-AND-20739101"
   ],
   "cat": "anledningsgaver"
  },
@@ -9597,7 +9597,7 @@ const SKUS = [
   "dark": false,
   "mkey": "pantop-bordlampe-sort-38-cm",
   "art": [
-   "VER-119513"
+   "MZ3-VER-119513"
   ],
   "cat": "anledningsgaver"
  },
@@ -9614,7 +9614,7 @@ const SKUS = [
   "dark": true,
   "mkey": "pantop-genopladelig-bordlampe",
   "art": [
-   "VER-124534"
+   "MZA-VER-124534"
   ],
   "cat": "anledningsgaver"
  },
@@ -9631,7 +9631,7 @@ const SKUS = [
   "dark": false,
   "mkey": "pier-led-lampe",
   "art": [
-   "STE-614-1"
+   "MZA-STE-614-1"
   ],
   "cat": "anledningsgaver"
  },
@@ -9648,7 +9648,7 @@ const SKUS = [
   "dark": false,
   "mkey": "henning-koppel-vaegur",
   "art": [
-   "GEO-3587520"
+   "MZA-GEO-3587520"
   ],
   "cat": "anledningsgaver"
  },
@@ -9665,7 +9665,7 @@ const SKUS = [
   "dark": false,
   "mkey": "bernadotte-fad-paa-fod",
   "art": [
-   "GEO-3586154"
+   "MZA-GEO-3586154"
   ],
   "cat": "anledningsgaver"
  },
@@ -9682,7 +9682,7 @@ const SKUS = [
   "dark": false,
   "mkey": "bernadotte-kande-til-vand-1-6-l",
   "art": [
-   "GEO-10018205"
+   "MZA-GEO-10018205"
   ],
   "cat": "anledningsgaver"
  },
@@ -9699,7 +9699,7 @@ const SKUS = [
   "dark": false,
   "mkey": "bernadotte-koekkenrulleholder",
   "art": [
-   "GEO-10018233"
+   "MZA-GEO-10018233"
   ],
   "cat": "anledningsgaver"
  },
@@ -9716,7 +9716,7 @@ const SKUS = [
   "dark": false,
   "mkey": "bernadotte-stempelkande-1l",
   "art": [
-   "GEO-10019522"
+   "MZA-GEO-10019522"
   ],
   "cat": "anledningsgaver"
  },
@@ -9733,7 +9733,7 @@ const SKUS = [
   "dark": false,
   "mkey": "umi-6-skammel-lille",
   "art": [
-   "MNO-DB02-L25"
+   "MZA-MNO-DB02-L25"
   ],
   "cat": "anledningsgaver"
  },
@@ -9750,7 +9750,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mega-fad-36-cm",
   "art": [
-   "ROY-1017345"
+   "MZA-ROY-1017345"
   ],
   "cat": "anledningsgaver"
  },
@@ -9767,7 +9767,7 @@ const SKUS = [
   "dark": false,
   "mkey": "blaa-mega-kande-50-cl",
   "art": [
-   "ROY-1028380"
+   "MZA-ROY-1028380"
   ],
   "cat": "anledningsgaver"
  },
@@ -9784,7 +9784,7 @@ const SKUS = [
   "dark": false,
   "mkey": "blaa-mega-riflet-skaal-18-cm",
   "art": [
-   "ROY-1016894"
+   "MZA-ROY-1016894"
   ],
   "cat": "anledningsgaver"
  },
@@ -9801,7 +9801,7 @@ const SKUS = [
   "dark": false,
   "mkey": "blaa-mega-vase-15-cm",
   "art": [
-   "ROY-1052395"
+   "MZA-ROY-1052395"
   ],
   "cat": "anledningsgaver"
  },
@@ -9818,7 +9818,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mega-mussel-fad-36-5-cm",
   "art": [
-   "ROY-1016891"
+   "MZA-ROY-1016891"
   ],
   "cat": "anledningsgaver"
  },
@@ -9835,7 +9835,7 @@ const SKUS = [
   "dark": false,
   "mkey": "history-mix-skaale-saet-3-dele",
   "art": [
-   "ROY-1024770"
+   "MZ3-ROY-1024770"
   ],
   "cat": "anledningsgaver"
  },
@@ -9852,7 +9852,7 @@ const SKUS = [
   "dark": false,
   "mkey": "history-mix-skaalesaet-3-dele-17-cm",
   "art": [
-   "ROY-1020523"
+   "MZA-ROY-1020523"
   ],
   "cat": "anledningsgaver"
  },
@@ -9869,7 +9869,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mix-match-history-mix-asiette-3-stk",
   "art": [
-   "ROY-1060173P"
+   "MZA-ROY-1060173P"
   ],
   "cat": "anledningsgaver"
  },
@@ -9886,7 +9886,7 @@ const SKUS = [
   "dark": false,
   "mkey": "prinsesse-etagere-2-lags",
   "art": [
-   "ROY-1062485"
+   "MZA-ROY-1062485"
   ],
   "cat": "anledningsgaver"
  },
@@ -9903,7 +9903,7 @@ const SKUS = [
   "dark": false,
   "mkey": "hvid-riflet-skaalsaet-3-pak",
   "art": [
-   "ROY-1067351"
+   "MZA-ROY-1067351"
   ],
   "cat": "anledningsgaver"
  },
@@ -9920,7 +9920,7 @@ const SKUS = [
   "dark": false,
   "mkey": "chefkniv-groentsagskniv-wenge",
   "art": [
-   "FUN-30_DBHCVW"
+   "MZA-FUN-30_DBHCVW"
   ],
   "cat": "anledningsgaver"
  },
@@ -9937,7 +9937,7 @@ const SKUS = [
   "dark": false,
   "mkey": "garder-med-flag-h108-cm",
   "art": [
-   "ROS-39551"
+   "MZA-ROS-39551"
   ],
   "cat": "anledningsgaver"
  },
@@ -9954,7 +9954,7 @@ const SKUS = [
   "dark": false,
   "mkey": "bjoern-reworked-jubilaeum-lille-mix-trae",
   "art": [
-   "ROS-39286"
+   "MZA-ROS-39286"
   ],
   "cat": "anledningsgaver"
  },
@@ -9971,7 +9971,7 @@ const SKUS = [
   "dark": false,
   "mkey": "elefant-reworked-jubilaeum-mini-mix-trae",
   "art": [
-   "ROS-39324"
+   "MZA-ROS-39324"
   ],
   "cat": "anledningsgaver"
  },
@@ -9988,7 +9988,7 @@ const SKUS = [
   "dark": false,
   "mkey": "abe-lille-eg-ahorn",
   "art": [
-   "ROS-39256"
+   "MZA-ROS-39256"
   ],
   "cat": "anledningsgaver"
  },
@@ -10005,7 +10005,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mini-abe-moerkbejdset-eg",
   "art": [
-   "ROS-39276"
+   "MZA-ROS-39276"
   ],
   "cat": "anledningsgaver"
  },
@@ -10022,7 +10022,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mini-abe-roed",
   "art": [
-   "ROS-39360"
+   "MZA-ROS-39360"
   ],
   "cat": "anledningsgaver"
  },
@@ -10039,7 +10039,7 @@ const SKUS = [
   "dark": false,
   "mkey": "damask-haandklaeder-8-stk",
   "art": [
-   "GJD-LO-0440"
+   "MZA-GJD-LO-0440"
   ],
   "cat": "anledningsgaver"
  },
@@ -10056,7 +10056,7 @@ const SKUS = [
   "dark": false,
   "mkey": "rejsetaske-i-boeffellaeder-brandy",
   "art": [
-   "VEL-5711430015377"
+   "MZ3-VEL-5711430015377"
   ],
   "cat": "anledningsgaver"
  },
@@ -10073,7 +10073,7 @@ const SKUS = [
   "dark": false,
   "mkey": "duffelbag",
   "art": [
-   "BON-180902_04"
+   "MZA-BON-180902_04"
   ],
   "cat": "anledningsgaver"
  },
@@ -10090,7 +10090,7 @@ const SKUS = [
   "dark": false,
   "mkey": "brevpapir-notesblokke",
   "art": [
-   "BREVPAPIR"
+   "MSF-BREVPAPIR"
   ],
   "cat": "forespoergsler"
  },
@@ -10107,7 +10107,7 @@ const SKUS = [
   "dark": false,
   "mkey": "engangskopper",
   "art": [
-   "ENGANGSKOP"
+   "MSF-ENGANGSKOP"
   ],
   "cat": "forespoergsler"
  },
@@ -10124,7 +10124,7 @@ const SKUS = [
   "dark": false,
   "mkey": "haandsprit",
   "art": [
-   "HAANDSPRIT"
+   "MSF-HAANDSPRIT"
   ],
   "cat": "forespoergsler"
  },
@@ -10141,7 +10141,7 @@ const SKUS = [
   "dark": false,
   "mkey": "klistermaerker",
   "art": [
-   "KLISTERMAE"
+   "MSF-KLISTERMAE"
   ],
   "cat": "forespoergsler"
  },
@@ -10158,7 +10158,7 @@ const SKUS = [
   "dark": false,
   "mkey": "kuglepen",
   "art": [
-   "KUGLEPEN"
+   "MSF-KUGLEPEN"
   ],
   "cat": "forespoergsler"
  },
@@ -10175,7 +10175,7 @@ const SKUS = [
   "dark": false,
   "mkey": "mulepose",
   "art": [
-   "MULEPOSE"
+   "MSF-MULEPOSE"
   ],
   "cat": "forespoergsler"
  },
@@ -10192,7 +10192,7 @@ const SKUS = [
   "dark": false,
   "mkey": "notesblok-a4",
   "art": [
-   "NOTESBLOKA4"
+   "MSF-NOTESBLOKA4"
   ],
   "cat": "forespoergsler"
  },
@@ -10209,7 +10209,7 @@ const SKUS = [
   "dark": false,
   "mkey": "notesblok-a5",
   "art": [
-   "NOTESBLOKA5"
+   "MSF-NOTESBLOKA5"
   ],
   "cat": "forespoergsler"
  },
@@ -10226,7 +10226,7 @@ const SKUS = [
   "dark": false,
   "mkey": "sokker",
   "art": [
-   "SOKKER"
+   "MSF-SOKKER"
   ],
   "cat": "forespoergsler"
  },
@@ -10243,7 +10243,7 @@ const SKUS = [
   "dark": false,
   "mkey": "solbriller",
   "art": [
-   "SOLBRILLER"
+   "MSF-SOLBRILLER"
   ],
   "cat": "forespoergsler"
  },
@@ -10260,7 +10260,7 @@ const SKUS = [
   "dark": false,
   "mkey": "wally-whiz",
   "art": [
-   "WALLY"
+   "MSF-WALLY"
   ],
   "cat": "forespoergsler"
  },
@@ -10277,7 +10277,7 @@ const SKUS = [
   "dark": false,
   "mkey": "slik",
   "art": [
-   "SLIK"
+   "MSF-SLIK"
   ],
   "cat": "forespoergsler"
  },
@@ -10294,7 +10294,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hilo-wash-bag",
   "art": [
-   "15630BL"
+   "RAI-15630BL"
   ],
   "cat": "forespoergsler"
  },
@@ -10311,7 +10311,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hilo-weekend-bag-large",
   "art": [
-   "14210BL"
+   "RAI-14210BL"
   ],
   "cat": "forespoergsler"
  },
@@ -10328,7 +10328,7 @@ const SKUS = [
   "dark": true,
   "mkey": "hilo-weekend-bag",
   "art": [
-   "14200BL"
+   "RAI-14200BL"
   ],
   "cat": "forespoergsler"
  },
@@ -10345,7 +10345,7 @@ const SKUS = [
   "dark": false,
   "mkey": "kortholder-til-mobilen",
   "art": [
-   "KORTHOLDER"
+   "MSF-KORTHOLDER"
   ],
   "cat": "forespoergsler"
  },
@@ -10362,7 +10362,7 @@ const SKUS = [
   "dark": false,
   "mkey": "kuverta4",
   "art": [
-   "KUVERTA4"
+   "MSF-KUVERTA4"
   ],
   "cat": "forespoergsler"
  },
@@ -10379,7 +10379,7 @@ const SKUS = [
   "dark": false,
   "mkey": "kuverta5",
   "art": [
-   "KUVERTA5"
+   "MSF-KUVERTA5"
   ],
   "cat": "forespoergsler"
  },
@@ -10396,7 +10396,7 @@ const SKUS = [
   "dark": true,
   "mkey": "msn-bag",
   "art": [
-   "13300DG"
+   "RAI-13300DG"
   ],
   "cat": "forespoergsler"
  },
@@ -10413,7 +10413,7 @@ const SKUS = [
   "dark": true,
   "mkey": "rolltop-rucksack",
   "art": [
-   "13320BL"
+   "RAI-13320BL"
   ],
   "cat": "forespoergsler"
  }
@@ -10445,6 +10445,11 @@ const SWATCH={"White":"#ffffff","Off white":"#f4f1ea","Neutral":"#e8dcc8","Natur
  "Taupe":"#8b7d6b","Brun":"#5d4534","Mocha brown":"#5b4636","—":"#cfcfcf"};
 const SWLOW={}; for(const k in SWATCH) SWLOW[k.toLowerCase()]=SWATCH[k];
 const swatchOf=c=>SWLOW[String(c==null?"":c).trim().toLowerCase()]||"#cfcfcf";
+
+/* Varenummeret. Det er det, der adskiller to varer med samme navn og farve —
+   fx Mulepose i to pristrapper — så det står på produktsiden som i demoen,
+   og i inspektøren så sælgeren kan se hvilken variant kortet er. */
+const artOf=s=>(s&&s.art&&s.art.length?s.art[0]:"—");
 
 /* Logopladen skal følge varens farve, ikke et flag der kan blive glemt.
    Lysstyrken regnes ud af farveprikken, så en ny farve i kataloget vælger
@@ -10683,6 +10688,7 @@ function pdpHtml(i){
           <div class="buy">${ENQUIRY.has(m.cat)?"Send forespørgsel":"Læg i kurv"}</div>
         </div>
         <div class="meta">
+          <b>Varenr.</b> · ${esc(artOf(sku))}<br>
           <b>Materiale</b> · ${esc(m.mat)||"—"}<br>
           <b>Levering</b> · ${esc(sku.stock)||"Bestilles hjem"}<br>
           <b>Tryk</b> · ${t.logo?(t.mono?"Logo påføres i én farve (gravering/debossering)":"Logo påføres af Metz før forsendelse"):"Leveres uden logo — branding på emballage"}
@@ -10719,7 +10725,7 @@ function select(i){
   const sibs=state.items.filter(x=>x.mi===t.mi).length;
   el("pIdx").textContent=`${CATS.find(c=>c.key===m.cat).name} · ${FAM_DA[m.fam]||""}`;
   el("pName").textContent=m.name;
-  el("pSub").textContent=`${m.skus.length} farve${m.skus.length>1?"r":""}`+
+  el("pSub").textContent=`${artOf(SKUS[t.sku])} · ${m.skus.length} farve${m.skus.length>1?"r":""}`+
     (sibs>1?` · ${sibs} varianter i shop`:"")+` · ${pf.v==="light"?"lys":"mørk"} plade`;
   el("swat").innerHTML=m.skus.map(s=>`<button class="chip" data-s="${s}" title="${esc(SKUS[s].colour)}"
     style="background:${swatchOf(SKUS[s].colour)}" aria-pressed="${s===t.sku}"></button>`).join("");
@@ -11125,7 +11131,7 @@ function buildExport(){
           ${m.skus.map(s=>`<span class="swatch ${s===t.sku?"on":""}" title="${esc(SKUS[s].colour)}" style="background:${swatchOf(SKUS[s].colour)}"></span>`).join("")}</div></div>`:""}
         ${sz?`<div class="opt"><h4>Størrelse</h4><div class="vals">${sz.map((s,k)=>`<span class="sz ${k===Math.min(2,sz.length-1)?"on":""}">${s}</span>`).join("")}</div></div>`:""}
         <div class="buyrow"><div class="qty"><span>−</span><b>1</b><span>+</span></div><div class="buy">${ENQUIRY.has(m.cat)?"Send forespørgsel":"Læg i kurv"}</div></div>
-        <div class="meta"><b>Materiale</b> · ${esc(m.mat)||"—"}<br><b>Levering</b> · ${esc(sku.stock)||"Bestilles hjem"}<br><b>Tryk</b> · ${t.logo?(t.mono?"Logo påføres i én farve (gravering/debossering)":"Logo påføres af Metz før forsendelse"):"Leveres uden logo — branding på emballage"}</div>
+        <div class="meta"><b>Varenr.</b> · ${esc(artOf(sku))}<br><b>Materiale</b> · ${esc(m.mat)||"—"}<br><b>Levering</b> · ${esc(sku.stock)||"Bestilles hjem"}<br><b>Tryk</b> · ${t.logo?(t.mono?"Logo påføres i én farve (gravering/debossering)":"Logo påføres af Metz før forsendelse"):"Leveres uden logo — branding på emballage"}</div>
         <div class="desc">Standardvare fra ${esc(m.brand)}, leveret gennem ${co}s Metz Studio-webshop. Alle varer påføres jeres logo efter gældende designmanual, og lagerføres af Metz, så afdelinger kan bestille direkte uden at binde kapital i varelager.</div>
         <a class="backlink" href="#c-${m.cat}">← Tilbage til ${esc(c.name)}</a>
       </div>
