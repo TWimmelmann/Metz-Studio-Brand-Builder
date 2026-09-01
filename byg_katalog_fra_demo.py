@@ -29,7 +29,10 @@ Kør fra repo-roden:
 
 import argparse
 import json
+import re
 import sys
+from collections import defaultdict
+from itertools import combinations
 from pathlib import Path
 
 import opdater_katalog as ok
@@ -88,15 +91,141 @@ def load_subcat_family():
 
 def art_of(number):
     """
-    'PFC-10792701' -> '10792701'.
+    Varenummeret som demoen skriver det: 'XDC-P438.020EN', med præfiks.
 
-    Leverandørpræfikset er husets, ikke varens. Varenumrene i det gamle katalog
-    står uden, så de bliver stående som de er hvis nogen slår op i dem.
+    Det gamle katalog gemte kun halen efter bindestregen. Præfikset skal med
+    nu, fordi det er det der adskiller to varer der hedder det samme: både
+    PFC-12071090 og XDC-P762.621 hedder "Mulepose - Black", men det er to
+    forskellige poser fra to forskellige leverandører.
     """
+    return (number or "").strip()
+
+
+# ── Prisvarianter og dekorationsvarianter ──────────────────────────────
+#
+# Shoppen sælger den samme vare flere gange under samme navn:
+#
+#   PFC-12071090     Mulepose - Black    38,00   100% genanvendt bomuld
+#   PFC-12071090F2   Mulepose - Black    45,00   100% genanvendt bomuld
+#   XDC-P762.621     Mulepose - Black    31,75   70% rCotton
+#   XDC-P762.621F2   Mulepose - Black    36,50   70% rCotton
+#
+# Værktøjet grupperer farvevarianter af én model på ét produktkort. Fire
+# gange "Black" i samme gruppe blev derfor til fire ens sorte farveprikker
+# på samme kort. To varer med SAMME farve kan pr. definition ikke være
+# farvevarianter af hinanden — de er en anden variant og skal have hvert
+# sit kort, ligesom i demoen.
+#
+# Hvad der adskiller dem, står i varenummeret. Reglen læres af numrene selv
+# frem for at være en fast liste over "F2", "EN", "PR" — så fanger den også
+# den næste hale leverandøren finder på.
+
+
+def _split_number(number):
+    """'PFC-12071090F2' -> ('PFC', '12071090F2');  'H-HIG-1214' -> ('H', 'HIG-1214')"""
     n = (number or "").strip()
-    if "-" in n:
-        n = n.split("-", 1)[1]
-    return n
+    return tuple(n.split("-", 1)) if "-" in n else ("", n)
+
+
+def _lcp(a, b):
+    i = 0
+    while i < min(len(a), len(b)) and a[i] == b[i]:
+        i += 1
+    return a[:i]
+
+
+def variant_tags(items):
+    """
+    items: [(varenummer, farve), ...] for én model. Returnerer en varianttag
+    pr. varenummer — (leverandørpræfiks, hale). Tom hale = grundvarianten.
+    """
+    tags = {}
+    by_prefix = defaultdict(list)
+    for num, col in items:
+        pre, rest = _split_number(num)
+        by_prefix[pre.upper()].append((num, rest, col))
+
+    for pre, group in by_prefix.items():
+        # Foreslå haler ud fra de varer der støder sammen på farven.
+        vocab = set()
+        by_col = defaultdict(list)
+        for _, rest, col in group:
+            by_col[col].append(rest)
+        for rests in by_col.values():
+            for a, b in combinations(sorted(set(rests)), 2):
+                l = _lcp(a, b)
+                for r in (a[len(l):], b[len(l):]):
+                    if r and len(r) <= 3 and r.isalnum():
+                        vocab.add(r)
+
+        # Luk de falske forslag ude. HIG-1212 og HIG-1214 er to forskellige
+        # tasker med samme navn, ikke to varianter — men de adskiller sig i ét
+        # tegn, så løkken ovenfor foreslår "2" og "4". En ægte hale sidder
+        # enten på flere farver (F2, PR, EN) eller kan pilles af og efterlade
+        # et varenummer der findes i forvejen (P på 10690402P).
+        alle = {rest for _, rest, _ in group}
+        ægte = set()
+        for t in vocab:
+            bærere = {(rest, col) for _, rest, col in group if rest.endswith(t)}
+            if len({col for _, col in bærere}) > 1:
+                ægte.add(t)
+            elif any(rest[: -len(t)] in alle for rest, _ in bærere):
+                ægte.add(t)
+
+        for num, rest, _ in group:
+            hale = ""
+            for t in ægte:
+                if rest.endswith(t) and len(t) > len(hale):
+                    hale = t
+            tags[num] = (pre, hale)
+
+    # Sidste udvej: står to varer stadig med samme farve og samme hale, er de
+    # ikke en systematisk variant. Så skiller hele varenummeret dem ad.
+    kollision = defaultdict(list)
+    for num, col in items:
+        kollision[(tags[num], col)].append(num)
+    for nums in kollision.values():
+        if len(nums) > 1:
+            for num in nums:
+                pre, hale = tags[num]
+                tags[num] = (pre, (hale + "-" + _split_number(num)[1]).strip("-"))
+    return tags
+
+
+def _mkey_suffix(tag, med_praefiks):
+    pre, hale = tag
+    dele = [d for d in ([pre.lower()] if med_praefiks else []) + [hale.lower()] if d]
+    if not dele:
+        return ""
+    return "-" + re.sub(r"[^a-z0-9]+", "-", "-".join(dele)).strip("-")
+
+
+def split_variants(skus):
+    """
+    Giver varianterne hver sin modelnøgle, så de bliver hver sit produktkort.
+
+    Kun modeller der faktisk har den samme farve to gange røres — resten
+    beholder den nøgle de havde, så gamle placeringskort bliver ved med at
+    passe.
+    """
+    grupper = defaultdict(list)
+    for s in skus:
+        grupper[(s["cat"], s["mkey"])].append(s)
+
+    rapport = []
+    for (cat, mkey), varer in grupper.items():
+        farver = [v["colour"] for v in varer]
+        if len(farver) == len(set(farver)):
+            continue
+        tags = variant_tags([(v["art"][0], v["colour"]) for v in varer])
+        med_praefiks = len({t[0] for t in tags.values()}) > 1
+        nye = set()
+        for v in varer:
+            suffix = _mkey_suffix(tags[v["art"][0]], med_praefiks)
+            v["mkey"] = mkey + suffix
+            nye.add(v["mkey"])
+        rapport.append((cat, mkey, len(varer), sorted(nye)))
+    return rapport
 
 
 def build():
@@ -145,7 +274,8 @@ def build():
                 "cat": cat,
             })
 
-    return skus, warnings
+    rapport = split_variants(skus)
+    return skus, warnings, rapport
 
 
 def write_skus(html, blob):
@@ -166,7 +296,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    skus, warnings = build()
+    skus, warnings, rapport = build()
 
     from collections import Counter
     print(f"{len(skus)} varer bygget")
@@ -181,6 +311,13 @@ def main():
         print(f"\n!! {len(unknown)} farver mangler i PALETTE/SWATCH:")
         for c in unknown:
             print(f"   {c}")
+
+    if rapport:
+        n = sum(len(r[3]) - 1 for r in rapport)
+        print(f"\n   {len(rapport)} modeller havde samme farve flere gange og er delt"
+              f" i varianter (+{n} produktkort):")
+        for cat, mkey, antal, nye in rapport:
+            print(f"     {cat}/{mkey} ({antal} varer) -> {', '.join(nye)}")
 
     noimg = [s for s in skus if not s["img"]]
     if noimg:
