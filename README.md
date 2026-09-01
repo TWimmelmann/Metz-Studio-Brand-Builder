@@ -240,6 +240,13 @@ kontrol. Skal en kundes logo holdes lukket, så send filen i stedet.
 Metz flytter eller omdøber billederne, går gamle eksporter i sort. Filen selv
 forbliver lille.
 
+**Billedrammen skal have samme geometri fire steder.** Trykket placeres i
+procent af rammen omkring produktbilledet — ikke af produktet. Har rammen luft
+omkring billedet ét sted og ikke et andet, tegnes varen i to størrelser, og
+logoet flytter sig, når man går fra gitteret til produktsiden, selv om tallene
+i inspektøren står stille. `.photo>img.prod`, `.pdp .shot>img` og `.ph img`
+skal derfor alle være kvadratiske, `object-fit:contain` og uden padding.
+
 **Trykket er en flad plade med blend mode.** Overbevisende på penne, flasker,
 notesbøger, tasker og fladtliggende beklædning. Det bliver aldrig rigtigt på en
 blank kromkuglepen eller et foto af en vare på en model — det skal løses med

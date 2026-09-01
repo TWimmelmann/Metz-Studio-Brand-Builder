@@ -120,12 +120,16 @@ main{flex:1;padding-bottom:48px;}
 .card .stock{font-size:14px;color:var(--sand-80);min-height:21px;}
 .empty-cat{padding:60px 0 90px;text-align:center;color:var(--sand-50);font-size:16px;}
 
-/* ── product page ── */
+/* ── product page ──
+   Billedrammen skal have præcis samme geometri som produktkortets .photo:
+   kvadratisk, object-fit:contain og INGEN padding. Trykket ligger i procent
+   af rammen, så luft omkring billedet ét af stederne får logoet til at
+   flytte sig, når man skifter mellem gitter og produktside. */
 .pdp{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;padding:8px 0 64px;align-items:start;}
 @media(max-width:860px){.pdp{grid-template-columns:1fr;gap:28px;}}
 .pdp .shot{background:var(--sand-0);border:1px solid var(--sand-20);border-radius:var(--radius-md);
   position:relative;aspect-ratio:1/1;overflow:hidden;}
-.pdp .shot>img{width:100%;height:100%;object-fit:contain;display:block;padding:7%;}
+.pdp .shot>img{width:100%;height:100%;object-fit:contain;display:block;}
 .pdp .info h1{font-size:29px;font-weight:700;margin:4px 0 8px;letter-spacing:-.01em;line-height:1.2;}
 .pdp .info .brandline{font-size:12.5px;color:var(--sand-50);letter-spacing:.06em;text-transform:uppercase;}
 .pdp .info .p{font-size:23px;font-weight:700;margin:14px 0 6px;}
@@ -436,7 +440,7 @@ body:not(.edit) #exit{display:block;}
 "use strict";
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const VERSION = "1.6";
+const VERSION = "1.7";
 
 /* Standard ved opstart og ved "Ny kunde" */
 const DEFAULT_CO = "Metz";
@@ -10998,7 +11002,7 @@ section h2 em{font-style:normal;color:var(--line);margin-left:6px;}
 .it{break-inside:avoid;page-break-inside:avoid;}
 .ph{position:relative;aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);
   border-radius:8px;overflow:hidden;}
-.ph img{width:100%;height:100%;object-fit:contain;padding:7%;display:block;}
+.ph img{width:100%;height:100%;object-fit:contain;display:block;}
 .stamp{position:absolute;left:var(--x);top:var(--y);width:var(--w);aspect-ratio:var(--ar);
   transform:translate(-50%,-50%) rotate(var(--rot)) scaleX(var(--sx,1));
   background-image:var(--plate);background-size:contain;background-repeat:no-repeat;
