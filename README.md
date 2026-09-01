@@ -4,7 +4,10 @@ Internt salgsværktøj. Viser en prospects eget logo på en realistisk mock-up a
 webshop vi ville bygge til dem, og eksporterer den som en færdig side vi kan sende
 eller hoste.
 
-**Live:** _(indsæt URL når den er deployet)_
+**Live:** https://metz-studio-brand-builder.vercel.app/
+
+Vercel bygger fra `main`. Ligger en ændring kun på en lokal gren, sker der
+ikke noget — den skal pushes og merges til `main`, før den er live.
 
 ---
 
