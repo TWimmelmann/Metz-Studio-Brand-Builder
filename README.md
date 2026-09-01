@@ -14,7 +14,9 @@ eller hoste.
 |---|---|
 | `index.html` | Hele værktøjet. Katalog, kode og styling i én fil. |
 | `catalogue.json` | Katalogdata som selvstændig fil. Bruges **ikke** af værktøjet — se nedenfor. |
-| `opdater_katalog.py` | Henter demoshoppens sortiment og skriver nye varer ind begge steder. |
+| `opdater_katalog.py` | Henter demoshoppens sortiment over HTTP og **tilføjer** nye varer begge steder. |
+| `byg_katalog_fra_demo.py` | Bygger kataloget **forfra** ud fra rå-udtræk i `.scrape/`, i demoens egen visningsrækkefølge. |
+| `.scrape/*.json` | Rå-udtrækkene. Én liste pr. vare: varenummer, navn, brand, materiale, pris, lager, billed-hale. |
 | `README.md` | Denne fil. |
 
 ### Hvorfor alt ligger i én fil
@@ -30,7 +32,35 @@ og som datagrundlag hvis værktøjet på et tidspunkt bygges om til en rigtig ap
 **Retter du i `catalogue.json` sker der ingenting.** Katalogændringer skal ind i
 `SKUS`-arrayet i `index.html`.
 
-### Opdatering af kataloget
+### To måder at opdatere kataloget
+
+**Har shoppen fået nye varer, og skal de bare med?** Brug `opdater_katalog.py`.
+Den henter shoppen over HTTP og lægger det nye i bunden af kataloget.
+
+**Skal kataloget matche demoen fuldstændigt — samme varer, samme rækkefølge?**
+Brug `byg_katalog_fra_demo.py`. To ting kan ikke hentes over HTTP:
+
+* **Rækkefølgen.** Shoppen sorterer produktgitteret i browseren efter
+  `data-sort-number`. Den orden serveren leverer HTML i er altså ikke den orden
+  kunden ser — på merchandise-siden ligger Lucia-pennen først i HTML'en, men
+  Parker Jotter først på skærmen.
+* **Lagerteksten.** "På lager: 25.228 stk" skrives ind af shoppens eget
+  javascript efter sideindlæsning. Et rent HTTP-hent får kun den skjulte
+  "Forventet på lager"-dato.
+
+Derfor tages udtrækkene i en browser på den færdigtegnede side og lægges i
+`.scrape/`. Scriptet læser dem og skriver `SKUS` + `catalogue.json` forfra:
+
+```
+python3 byg_katalog_fra_demo.py --dry-run
+python3 byg_katalog_fra_demo.py
+```
+
+`.scrape/subcats.json` er varenumrene pr. underkategori. Den fil er det, der
+giver en "Brownsville Unisex" familien `sweat` frem for et gæt ud fra navnet —
+og dermed den rigtige logoplacering.
+
+### Opdatering af kataloget (den gamle vej)
 
 ```
 pip3 install requests beautifulsoup4
@@ -212,8 +242,18 @@ notesbøger, tasker og fladtliggende beklædning. Det bliver aldrig rigtigt på 
 blank kromkuglepen eller et foto af en vare på en model — det skal løses med
 bedre fotos, ikke med kode.
 
-**Beklædningssiden blev afkortet under hentningen.** Der mangler et mindre antal
-varer i bunden, bl.a. nogle Tee Jays-poloer og Untagged movement-t-shirts.
+**Kataloget er 1:1 med demoshoppen** pr. 1. september 2026: 586 varenumre i
+demoens egen rækkefølge, hentet fra det færdigtegnede gitter. Den gamle
+afkortning af beklædningssiden er væk — alle 344 beklædningsvarer er med.
+
+**Onboarding er med som kategori.** Demoen har den, og dens varer er de samme
+varenumre som i Merchandise. Det giver med vilje dubletter på tværs af de to
+kategorier — sådan er demoen bygget.
+
+**Gitteret viser én model pr. kort, ikke én farve pr. kort.** Demoen viser hver
+farve som sit eget kort; værktøjet samler farverne på ét kort med farveprikker,
+fordi det er den enhed sælgeren placerer et logo på og duplikerer. Det er den
+ene bevidste afvigelse fra demoens udseende.
 
 **Kuratér før du deler.** Med alle 171 varer fylder shop-eksporten ~850 KB.
 Skåret ned til 15-25 varer bliver kundeoversigten omkring 25 KB — og pitchet
