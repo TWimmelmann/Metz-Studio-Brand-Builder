@@ -256,6 +256,18 @@ TEKSTER = [
      '`Upload logo ${t.set==="b"?2:1} in the top left`', 1),
     ('` · ${sibs} varianter i shop`', '` · ${sibs} variants in shop`', 1),
     ('${pf.v==="light"?"lys":"mørk"} plade', '${pf.v==="light"?"light":"dark"} plate', 1),
+
+    # Autogem
+    ('const SAVE_KEY="metz-studio-builder-da-v1";',
+     'const SAVE_KEY="metz-studio-builder-us-v1";', 1),
+    ('`Gemt ${kl} · logo for stort`:`Gemt ${kl}`',
+     '`Saved ${kl} · logo too large`:`Saved ${kl}`', 1),
+    ('s.textContent="Kan ikke gemme"', 's.textContent="Cannot save"', 1),
+    ('kvittering("Ændret i en anden fane")', 'kvittering("Changed in another tab")', 1),
+    ('kvittering("Genoptaget")', 'kvittering("Resumed")', 1),
+    ('toLocaleTimeString("da-DK"', 'toLocaleTimeString("en-US"', 1),
+    ('el("footTitle").textContent="Om "+d.company;',
+     'el("footTitle").textContent="About "+d.company;', 1),
 ]
 
 

@@ -235,6 +235,9 @@ input:focus-visible,select:focus-visible,.btn:focus-visible,.seg button:focus-vi
 #bench .btn{margin-left:7px;}
 #tally{font:500 10px/1 var(--ed-mono);letter-spacing:.07em;color:var(--ed-faint);
   text-transform:uppercase;padding:0 6px 0 12px;}
+#saved{font:500 10px/1 var(--ed-mono);letter-spacing:.07em;color:var(--ed-faint);
+  text-transform:uppercase;padding:0 6px;white-space:nowrap;}
+#saved.warn{color:#d9a441;}
 
 #insp{position:fixed;top:56px;right:0;bottom:0;width:316px;z-index:59;background:var(--ed-panel);
   border-left:1px solid var(--ed-line);font-family:var(--ed-ui);color:var(--ed-txt);overflow-y:auto;}
@@ -336,6 +339,7 @@ body:not(.edit) #exit{display:block;}
   </div>
   <div class="fld"><label for="cat">Kategori</label><select id="cat"></select></div>
   <span id="tally">—</span>
+  <span id="saved">—</span>
   <div class="spacer"></div>
   <button class="btn" id="bNew">Ny kunde</button>
   <button class="btn" id="bSetup">Kort</button>
@@ -454,7 +458,7 @@ body:not(.edit) #exit{display:block;}
 "use strict";
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const VERSION = "1.7";
+const VERSION = "1.8";
 
 /* Standard ved opstart og ved "Ny kunde" */
 const DEFAULT_CO = "Metz";
@@ -10626,7 +10630,7 @@ function barHtml(){
 }
 
 /* ── render ── */
-function render(){ nav(); state.pdp>=0?renderPdp():renderGrid(); tally(); }
+function render(){ nav(); state.pdp>=0?renderPdp():renderGrid(); tally(); touch(); }
 function renderGrid(){
   const c=CATS.find(x=>x.key===state.cat), items=inCat(state.cat);
   const edit=document.body.classList.contains("edit");
@@ -10784,7 +10788,7 @@ function labels(){
   el("vW").textContent=pl.w.toFixed(1)+"%";el("vR").textContent=pl.rot+"°";el("vO").textContent=pl.op+"%";
 }
 const seg=(id,a,v)=>el(id).querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset[a]===v));
-const repaint=i=>{ state.pdp>=0?renderPdp():paint(i); };
+const repaint=i=>{ state.pdp>=0?renderPdp():paint(i); touch(); };
 
 el("swat").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b||state.sel<0)return;
   state.items[state.sel].sku=+b.dataset.s; repaint(state.sel); select(state.sel);});
@@ -10882,7 +10886,7 @@ document.addEventListener("keydown",e=>{
 el("co").addEventListener("input",()=>{state.company=el("co").value||"Kunde";
   el("footTitle").textContent="Om "+state.company; render(); header();});
 el("ac").addEventListener("input",()=>{state.accent=el("ac").value;
-  document.documentElement.style.setProperty("--accent",state.accent);});
+  document.documentElement.style.setProperty("--accent",state.accent);touch();});
 document.documentElement.style.setProperty("--accent",state.accent);
 
 function readPlate(f,set,which,btn){
@@ -10951,7 +10955,7 @@ el("bNew").addEventListener("click",()=>{
   document.documentElement.style.setProperty("--accent",state.accent);
   el("footTitle").textContent="Om "+DEFAULT_CO;
   state.items=baseItems(); state.cat="merchandise"; el("cat").value="merchandise";
-  state.pdp=-1; select(-1); render(); header();
+  state.pdp=-1; select(-1); render(); header(); glemGemt();
 });
 el("bPrev").addEventListener("click",()=>{document.body.classList.remove("edit");select(-1);state.pdp=-1;render();});
 el("exit").addEventListener("click",()=>{document.body.classList.add("edit");render();});
@@ -11212,7 +11216,97 @@ ${prodViews}
 </body></html>`;
 }
 
+
+/* ── autogem ──────────────────────────────────────────────────────────────
+   Arbejdet ligger i browserens eget lager, ikke paa en server. Hver saelger
+   har derfor sit eget gemte arbejde paa sin egen maskine, og to kan sidde
+   med hver sin kunde samtidig uden at skrive oven i hinanden. To faner i
+   SAMME browser deler til gengaeld pladsen - den sidste der gemmer, vinder -
+   saa faner faar besked af storage-lytteren nederst.
+
+   Logofilerne fylder langt mest. Er der ikke plads til dem, gemmer vi
+   placeringerne alligevel og siger det i bjaelken, frem for at tabe hele
+   gemmet. Kundenavn, farve og placeringer er der saa stadig; logoerne skal
+   uploades igen. */
+const SAVE_KEY="metz-studio-builder-da-v1";
+let saveTimer=null, saveTrimmed=false;
+
+function gemNu(){
+  const kerne={v:1, ts:Date.now(), company:state.company, accent:state.accent,
+    cat:state.cat, ar:state.ar, items:mapOut().items};
+  try{
+    try{ localStorage.setItem(SAVE_KEY,JSON.stringify({...kerne,plates:state.plates}));
+         saveTrimmed=false; }
+    catch(e){ localStorage.setItem(SAVE_KEY,JSON.stringify(kerne)); saveTrimmed=true; }
+    kvittering();
+  }catch(e){ const s=el("saved"); s.textContent="Kan ikke gemme"; s.classList.add("warn"); }
+}
+function kvittering(t){
+  const s=el("saved");
+  const kl=new Date().toLocaleTimeString("da-DK",{hour:"2-digit",minute:"2-digit"});
+  s.textContent=t||(saveTrimmed?`Gemt ${kl} · logo for stort`:`Gemt ${kl}`);
+  s.classList.toggle("warn",!!t||saveTrimmed);
+}
+const touch=()=>{clearTimeout(saveTimer);saveTimer=setTimeout(gemNu,600);};
+function glemGemt(){ try{localStorage.removeItem(SAVE_KEY);}catch(e){}
+  clearTimeout(saveTimer); saveTrimmed=false;
+  const s=el("saved"); s.textContent="—"; s.classList.remove("warn"); }
+
+function hentGemt(){
+  let d=null; try{ d=JSON.parse(localStorage.getItem(SAVE_KEY)||"null"); }catch(e){}
+  if(!d||!Array.isArray(d.items)||!d.items.length) return false;
+
+  const efterNavn={}; SKUS.forEach((s,i)=>efterNavn[s.name]=i);
+  const ud=[];
+  d.items.forEach(r=>{
+    const mi=MI[r.m]; if(mi===undefined)return;
+    const sku=efterNavn[r.sku]!==undefined?efterNavn[r.sku]:MODELS[mi].skus[0];
+    ud.push({mi,sku,place:{...defaults(MODELS[mi]),...r.place},
+      touched:!!r.touched,keep:r.keep!==0,logo:r.logo!==0,
+      set:r.set==="b"?"b":"a",mono:r.mono?1:0});
+  });
+  if(!ud.length) return false;
+  state.items=ud;
+
+  if(typeof d.company==="string"&&d.company){
+    state.company=d.company; el("co").value=d.company;
+    el("footTitle").textContent="Om "+d.company; }
+  if(typeof d.accent==="string"&&/^#[0-9a-f]{6}$/i.test(d.accent)){
+    state.accent=d.accent; el("ac").value=d.accent;
+    document.documentElement.style.setProperty("--accent",d.accent); }
+  if(d.cat&&CATS.some(c=>c.key===d.cat)) state.cat=d.cat;
+
+  /* Pladerne laeses ind enkeltvis og kun hvis de faktisk er data-URIer.
+     Saa kan et roddet lager ikke smugle en fremmed url() ind i sidens CSS. */
+  const P={a:{dark:null,light:null},b:{dark:null,light:null}};
+  const AR={a:{dark:3,light:3},b:{dark:3,light:3}};
+  ["a","b"].forEach(s=>["dark","light"].forEach(w=>{
+    const u=d.plates&&d.plates[s]&&d.plates[s][w];
+    if(typeof u==="string"&&u.slice(0,5)==="data:"){
+      P[s][w]=u;
+      document.documentElement.style.setProperty(`--logo-${s}-${w}`,`url("${u}")`);
+      el({a:{dark:"pbAD",light:"pbAL"},b:{dark:"pbBD",light:"pbBL"}}[s][w]).classList.add("set");
+    }
+    const a=d.ar&&d.ar[s]&&d.ar[s][w];
+    if(typeof a==="number"&&isFinite(a)&&a>0) AR[s][w]=a;
+  }));
+  state.plates=P; state.ar=AR;
+  return true;
+}
+
+/* En anden fane i samme browser har gemt oven i. Vi laeser den ikke ind
+   under haenderne paa saelgeren - vi siger det, saa han ved hvorfor et
+   genindlaes kan se anderledes ud. */
+window.addEventListener("storage",e=>{
+  if(e.key===SAVE_KEY&&e.newValue) kvittering("Ændret i en anden fane");
+});
+
 el("ver").textContent="v"+VERSION;
+const genoptaget=hentGemt();
 nav(); el("cat").value=state.cat; render(); header(); select(-1);
+/* render() ovenfor har allerede bedt om et gem. Der er intet nyt at gemme,
+   og uden det her ville kvitteringen blive skrevet over efter et halvt sekund. */
+if(genoptaget){ clearTimeout(saveTimer); kvittering("Genoptaget"); }
+else el("saved").textContent="—";
 </script>
 </body></html>
