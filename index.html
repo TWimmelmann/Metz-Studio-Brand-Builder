@@ -244,6 +244,7 @@ input:focus-visible,select:focus-visible,.btn:focus-visible,.seg button:focus-vi
   color:var(--ed-dim);font:500 10.5px/1 var(--ed-mono);letter-spacing:.05em;padding:8px 3px;
   cursor:pointer;text-transform:uppercase;}
 .seg button:last-child{border-right:0;}
+.seg button.nofile{opacity:.45;}
 .seg button[aria-pressed="true"]{background:var(--reg);color:#fff;}
 .swatches{display:flex;flex-wrap:wrap;gap:7px;}
 .chip{width:26px;height:26px;border-radius:50%;border:1px solid var(--ed-line-2);cursor:pointer;padding:0;}
@@ -10552,15 +10553,27 @@ function plateFor(ii){
   const t=state.items[ii], sku=SKUS[t.sku];
   const base=skuIsDark(sku);
   const dark=t.place.invert?!base:base;
-  return {set:t.set, v:dark?"light":"dark", blend:dark?"screen":"multiply"};
+  /* Varens farve bestemmer hvilken tone pladen skal have. Har sælgeren kun
+     uploadet den ene tone af det valgte logo, falder vi tilbage paa den anden
+     tone i SAMME logosaet - foer vi overhovedet ser paa det andet logo. Uden
+     det forsvandt logoet helt naar man skiftede til Logo 2. */
+  const want=dark?"light":"dark", other=dark?"dark":"light";
+  const P=state.plates, alt=t.set==="b"?"a":"b";
+  let set=t.set, v=want;
+  if(!P[set]||!P[set][v]){
+    if(P[set]&&P[set][other]) v=other;
+    else if(P[alt]&&P[alt][want]){set=alt;v=want;}
+    else if(P[alt]&&P[alt][other]){set=alt;v=other;}
+  }
+  return {set, v, blend:dark?"screen":"multiply"};
 }
 function stampStyle(ii,asVar){
   const t=state.items[ii];
   if(!t.logo) return "display:none;";
   const pl=t.place, pf=plateFor(ii);
-  const uri=state.plates[pf.set][pf.v]||state.plates.a.dark||state.plates.a.light;
+  const uri=state.plates[pf.set][pf.v];
   const plate=asVar
-    ? (state.plates[pf.set][pf.v]?`var(--logo-${pf.set}-${pf.v})`:"none")
+    ? (uri?`var(--logo-${pf.set}-${pf.v})`:"none")
     : (uri?`url('${uri}')`:"none");
   return `--x:${pl.x}%;--y:${pl.y}%;--w:${pl.w}%;--rot:${pl.rot}deg;--op:${pl.op/100};`+
     `--sx:${pl.curve?.94:1};--ar:${state.ar[pf.set][pf.v]||3};--plate:${plate};`+
@@ -10729,8 +10742,12 @@ function select(i){
   const sibs=state.items.filter(x=>x.mi===t.mi).length;
   el("pIdx").textContent=`${CATS.find(c=>c.key===m.cat).name} · ${FAM_DA[m.fam]||""}`;
   el("pName").textContent=m.name;
+  const hasSet=x=>!!(state.plates[x]&&(state.plates[x].dark||state.plates[x].light));
   el("pSub").textContent=`${artOf(SKUS[t.sku])} · ${m.skus.length} farve${m.skus.length>1?"r":""}`+
-    (sibs>1?` · ${sibs} varianter i shop`:"")+` · ${pf.v==="light"?"lys":"mørk"} plade`;
+    (sibs>1?` · ${sibs} varianter i shop`:"")+` · ${pf.v==="light"?"lys":"mørk"} plade`+
+    (hasSet(t.set)?"":` · logo ${t.set==="b"?"2":"1"} mangler`);
+  el("sgS").querySelectorAll("button").forEach(b=>
+    b.classList.toggle("nofile",!hasSet(b.dataset.s)));
   el("swat").innerHTML=m.skus.map(s=>`<button class="chip" data-s="${s}" title="${esc(SKUS[s].colour)}"
     style="background:${swatchOf(SKUS[s].colour)}" aria-pressed="${s===t.sku}"></button>`).join("");
   el("rX").value=pl.x;el("rY").value=pl.y;el("rW").value=pl.w;el("rR").value=pl.rot;el("rO").value=pl.op;
