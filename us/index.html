@@ -164,7 +164,18 @@ main{flex:1;padding-bottom:48px;}
 .stamp[data-blend="multiply"]{mix-blend-mode:multiply;}
 .stamp[data-blend="screen"]{mix-blend-mode:screen;}
 /* single-colour print: engraving, debossing, one-colour pad print */
-.stamp[data-mono="1"]{filter:grayscale(1) contrast(1.15);}
+.stamp[data-mono="1"]{background-image:none;background-color:var(--ink,#26262a);
+  -webkit-mask-image:var(--plate);mask-image:var(--plate);
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;}
+.stamp[data-mono="1"][data-curve="1"]{
+  -webkit-mask-image:var(--plate),linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+  mask-image:var(--plate),linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+  -webkit-mask-size:contain,100% 100%;mask-size:contain,100% 100%;
+  -webkit-mask-repeat:no-repeat,no-repeat;mask-repeat:no-repeat,no-repeat;
+  -webkit-mask-position:center,center;mask-position:center,center;
+  -webkit-mask-composite:source-in;mask-composite:intersect;}
 .stamp[data-curve="1"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
   mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);}
 
@@ -245,6 +256,7 @@ input:focus-visible,select:focus-visible,.btn:focus-visible,.seg button:focus-vi
   cursor:pointer;text-transform:uppercase;}
 .seg button:last-child{border-right:0;}
 .seg button.nofile{opacity:.45;}
+.note{font:400 10.5px/1.45 var(--ed-mono);color:#d9a441;margin:-3px 0 8px;}
 .seg button[aria-pressed="true"]{background:var(--reg);color:#fff;}
 .swatches{display:flex;flex-wrap:wrap;gap:7px;}
 .chip{width:26px;height:26px;border-radius:50%;border:1px solid var(--ed-line-2);cursor:pointer;padding:0;}
@@ -374,6 +386,7 @@ body:not(.edit) #exit{display:block;}
       <h3>Logo</h3>
       <div class="row"><span class="lbl">Logo</span>
         <div class="seg" id="sgS"><button data-s="a">Logo 1</button><button data-s="b">Logo 2</button></div></div>
+      <div class="note" id="setNote" hidden></div>
       <div class="row"><span class="lbl">Decoration</span>
         <div class="seg" id="sgM"><button data-m="0">Color</button><button data-m="1">Mono</button></div></div>
       <div class="row"><span class="lbl">Plate</span>
@@ -8805,7 +8818,8 @@ function stampStyle(ii,asVar){
     : (uri?`url('${uri}')`:"none");
   return `--x:${pl.x}%;--y:${pl.y}%;--w:${pl.w}%;--rot:${pl.rot}deg;--op:${pl.op/100};`+
     `--sx:${pl.curve?.94:1};--ar:${state.ar[pf.set][pf.v]||3};--plate:${plate};`+
-    (asVar||uri?"":"visibility:hidden;");
+    `--ink:${pf.v==="light"?"#f1ece4":"#26262a"};`+
+    (uri?"":"visibility:hidden;");
 }
 
 /* ── nav ── */
@@ -8977,6 +8991,11 @@ function select(i){
     (hasSet(t.set)?"":` · logo ${t.set==="b"?"2":"1"} missing`);
   el("sgS").querySelectorAll("button").forEach(b=>
     b.classList.toggle("nofile",!hasSet(b.dataset.s)));
+  const note=el("setNote"), andet=t.set==="b"?"a":"b";
+  note.hidden=hasSet(t.set);
+  if(!note.hidden) note.textContent=hasSet(andet)
+    ? `Logo ${t.set==="b"?2:1} has not been uploaded — showing logo ${t.set==="b"?1:2}`
+    : `Upload logo ${t.set==="b"?2:1} in the top left`;
   el("swat").innerHTML=m.skus.map(s=>`<button class="chip" data-s="${s}" title="${esc(SKUS[s].colour)}"
     style="background:${swatchOf(SKUS[s].colour)}" aria-pressed="${s===t.sku}"></button>`).join("");
   el("rX").value=pl.x;el("rY").value=pl.y;el("rW").value=pl.w;el("rR").value=pl.rot;el("rO").value=pl.op;
@@ -9255,7 +9274,18 @@ section h2 em{font-style:normal;color:var(--line);margin-left:6px;}
   background-position:center;opacity:var(--op);}
 .stamp[data-blend="multiply"]{mix-blend-mode:multiply;}
 .stamp[data-blend="screen"]{mix-blend-mode:screen;}
-.stamp[data-mono="1"]{filter:grayscale(1) contrast(1.15);}
+.stamp[data-mono="1"]{background-image:none;background-color:var(--ink,#26262a);
+  -webkit-mask-image:var(--plate);mask-image:var(--plate);
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;}
+.stamp[data-mono="1"][data-curve="1"]{
+  -webkit-mask-image:var(--plate),linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+  mask-image:var(--plate),linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+  -webkit-mask-size:contain,100% 100%;mask-size:contain,100% 100%;
+  -webkit-mask-repeat:no-repeat,no-repeat;mask-repeat:no-repeat,no-repeat;
+  -webkit-mask-position:center,center;mask-position:center,center;
+  -webkit-mask-composite:source-in;mask-composite:intersect;}
 .stamp[data-curve="1"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
   mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);}
 .tx{padding-top:11px;}

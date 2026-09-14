@@ -250,6 +250,10 @@ TEKSTER = [
     ('`${artOf(SKUS[t.sku])} · ${m.skus.length} farve${m.skus.length>1?"r":""}`',
      '`${artOf(SKUS[t.sku])} · ${m.skus.length} color${m.skus.length>1?"s":""}`', 1),
     ('` · logo ${t.set==="b"?"2":"1"} mangler`', '` · logo ${t.set==="b"?"2":"1"} missing`', 1),
+    ('`Logo ${t.set==="b"?2:1} er ikke uploadet — viser logo ${t.set==="b"?1:2}`',
+     '`Logo ${t.set==="b"?2:1} has not been uploaded — showing logo ${t.set==="b"?1:2}`', 1),
+    ('`Upload logo ${t.set==="b"?2:1} øverst til venstre`',
+     '`Upload logo ${t.set==="b"?2:1} in the top left`', 1),
     ('` · ${sibs} varianter i shop`', '` · ${sibs} variants in shop`', 1),
     ('${pf.v==="light"?"lys":"mørk"} plade', '${pf.v==="light"?"light":"dark"} plate', 1),
 ]
