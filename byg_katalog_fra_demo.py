@@ -36,54 +36,137 @@ from itertools import combinations
 from pathlib import Path
 
 import opdater_katalog as ok
+import markeder
 
 IMG_PREFIX = "https://img.metz.dk/cdn-cgi/image/width=600,height=600,f=auto/"
-SCRAPE = Path(".scrape")
 
-# Rækkefølgen her er den rækkefølge kategorierne står i shoppens menu, og
-# dermed den rækkefølge varerne skal ligge i kataloget.
-SOURCES = [
-    ("merchandise",     ["merchandise_a.json", "merchandise_b.json"]),
-    ("beklaedning",     ["beklaedning_a.json", "beklaedning_b.json",
-                         "beklaedning_c.json", "beklaedning_d.json"]),
-    ("tasker",          ["tasker.json"]),
-    ("onboarding",      ["onboarding.json"]),
-    ("laekkerier",      ["laekkerier.json"]),
-    ("anledningsgaver", ["anledningsgaver.json"]),
-    ("forespoergsler",  ["forespoergsler.json"]),
-]
-
-# Underkategori -> familie. Familien afgør hvor logoet lander som standard,
-# og den kan ikke altid udledes af navnet: "Brownsville Unisex" og
-# "V150 Engineered Men" siger intet om hvad varen er. Shoppens egne
-# underkategorier ved det.
+# Markedet sættes af --market og af saet_marked() nedenfor. Uden flaget kører
+# scriptet som før: dansk shop, .scrape/, index.html i roden.
 #
-# Rækkefølgen er ikke ligegyldig: første træf vinder, og enkelte varer ligger
-# i to underkategorier (CUT-352412WH står både under sko og skjorter).
-SUBCAT_FAMILY = [
-    ("beklaedning/bukser",        "pants"),
-    ("beklaedning/haettetroejer", "sweat"),
-    ("beklaedning/jakker",        "jacket"),
-    ("beklaedning/poloshirts",    "polo"),
-    ("beklaedning/skjorter",      "shirt"),
-    ("beklaedning/sko",           "shoes"),
-    ("beklaedning/sportstoej",    "sport"),
-    ("beklaedning/strik",         "knit"),
-    ("beklaedning/sweatshirts",   "sweat"),
-    ("beklaedning/t-shirts",      "tshirt"),
-    ("beklaedning/veste",         "vest"),
-    ("tasker/computertasker",     "bag"),
-    ("tasker/rejsetasker",        "bag"),
-    ("tasker/rygsaekke",          "bag"),
-    ("tasker/sportstasker",       "bag"),
-]
+# Kategorirækkefølgen, underkategori -> familie, farvekortet og shoppens
+# sproglige særheder ligger i markeder.py — ikke her. Logikken under er
+# fælles for begge markeder, og det er hele pointen: en fejlrettelse i
+# navneopdelingen eller varianthåndteringen gælder med det samme for begge.
+MARKED = markeder.hent("dk")
+SCRAPE = Path(MARKED["scrape"])
+
+
+def saet_marked(navn):
+    """Vælger marked og folder markedets farver ind i det fælles farvekort."""
+    global MARKED, SCRAPE
+    MARKED = markeder.hent(navn)
+    SCRAPE = Path(MARKED["scrape"])
+
+    # Farvekortet ligger i opdater_katalog. Markedets egne farver lægges
+    # oveni, så luminansberegningen — og dermed valget mellem den mørke og
+    # den lyse logoplade — virker på amerikanske farvenavne uden at det
+    # danske kort ændrer sig.
+    ok.PALETTE.update(MARKED["palette_ekstra"])
+    ok._CANON.update({n.lower(): n for n in MARKED["palette_ekstra"]})
+    ok._CANON.update(MARKED["alias_ekstra"])
+    return MARKED
+
+
+def rens_navn(navn):
+    """
+    Fjerner det shoppen hænger på produktnavnet uden at det er en del af navnet.
+
+    Den amerikanske shop skriver antallet af inkluderede trykfarver ind i
+    navnet: "Mug (15 Oz.), Royal Blue (1C incl.)". Uden at pille den hale af
+    bliver farven "Royal Blue (1C incl.)" — den findes ikke i farvekortet, så
+    varen står uden farve og lægger sig som sit eget produktkort i stedet for
+    at indgå i modellens farvepalette.
+    """
+    n = " ".join((navn or "").replace("\xa0", " ").split())
+    stoej = MARKED["stoej"]
+    if stoej:
+        for _ in range(3):
+            kortere = stoej.sub("", n).strip()
+            if kortere == n:
+                break
+            n = kortere
+    # "Charter Mens Anorak Jacket,Navy" — komma uden mellemrum efter.
+    n = re.sub(r",(?=[^\s])", ", ", n)
+    return n
+
+
+def farve_bagi(navn):
+    """
+    Sidste udvej: står der en kendt farve som det sidste ord eller de to
+    sidste ord, er det farven — også uden komma foran.
+
+    Fanger "Tumbler, single wall (22 Oz.) blue", hvor halen efter kommaet
+    indeholder et tal og derfor bliver afvist som farve af den fælles regel.
+    """
+    ord = navn.split()
+    for n in (2, 1):
+        if len(ord) > n:
+            hale = " ".join(ord[-n:])
+            if ok.canon_colour(hale) in ok.PALETTE:
+                return " ".join(ord[:-n]).strip(" ,.-"), hale
+    return navn, "—"
+
+
+def kodefarver(raekker):
+    """
+    Leverandørens farvekode i varenummeret -> farve.
+
+    Cutter & Buck-varerne skriver ikke altid farven i navnet: seks skjorter
+    hedder bare "Stretch Oxford Long Sleeve Dress Shirt", og farven står kun
+    som en hale på varenummeret (MCW00138LTB). Koden læres af de varer hvor
+    farven ER skrevet, så kortet holder sig selv ajour når shoppen får nye
+    varer. Kun de koder der aldrig optræder med et farvenavn står fast i
+    markeder.py.
+    """
+    from collections import Counter, defaultdict
+    laert = defaultdict(Counter)
+    for nummer, farve in raekker:
+        if farve == "—":
+            continue
+        m = markeder.US_KODE_RE.match((nummer or "").replace("-", ""))
+        if m:
+            laert[m.group(2)][farve] += 1
+    kort = {kode: t.most_common(1)[0][0] for kode, t in laert.items()}
+    for kode, farve in MARKED["kode_farve"].items():
+        kort.setdefault(kode, farve)
+    return kort
+
+
+SERIE_RE = re.compile(r"^([A-Z]+)(\d+)")
+
+
+def serie(nummer):
+    """
+    Varelinjen i varenummeret: 'HIT-3333RROYC2' -> 'hit3333'.
+
+    Leverandørpræfiks plus det første tal. Farvekoden og trykfarve-halen
+    falder væk, så alle farver af den samme pose deler nøgle — men tre
+    forskellige poser der tilfældigvis hedder det samme gør ikke.
+    """
+    m = SERIE_RE.match((nummer or "").replace("-", "").upper())
+    return (m.group(1) + m.group(2)).lower() if m else ""
+
+
+def familie_foerst(navn):
+    """
+    Markedets egne navneregler, tjekket før de fælles.
+
+    Den fælles liste sætter "bag" før "tote", fordi en dansk mulepose ikke
+    hedder "bag". På den amerikanske shop hedder de allesammen "Tote Bag" —
+    og en mulepose skal have muleposens logoplacering, ikke rygsækkens.
+    """
+    lav = navn.lower()
+    for fam, ord in MARKED["familie_foerst"]:
+        if any(o in lav for o in ord):
+            return fam
+    return None
 
 
 def load_subcat_family():
     """varenummer (små bogstaver) -> familie."""
     raw = json.loads((SCRAPE / "subcats.json").read_text(encoding="utf-8"))
     out = {}
-    for path, fam in SUBCAT_FAMILY:
+    for path, fam in MARKED["underkategori_familie"]:
         for num in raw.get(path, []):
             out.setdefault(num.lower(), fam)
     return out
@@ -232,7 +315,7 @@ def build():
     subfam = load_subcat_family()
     skus, seen, warnings = [], set(), []
 
-    for cat, files in SOURCES:
+    for cat, files in MARKED["kilder"]:
         rows = []
         for name in files:
             path = SCRAPE / name
@@ -246,17 +329,26 @@ def build():
                 continue
             seen.add(key)
 
-            name = " ".join((prodname or "").replace("\xa0", " ").split())
+            name = rens_navn(prodname)
             if not name:
                 warnings.append(f"{cat}: {number} uden navn — sprunget over")
                 continue
 
             model, colour = ok.split_name(name)
             colour = ok.canon_colour(colour)
+            if colour == "—":
+                model, colour = farve_bagi(name)
+                colour = ok.canon_colour(colour)
 
             fam = subfam.get((number or "").lower())
             if not fam:
-                fam = ok.family_of(name, cat)
+                fam = familie_foerst(name) or ok.family_of(name, cat)
+
+            mkey = ok.slugify(model)
+            if MARKED["mkey_med_serie"]:
+                s_ = serie(number)
+                if s_:
+                    mkey = f"{mkey}-{s_}"
 
             skus.append({
                 "img": (IMG_PREFIX + img_tail) if img_tail else "",
@@ -269,10 +361,28 @@ def build():
                 "stock": (stock or "").strip(),
                 "fam": fam,
                 "dark": ok.colour_is_dark(colour),
-                "mkey": ok.slugify(model),
+                "mkey": mkey,
                 "art": [art_of(number)] if number else [],
                 "cat": cat,
             })
+
+    # Anden runde: de varer hvor farven slet ikke står i navnet får den fra
+    # leverandørens farvekode i varenummeret.
+    if MARKED["kode_farve"] or MARKED["stoej"]:
+        kort = kodefarver([(s["art"][0] if s["art"] else "", s["colour"]) for s in skus])
+        gaettet = 0
+        for sku in skus:
+            if sku["colour"] != "—" or not sku["art"]:
+                continue
+            m = markeder.US_KODE_RE.match(sku["art"][0].replace("-", ""))
+            farve = kort.get(m.group(2)) if m else None
+            if farve:
+                sku["colour"] = ok.canon_colour(farve)
+                sku["dark"] = ok.colour_is_dark(sku["colour"])
+                gaettet += 1
+        if gaettet:
+            warnings.append(f"{gaettet} varer fik farven fra varenummerets farvekode"
+                            f" — shoppen skriver den ikke i navnet")
 
     rapport = split_variants(skus)
     return skus, warnings, rapport
@@ -294,7 +404,12 @@ def write_skus(html, blob):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--market", default="dk", choices=sorted(markeder.MARKEDER),
+                    help="hvilket marked der bygges (standard: dk)")
     args = ap.parse_args()
+
+    m = saet_marked(args.market)
+    print(f"Marked: {m['navn']}  ({m['scrape']} -> {m['index']})\n")
 
     skus, warnings, rapport = build()
 
@@ -333,10 +448,14 @@ def main():
         return
 
     blob = json.dumps(skus, ensure_ascii=False, indent=1)
-    html = Path("index.html").read_text(encoding="utf-8")
-    Path("index.html").write_text(write_skus(html, blob), encoding="utf-8")
-    Path("catalogue.json").write_text(blob, encoding="utf-8")
-    print("\nSkrevet til index.html og catalogue.json.")
+    index = Path(MARKED["index"])
+    katalog = Path(MARKED["catalogue"])
+    if not index.exists():
+        sys.exit(f"Mangler {index} — kopiér builderen derhen først.")
+    katalog.parent.mkdir(parents=True, exist_ok=True)
+    index.write_text(write_skus(index.read_text(encoding="utf-8"), blob), encoding="utf-8")
+    katalog.write_text(blob, encoding="utf-8")
+    print(f"\nSkrevet til {index} og {katalog}.")
 
 
 if __name__ == "__main__":

@@ -20,7 +20,86 @@ ikke noget — den skal pushes og merges til `main`, før den er live.
 | `opdater_katalog.py` | Henter demoshoppens sortiment over HTTP og **tilføjer** nye varer begge steder. |
 | `byg_katalog_fra_demo.py` | Bygger kataloget **forfra** ud fra rå-udtræk i `.scrape/`, i demoens egen visningsrækkefølge. |
 | `.scrape/*.json` | Rå-udtrækkene. Én liste pr. vare: varenummer, navn, brand, materiale, pris, lager, billed-hale. |
+| `markeder.py` | Det der adskiller DK og US: shop-URL, kategorier, farver, sproglige særheder. |
+| `byg_us_builder.py` | Genererer `us/index.html` ud fra `index.html`. Oversætter og skifter tabellerne ud. |
+| `udtraek.js` | Browser-udtrækket. Indsættes i konsollen på en kategoriside. |
+| `udtraek_til_scrape.py` | Pakker browserens JSON-fil ud i `.scrape*/`-mapperne. |
+| `.scrape-us/*.json` | Rå-udtrækkene fra den amerikanske demoshop. |
+| `us/index.html` | Den amerikanske builder. **Genereret — ret den ikke i hånden.** |
 | `README.md` | Denne fil. |
+
+---
+
+## To markeder
+
+Der er to buildere: den danske på `index.html` og den amerikanske på
+`us/index.html`. De ligger i samme repo, og Vercel deployer begge ved ét push.
+
+**Den amerikanske er ikke en kopi — den er genereret.** `byg_us_builder.py`
+læser `index.html`, oversætter brugerfladen og begge eksportskabeloner,
+skifter kategorier, størrelsesrækker, farvekort, flag og valuta ud, og
+skriver resultatet til `us/index.html`.
+
+Det er med vilje. Retter du en fejl i logoplaceringen, i produktsiden eller i
+eksporten, så ret den i `index.html` og kør generatoren — så har begge
+markeder fixet. Kopierede vi filen i stedet, ville de to drive fra hinanden i
+løbet af et par måneder, og så var der to værktøjer at vedligeholde i stedet
+for ét.
+
+```
+python3 byg_us_builder.py                      # oversætter og bygger us/index.html
+python3 byg_katalog_fra_demo.py --market us    # fylder det amerikanske sortiment i
+```
+
+Rammer en oversættelse ikke, stopper generatoren og siger hvilken tekst der
+ikke blev fundet. Det sker når en tekst er rettet i `index.html` — så ret
+søgestrengen i `TEKSTER` i `byg_us_builder.py`, ikke i `us/index.html`. Den
+bliver overskrevet ved næste kørsel.
+
+`markeder.py` holder alt det markedsspecifikke: shop-URL, hvilke kategorier
+der hentes og i hvilken rækkefølge, underkategori → produktfamilie,
+ekstra farver, og de sproglige særheder. Skal Metz have et marked mere, er
+det en ny post i `MARKEDER` — ikke en ny kopi af scripts.
+
+### Sådan opdateres det amerikanske katalog
+
+1. Åbn `shop.metz.dk/metz-us-studio-demo/en` og gå til første kategori.
+2. F12 → Console → indsæt hele `udtraek.js` → Enter.
+3. `await udtraek("merchandise")`, gå til næste kategori, gentag for
+   `apparel`, `bags`, `onboarding`. Kategorinavnene skal matche `kilder` i
+   `markeder.py`.
+4. `await udtraekUnderkategorier([...])` med stierne fra
+   `underkategori_familie`, og derefter `gem()`.
+5. ```
+   python3 udtraek_til_scrape.py ~/Downloads/us-scrape.json --ud .scrape-us
+   python3 byg_katalog_fra_demo.py --market us --dry-run
+   python3 byg_katalog_fra_demo.py --market us
+   ```
+
+`new`-kategorien hentes med vilje ikke. Alle 220 varer på den side ligger
+også i deres egen kategori — præcis som nyhedssiden i den danske demo.
+
+### To ting den amerikanske shop gør anderledes
+
+**Antal trykfarver står i produktnavnet.** "Mug (15 Oz.), Royal Blue
+(1C incl.)". Uden at pille halen af bliver farven "Royal Blue (1C incl.)",
+som ikke findes i farvekortet — og varen lægger sig som sit eget kort i
+stedet for at indgå i modellens farvepalette. `rens_navn()` fjerner den.
+
+**Produktnavne genbruges på tværs af varelinjer.** 3031, 3330 og 3333 hedder
+alle tre "Tote Bag (80 gsm)" og fås alle tre i Black. Derfor indgår
+varelinjen fra varenummeret i modelnøglen på det amerikanske marked
+(`mkey_med_serie`), så ni forskellige poser ikke smelter sammen til ét kort
+med ni ens sorte prikker.
+
+**Fjorten varer har slet ingen farve i navnet.** Cutter & Buck-skjorterne
+hedder bare "Stretch Oxford Long Sleeve Dress Shirt", og farven står kun som
+en hale på varenummeret. `kodefarver()` lærer kodebogen af de varer hvor
+farven ER skrevet; de koder der aldrig optræder med et farvenavn står fast i
+`US_KODE_FARVE` i `markeder.py` — de er aflæst på produktbillederne og bør
+tjekkes efter, hvis logoet lander i den forkerte tone på en skjorte.
+
+---
 
 ### Hvorfor alt ligger i én fil
 
