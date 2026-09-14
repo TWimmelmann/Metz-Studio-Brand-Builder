@@ -169,6 +169,8 @@ TEKSTER = [
      'el("footTitle").textContent="About "+DEFAULT_CO;', 1),
 
     # Sorteringsbjælken
+    ('<label>Vis:</label><select><option>Alle</option></select>',
+     '<label>Show:</label><select><option>All</option></select>', 1),
     ('<label>Sortér efter:</label>', '<label>Sort by:</label>', 1),
     ('<option>Standard</option><option>Nyeste</option><option>Pris lav-høj</option>'
      '<option>Pris høj-lav</option><option>Titel</option><option>Brand</option>',
